@@ -18,8 +18,10 @@
 		9CA5820B297ACAA700449D20 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5820A297ACAA700449D20 /* ModuleBuilder.swift */; };
 		9CA5820E297ACE5B00449D20 /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5820D297ACE5B00449D20 /* LoginVM.swift */; };
 		9CA58210297AD45D00449D20 /* LoginVCBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5820F297AD45D00449D20 /* LoginVCBuilder.swift */; };
-		9CA58213297AE0F500449D20 /* Colors + colorsForApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA58212297AE0F500449D20 /* Colors + colorsForApp.swift */; };
+		9CA58213297AE0F500449D20 /* UIColors + colorsForApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA58212297AE0F500449D20 /* UIColors + colorsForApp.swift */; };
 		9CA58216297BD19400449D20 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA58215297BD19400449D20 /* LoginView.swift */; };
+		9CA58219297BF7F800449D20 /* CustomUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA58218297BF7F800449D20 /* CustomUITextField.swift */; };
+		9CA5821B297C89FF00449D20 /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5821A297C89FF00449D20 /* CustomUIButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,8 +38,10 @@
 		9CA5820A297ACAA700449D20 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		9CA5820D297ACE5B00449D20 /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
 		9CA5820F297AD45D00449D20 /* LoginVCBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVCBuilder.swift; sourceTree = "<group>"; };
-		9CA58212297AE0F500449D20 /* Colors + colorsForApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colors + colorsForApp.swift"; sourceTree = "<group>"; };
+		9CA58212297AE0F500449D20 /* UIColors + colorsForApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColors + colorsForApp.swift"; sourceTree = "<group>"; };
 		9CA58215297BD19400449D20 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		9CA58218297BF7F800449D20 /* CustomUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUITextField.swift; sourceTree = "<group>"; };
+		9CA5821A297C89FF00449D20 /* CustomUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +81,8 @@
 				9CA5820C297ACE0400449D20 /* LoginVC */,
 				9CA58211297AE0A000449D20 /* CoinsTableViewVC */,
 				9CA58214297AE12400449D20 /* DetailsVC */,
-				9CA58212297AE0F500449D20 /* Colors + colorsForApp.swift */,
+				9CA58217297BF7CC00449D20 /* UIElements + ext */,
+				9CA5821C297C90CC00449D20 /* Custon UIElements inits */,
 				9CA581F7297AC70C00449D20 /* Assets.xcassets */,
 				9CA581F9297AC70C00449D20 /* LaunchScreen.storyboard */,
 				9CA581FC297AC70C00449D20 /* Info.plist */,
@@ -110,6 +115,23 @@
 				9CA58208297ACA0E00449D20 /* DetailsViewController.swift */,
 			);
 			path = DetailsVC;
+			sourceTree = "<group>";
+		};
+		9CA58217297BF7CC00449D20 /* UIElements + ext */ = {
+			isa = PBXGroup;
+			children = (
+				9CA58212297AE0F500449D20 /* UIColors + colorsForApp.swift */,
+			);
+			path = "UIElements + ext";
+			sourceTree = "<group>";
+		};
+		9CA5821C297C90CC00449D20 /* Custon UIElements inits */ = {
+			isa = PBXGroup;
+			children = (
+				9CA58218297BF7F800449D20 /* CustomUITextField.swift */,
+				9CA5821A297C89FF00449D20 /* CustomUIButton.swift */,
+			);
+			path = "Custon UIElements inits";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,17 +204,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CA5821B297C89FF00449D20 /* CustomUIButton.swift in Sources */,
 				9CA58203297AC8F600449D20 /* NavigationController.swift in Sources */,
 				9CA58207297AC9D500449D20 /* CoinsTableViewController.swift in Sources */,
 				9CA581EF297AC70A00449D20 /* AppDelegate.swift in Sources */,
 				9CA58209297ACA0E00449D20 /* DetailsViewController.swift in Sources */,
 				9CA5820E297ACE5B00449D20 /* LoginVM.swift in Sources */,
+				9CA58219297BF7F800449D20 /* CustomUITextField.swift in Sources */,
 				9CA58205297AC9A000449D20 /* LoginViewController.swift in Sources */,
 				9CA58210297AD45D00449D20 /* LoginVCBuilder.swift in Sources */,
 				9CA581F1297AC70A00449D20 /* SceneDelegate.swift in Sources */,
 				9CA58216297BD19400449D20 /* LoginView.swift in Sources */,
 				9CA5820B297ACAA700449D20 /* ModuleBuilder.swift in Sources */,
-				9CA58213297AE0F500449D20 /* Colors + colorsForApp.swift in Sources */,
+				9CA58213297AE0F500449D20 /* UIColors + colorsForApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

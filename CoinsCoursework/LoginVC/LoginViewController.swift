@@ -94,7 +94,6 @@ class LoginViewController: UIViewController  {
             loginView.heightAnchor.constraint(equalTo: centralView.heightAnchor)
         ])
         
-       // loginView.setupConstraints()
     }
    
 

@@ -14,63 +14,20 @@ class LoginView: UIView {
     private var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.backgroundColor = UIColor.yellow
         stackView.axis = .vertical
-        stackView.distribution = .fillProportionally
+        stackView.distribution = .equalSpacing
         stackView.alignment = .fill
         return stackView
     }()
 
-    private var loginTexField: UITextField = {
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.backgroundColor = UIColor.appLightBeige
-        textField.layer.cornerRadius = 5
-        textField.placeholder = " Email"
+    
+    private var loginTextField: UITextField = CustomUITextField(systemImage: "envelope", placeHolder: " Email")
+    
+    
+    private var passwordTextField: UITextField = CustomUITextField(systemImage: "lock.fill", placeHolder: " Password")
+  
 
-        let leftView: UIView = {
-            let view = UIView()
-            view.translatesAutoresizingMaskIntoConstraints = false
-            let image = UIImage(systemName: "envelope.fill")
-            let colorConfig = UIImage.SymbolConfiguration(paletteColors: [UIColor.appBeige])
-            let confImage = image?.withConfiguration(colorConfig)
-            let imageView = UIImageView(image: confImage)
-            imageView.contentMode = .scaleAspectFit
-            imageView.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(imageView)
-            view.heightAnchor.constraint(equalToConstant: 44).isActive = true
-            view.widthAnchor.constraint(equalToConstant: 44).isActive = true
-            imageView.widthAnchor.constraint(equalToConstant: 30).isActive  = true
-            imageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
-            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-            return view
-        }()
-
-        let image = UIImage(systemName: "envelope.fill")!
-        let colorConfig = UIImage.SymbolConfiguration(paletteColors: [UIColor.appIndigo])
-        let confImage = image.withConfiguration(colorConfig)
-        let imageView = UIImageView()
-        imageView.image = confImage
-        textField.leftView = leftView
-        textField.leftViewMode = .always
-
-        textField.heightAnchor.constraint(equalToConstant: 44).isActive = true
-
-        return textField
-    }()
-
-    private var passwordTextField: UITextField = {
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        return textField
-    }()
-
-    private var signInButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+    private var signInButton: UIButton = CustomButtonWithText(title: "Sign In")
 
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -89,9 +46,10 @@ class LoginView: UIView {
 
     func setupHierarhy(){
         self.addSubview(stackView)
-        stackView.addArrangedSubview(loginTexField)
+        stackView.addArrangedSubview(loginTextField)
         stackView.addArrangedSubview(passwordTextField)
         stackView.addArrangedSubview(passwordTextField)
+        stackView.addArrangedSubview(signInButton)
     }
 
     func setupConstraints(){
@@ -99,8 +57,27 @@ class LoginView: UIView {
             stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
             stackView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20),
             stackView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20),
-            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20)
+            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
+            
+            loginTextField.heightAnchor.constraint(equalToConstant: 44),
+            passwordTextField.heightAnchor.constraint(equalToConstant:  44),
+            signInButton.heightAnchor.constraint(equalToConstant: 44)
         ])
+    }
+    
+}
+
+
+//MARK: UITextFieldDelegate
+extension LoginView: UITextFieldDelegate {
+    
+}
+
+//MARK: Navigation
+extension LoginView {
+    
+    @objc func moveToCoinsTableViewController () {
+        
     }
     
 }
