@@ -9,21 +9,35 @@
 /* Begin PBXBuildFile section */
 		9CA581EF297AC70A00449D20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA581EE297AC70A00449D20 /* AppDelegate.swift */; };
 		9CA581F1297AC70A00449D20 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA581F0297AC70A00449D20 /* SceneDelegate.swift */; };
-		9CA581F3297AC70A00449D20 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA581F2297AC70A00449D20 /* ViewController.swift */; };
-		9CA581F6297AC70A00449D20 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CA581F4297AC70A00449D20 /* Main.storyboard */; };
 		9CA581F8297AC70C00449D20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CA581F7297AC70C00449D20 /* Assets.xcassets */; };
 		9CA581FB297AC70C00449D20 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CA581F9297AC70C00449D20 /* LaunchScreen.storyboard */; };
+		9CA58203297AC8F600449D20 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA58202297AC8F600449D20 /* NavigationController.swift */; };
+		9CA58205297AC9A000449D20 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA58204297AC9A000449D20 /* LoginViewController.swift */; };
+		9CA58207297AC9D500449D20 /* CoinsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA58206297AC9D500449D20 /* CoinsTableViewController.swift */; };
+		9CA58209297ACA0E00449D20 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA58208297ACA0E00449D20 /* DetailsViewController.swift */; };
+		9CA5820B297ACAA700449D20 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5820A297ACAA700449D20 /* ModuleBuilder.swift */; };
+		9CA5820E297ACE5B00449D20 /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5820D297ACE5B00449D20 /* LoginVM.swift */; };
+		9CA58210297AD45D00449D20 /* LoginVCBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5820F297AD45D00449D20 /* LoginVCBuilder.swift */; };
+		9CA58213297AE0F500449D20 /* Colors + colorsForApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA58212297AE0F500449D20 /* Colors + colorsForApp.swift */; };
+		9CA58216297BD19400449D20 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA58215297BD19400449D20 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9CA581EB297AC70A00449D20 /* CoinsCoursework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinsCoursework.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CA581EE297AC70A00449D20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9CA581F0297AC70A00449D20 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9CA581F2297AC70A00449D20 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		9CA581F5297AC70A00449D20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9CA581F7297AC70C00449D20 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9CA581FA297AC70C00449D20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9CA581FC297AC70C00449D20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9CA58202297AC8F600449D20 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		9CA58204297AC9A000449D20 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		9CA58206297AC9D500449D20 /* CoinsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsTableViewController.swift; sourceTree = "<group>"; };
+		9CA58208297ACA0E00449D20 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		9CA5820A297ACAA700449D20 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
+		9CA5820D297ACE5B00449D20 /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
+		9CA5820F297AD45D00449D20 /* LoginVCBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVCBuilder.swift; sourceTree = "<group>"; };
+		9CA58212297AE0F500449D20 /* Colors + colorsForApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colors + colorsForApp.swift"; sourceTree = "<group>"; };
+		9CA58215297BD19400449D20 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +72,44 @@
 			children = (
 				9CA581EE297AC70A00449D20 /* AppDelegate.swift */,
 				9CA581F0297AC70A00449D20 /* SceneDelegate.swift */,
-				9CA581F2297AC70A00449D20 /* ViewController.swift */,
-				9CA581F4297AC70A00449D20 /* Main.storyboard */,
+				9CA5820A297ACAA700449D20 /* ModuleBuilder.swift */,
+				9CA58202297AC8F600449D20 /* NavigationController.swift */,
+				9CA5820C297ACE0400449D20 /* LoginVC */,
+				9CA58211297AE0A000449D20 /* CoinsTableViewVC */,
+				9CA58214297AE12400449D20 /* DetailsVC */,
+				9CA58212297AE0F500449D20 /* Colors + colorsForApp.swift */,
 				9CA581F7297AC70C00449D20 /* Assets.xcassets */,
 				9CA581F9297AC70C00449D20 /* LaunchScreen.storyboard */,
 				9CA581FC297AC70C00449D20 /* Info.plist */,
 			);
 			path = CoinsCoursework;
+			sourceTree = "<group>";
+		};
+		9CA5820C297ACE0400449D20 /* LoginVC */ = {
+			isa = PBXGroup;
+			children = (
+				9CA5820F297AD45D00449D20 /* LoginVCBuilder.swift */,
+				9CA58204297AC9A000449D20 /* LoginViewController.swift */,
+				9CA58215297BD19400449D20 /* LoginView.swift */,
+				9CA5820D297ACE5B00449D20 /* LoginVM.swift */,
+			);
+			path = LoginVC;
+			sourceTree = "<group>";
+		};
+		9CA58211297AE0A000449D20 /* CoinsTableViewVC */ = {
+			isa = PBXGroup;
+			children = (
+				9CA58206297AC9D500449D20 /* CoinsTableViewController.swift */,
+			);
+			path = CoinsTableViewVC;
+			sourceTree = "<group>";
+		};
+		9CA58214297AE12400449D20 /* DetailsVC */ = {
+			isa = PBXGroup;
+			children = (
+				9CA58208297ACA0E00449D20 /* DetailsViewController.swift */,
+			);
+			path = DetailsVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +172,6 @@
 			files = (
 				9CA581FB297AC70C00449D20 /* LaunchScreen.storyboard in Resources */,
 				9CA581F8297AC70C00449D20 /* Assets.xcassets in Resources */,
-				9CA581F6297AC70A00449D20 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +182,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CA581F3297AC70A00449D20 /* ViewController.swift in Sources */,
+				9CA58203297AC8F600449D20 /* NavigationController.swift in Sources */,
+				9CA58207297AC9D500449D20 /* CoinsTableViewController.swift in Sources */,
 				9CA581EF297AC70A00449D20 /* AppDelegate.swift in Sources */,
+				9CA58209297ACA0E00449D20 /* DetailsViewController.swift in Sources */,
+				9CA5820E297ACE5B00449D20 /* LoginVM.swift in Sources */,
+				9CA58205297AC9A000449D20 /* LoginViewController.swift in Sources */,
+				9CA58210297AD45D00449D20 /* LoginVCBuilder.swift in Sources */,
 				9CA581F1297AC70A00449D20 /* SceneDelegate.swift in Sources */,
+				9CA58216297BD19400449D20 /* LoginView.swift in Sources */,
+				9CA5820B297ACAA700449D20 /* ModuleBuilder.swift in Sources */,
+				9CA58213297AE0F500449D20 /* Colors + colorsForApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		9CA581F4297AC70A00449D20 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9CA581F5297AC70A00449D20 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		9CA581F9297AC70C00449D20 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -292,7 +336,6 @@
 				INFOPLIST_FILE = CoinsCoursework/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -320,7 +363,6 @@
 				INFOPLIST_FILE = CoinsCoursework/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
