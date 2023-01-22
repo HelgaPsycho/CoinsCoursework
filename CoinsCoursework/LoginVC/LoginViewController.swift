@@ -39,7 +39,6 @@ class LoginViewController: UIViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.title = "Coins"
         view.backgroundColor = UIColor.appBeige
         
         setupVC()

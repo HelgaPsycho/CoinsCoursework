@@ -29,7 +29,8 @@ class CustomUITextField: UITextField {
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = UIColor.appLightBeige
         layer.cornerRadius = 5
-        
+        textColor = .appIndigo
+        returnKeyType = .done
         guard let imageString = systemImage else {
             return
         }
@@ -43,16 +44,12 @@ class CustomUITextField: UITextField {
             view.translatesAutoresizingMaskIntoConstraints = false
             let image = UIImage(systemName: systemImage)
             let colorConfig = UIImage.SymbolConfiguration(paletteColors: [UIColor.appBeige])
-            let confImage = image?.withConfiguration(colorConfig)
+            let confImage = image?.withConfiguration(UIImage.SymbolConfiguration(scale: .medium)).withConfiguration(colorConfig)
             let imageView = UIImageView(image: confImage)
-            imageView.contentMode = .scaleAspectFill
             imageView.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(imageView)
-            
             view.heightAnchor.constraint(equalToConstant: 44).isActive = true
             view.widthAnchor.constraint(equalToConstant: 44).isActive = true
-            imageView.widthAnchor.constraint(equalToConstant: 30).isActive  = true
-            imageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
             imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
             return view

@@ -11,6 +11,8 @@ class LoginView: UIView {
 
     var viewModel: (LoginVMProtocolIn & LoginVMProtocolOut)?
     
+    var userModel: UserModel = UserModel(email: "", password: "")
+    
     private var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -21,7 +23,7 @@ class LoginView: UIView {
     }()
 
     
-    private var loginTextField: UITextField = CustomUITextField(systemImage: "envelope", placeHolder: " Email")
+    private var emailTextField: UITextField = CustomUITextField(systemImage: "envelope", placeHolder: " Email")
     
     
     private var passwordTextField: UITextField = CustomUITextField(systemImage: "lock.fill", placeHolder: " Password")
@@ -31,12 +33,18 @@ class LoginView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: .zero)
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
         print("LoginView init")
         backgroundColor = .white
         layer.cornerRadius = 20
         
         setupHierarhy()
         setupConstraints()
+        setupSignInButton()
+        
+        // тестовый метод
+        setLoginAndPassword()
 
     }
     
@@ -46,7 +54,7 @@ class LoginView: UIView {
 
     func setupHierarhy(){
         self.addSubview(stackView)
-        stackView.addArrangedSubview(loginTextField)
+        stackView.addArrangedSubview(emailTextField)
         stackView.addArrangedSubview(passwordTextField)
         stackView.addArrangedSubview(passwordTextField)
         stackView.addArrangedSubview(signInButton)
@@ -59,25 +67,56 @@ class LoginView: UIView {
             stackView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20),
             stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
             
-            loginTextField.heightAnchor.constraint(equalToConstant: 44),
+            emailTextField.heightAnchor.constraint(equalToConstant: 44),
             passwordTextField.heightAnchor.constraint(equalToConstant:  44),
             signInButton.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
     
-}
-
-
-//MARK: UITextFieldDelegate
-extension LoginView: UITextFieldDelegate {
-    
-}
-
-//MARK: Navigation
-extension LoginView {
-    
-    @objc func moveToCoinsTableViewController () {
-        
+    func setupSignInButton() {
+        signInButton.addTarget(self, action: #selector(checkUser), for: .touchUpInside)
     }
     
+}
+
+
+//MARK: - UITextFieldDelegate
+extension LoginView: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        emailTextField.text = userModel.email
+        passwordTextField.text = userModel.password
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if emailTextField.isFirstResponder == true {
+            resignFirstResponder()
+            passwordTextField.becomeFirstResponder()
+        }
+        else {
+           checkUser()
+        }
+        return true
+    }
+}
+
+//MARK: - CHECK USER
+extension LoginView {
+    
+    @objc func checkUser () {
+        viewModel?.checkUser(userModel: userModel)
+    
+    }
+    
+}
+
+//MARK: - LOGIN PASSWORD TEST
+
+extension LoginView {
+    func setLoginAndPassword() {
+        userModel.email = "1234"
+        userModel.password = "1234"
+        
+        emailTextField.text = userModel.email
+        passwordTextField.text = userModel.password
+    }
 }

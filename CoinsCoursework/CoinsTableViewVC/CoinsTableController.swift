@@ -1,22 +1,20 @@
 //
-//  NavigationController.swift
+//  CoinsTableController.swift
 //  CoinsCoursework
 //
-//  Created by Ольга Егорова on 20.01.2023.
+//  Created by Ольга Егорова on 22.01.2023.
 //
 
 import UIKit
 
-class NavigationController: UINavigationController {
+class CoinsTableController: UIViewController {
     
+    var viewModel: (CoinsTableViewProtocolIn & CoinsTableViewProtocolOut)?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationBar.backgroundColor = .appBeige
-        navigationBar.barStyle = UIBarStyle.default
-        navigationBar.tintColor = .appIndigo
-        navigationItem.title = "Coins"
-        // Do any additional setup after loading the view.
+
+        view.backgroundColor = .yellow
     }
     
 

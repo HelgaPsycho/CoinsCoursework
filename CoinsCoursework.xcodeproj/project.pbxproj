@@ -13,7 +13,6 @@
 		9CA581FB297AC70C00449D20 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CA581F9297AC70C00449D20 /* LaunchScreen.storyboard */; };
 		9CA58203297AC8F600449D20 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA58202297AC8F600449D20 /* NavigationController.swift */; };
 		9CA58205297AC9A000449D20 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA58204297AC9A000449D20 /* LoginViewController.swift */; };
-		9CA58207297AC9D500449D20 /* CoinsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA58206297AC9D500449D20 /* CoinsTableViewController.swift */; };
 		9CA58209297ACA0E00449D20 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA58208297ACA0E00449D20 /* DetailsViewController.swift */; };
 		9CA5820B297ACAA700449D20 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5820A297ACAA700449D20 /* ModuleBuilder.swift */; };
 		9CA5820E297ACE5B00449D20 /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5820D297ACE5B00449D20 /* LoginVM.swift */; };
@@ -22,6 +21,11 @@
 		9CA58216297BD19400449D20 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA58215297BD19400449D20 /* LoginView.swift */; };
 		9CA58219297BF7F800449D20 /* CustomUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA58218297BF7F800449D20 /* CustomUITextField.swift */; };
 		9CA5821B297C89FF00449D20 /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5821A297C89FF00449D20 /* CustomUIButton.swift */; };
+		9CA5821E297D2B6700449D20 /* CoinsTableViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5821D297D2B6700449D20 /* CoinsTableViewVM.swift */; };
+		9CA58220297D2C4700449D20 /* CoinsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5821F297D2C4700449D20 /* CoinsTableController.swift */; };
+		9CA58222297D2CAC00449D20 /* CoinsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA58221297D2CAC00449D20 /* CoinsTableView.swift */; };
+		9CA58224297D2DF100449D20 /* CoinsTableVCBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA58223297D2DF100449D20 /* CoinsTableVCBuilder.swift */; };
+		9CA58226297D377600449D20 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA58225297D377600449D20 /* UserModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +37,6 @@
 		9CA581FC297AC70C00449D20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9CA58202297AC8F600449D20 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		9CA58204297AC9A000449D20 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		9CA58206297AC9D500449D20 /* CoinsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsTableViewController.swift; sourceTree = "<group>"; };
 		9CA58208297ACA0E00449D20 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		9CA5820A297ACAA700449D20 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		9CA5820D297ACE5B00449D20 /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
@@ -42,6 +45,11 @@
 		9CA58215297BD19400449D20 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		9CA58218297BF7F800449D20 /* CustomUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUITextField.swift; sourceTree = "<group>"; };
 		9CA5821A297C89FF00449D20 /* CustomUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIButton.swift; sourceTree = "<group>"; };
+		9CA5821D297D2B6700449D20 /* CoinsTableViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsTableViewVM.swift; sourceTree = "<group>"; };
+		9CA5821F297D2C4700449D20 /* CoinsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsTableController.swift; sourceTree = "<group>"; };
+		9CA58221297D2CAC00449D20 /* CoinsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsTableView.swift; sourceTree = "<group>"; };
+		9CA58223297D2DF100449D20 /* CoinsTableVCBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsTableVCBuilder.swift; sourceTree = "<group>"; };
+		9CA58225297D377600449D20 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +89,7 @@
 				9CA5820C297ACE0400449D20 /* LoginVC */,
 				9CA58211297AE0A000449D20 /* CoinsTableViewVC */,
 				9CA58214297AE12400449D20 /* DetailsVC */,
+				9CA58227297D377C00449D20 /* Models */,
 				9CA58217297BF7CC00449D20 /* UIElements + ext */,
 				9CA5821C297C90CC00449D20 /* Custon UIElements inits */,
 				9CA581F7297AC70C00449D20 /* Assets.xcassets */,
@@ -104,7 +113,10 @@
 		9CA58211297AE0A000449D20 /* CoinsTableViewVC */ = {
 			isa = PBXGroup;
 			children = (
-				9CA58206297AC9D500449D20 /* CoinsTableViewController.swift */,
+				9CA58223297D2DF100449D20 /* CoinsTableVCBuilder.swift */,
+				9CA5821F297D2C4700449D20 /* CoinsTableController.swift */,
+				9CA58221297D2CAC00449D20 /* CoinsTableView.swift */,
+				9CA5821D297D2B6700449D20 /* CoinsTableViewVM.swift */,
 			);
 			path = CoinsTableViewVC;
 			sourceTree = "<group>";
@@ -132,6 +144,14 @@
 				9CA5821A297C89FF00449D20 /* CustomUIButton.swift */,
 			);
 			path = "Custon UIElements inits";
+			sourceTree = "<group>";
+		};
+		9CA58227297D377C00449D20 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9CA58225297D377600449D20 /* UserModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,18 +225,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CA5821B297C89FF00449D20 /* CustomUIButton.swift in Sources */,
+				9CA58220297D2C4700449D20 /* CoinsTableController.swift in Sources */,
 				9CA58203297AC8F600449D20 /* NavigationController.swift in Sources */,
-				9CA58207297AC9D500449D20 /* CoinsTableViewController.swift in Sources */,
 				9CA581EF297AC70A00449D20 /* AppDelegate.swift in Sources */,
 				9CA58209297ACA0E00449D20 /* DetailsViewController.swift in Sources */,
+				9CA5821E297D2B6700449D20 /* CoinsTableViewVM.swift in Sources */,
 				9CA5820E297ACE5B00449D20 /* LoginVM.swift in Sources */,
 				9CA58219297BF7F800449D20 /* CustomUITextField.swift in Sources */,
+				9CA58226297D377600449D20 /* UserModel.swift in Sources */,
+				9CA58224297D2DF100449D20 /* CoinsTableVCBuilder.swift in Sources */,
 				9CA58205297AC9A000449D20 /* LoginViewController.swift in Sources */,
 				9CA58210297AD45D00449D20 /* LoginVCBuilder.swift in Sources */,
 				9CA581F1297AC70A00449D20 /* SceneDelegate.swift in Sources */,
 				9CA58216297BD19400449D20 /* LoginView.swift in Sources */,
 				9CA5820B297ACAA700449D20 /* ModuleBuilder.swift in Sources */,
 				9CA58213297AE0F500449D20 /* UIColors + colorsForApp.swift in Sources */,
+				9CA58222297D2CAC00449D20 /* CoinsTableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
