@@ -104,7 +104,7 @@ extension LoginView {
     
     @objc func checkUser () {
         viewModel?.checkUser(userModel: userModel)
-    
+        
     }
     
 }

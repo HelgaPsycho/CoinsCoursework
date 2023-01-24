@@ -26,6 +26,9 @@
 		9CA58222297D2CAC00449D20 /* CoinsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA58221297D2CAC00449D20 /* CoinsTableView.swift */; };
 		9CA58224297D2DF100449D20 /* CoinsTableVCBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA58223297D2DF100449D20 /* CoinsTableVCBuilder.swift */; };
 		9CA58226297D377600449D20 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA58225297D377600449D20 /* UserModel.swift */; };
+		9CA5822A297E712900449D20 /* CoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA58229297E712900449D20 /* CoinModel.swift */; };
+		9CA5822C297E717500449D20 /* CoinData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5822B297E717500449D20 /* CoinData.swift */; };
+		9CA5822E297E800A00449D20 /* CoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5822D297E800A00449D20 /* CoinCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +53,9 @@
 		9CA58221297D2CAC00449D20 /* CoinsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsTableView.swift; sourceTree = "<group>"; };
 		9CA58223297D2DF100449D20 /* CoinsTableVCBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsTableVCBuilder.swift; sourceTree = "<group>"; };
 		9CA58225297D377600449D20 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		9CA58229297E712900449D20 /* CoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinModel.swift; sourceTree = "<group>"; };
+		9CA5822B297E717500449D20 /* CoinData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinData.swift; sourceTree = "<group>"; };
+		9CA5822D297E800A00449D20 /* CoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +92,7 @@
 				9CA581F0297AC70A00449D20 /* SceneDelegate.swift */,
 				9CA5820A297ACAA700449D20 /* ModuleBuilder.swift */,
 				9CA58202297AC8F600449D20 /* NavigationController.swift */,
+				9CA58228297E70B400449D20 /* URL Manager */,
 				9CA5820C297ACE0400449D20 /* LoginVC */,
 				9CA58211297AE0A000449D20 /* CoinsTableViewVC */,
 				9CA58214297AE12400449D20 /* DetailsVC */,
@@ -116,6 +123,7 @@
 				9CA58223297D2DF100449D20 /* CoinsTableVCBuilder.swift */,
 				9CA5821F297D2C4700449D20 /* CoinsTableController.swift */,
 				9CA58221297D2CAC00449D20 /* CoinsTableView.swift */,
+				9CA5822D297E800A00449D20 /* CoinCell.swift */,
 				9CA5821D297D2B6700449D20 /* CoinsTableViewVM.swift */,
 			);
 			path = CoinsTableViewVC;
@@ -150,8 +158,17 @@
 			isa = PBXGroup;
 			children = (
 				9CA58225297D377600449D20 /* UserModel.swift */,
+				9CA58229297E712900449D20 /* CoinModel.swift */,
+				9CA5822B297E717500449D20 /* CoinData.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		9CA58228297E70B400449D20 /* URL Manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "URL Manager";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,16 +247,19 @@
 				9CA581EF297AC70A00449D20 /* AppDelegate.swift in Sources */,
 				9CA58209297ACA0E00449D20 /* DetailsViewController.swift in Sources */,
 				9CA5821E297D2B6700449D20 /* CoinsTableViewVM.swift in Sources */,
+				9CA5822E297E800A00449D20 /* CoinCell.swift in Sources */,
 				9CA5820E297ACE5B00449D20 /* LoginVM.swift in Sources */,
 				9CA58219297BF7F800449D20 /* CustomUITextField.swift in Sources */,
 				9CA58226297D377600449D20 /* UserModel.swift in Sources */,
 				9CA58224297D2DF100449D20 /* CoinsTableVCBuilder.swift in Sources */,
 				9CA58205297AC9A000449D20 /* LoginViewController.swift in Sources */,
+				9CA5822C297E717500449D20 /* CoinData.swift in Sources */,
 				9CA58210297AD45D00449D20 /* LoginVCBuilder.swift in Sources */,
 				9CA581F1297AC70A00449D20 /* SceneDelegate.swift in Sources */,
 				9CA58216297BD19400449D20 /* LoginView.swift in Sources */,
 				9CA5820B297ACAA700449D20 /* ModuleBuilder.swift in Sources */,
 				9CA58213297AE0F500449D20 /* UIColors + colorsForApp.swift in Sources */,
+				9CA5822A297E712900449D20 /* CoinModel.swift in Sources */,
 				9CA58222297D2CAC00449D20 /* CoinsTableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 protocol LoginVMProtocolIn {
@@ -23,6 +24,23 @@ class LoginVM: LoginVMProtocolIn, LoginVMProtocolOut  {
     }
     
     func pushCoinsTableVC () {
+    
         navigationController.pushViewController(CoinsTableVCBuilder().build(), animated: true)
+        
+//        guard let windowScene = navigationController.view.window?.windowScene else {return}
+//
+//        let window = UIWindow(windowScene: windowScene)
+//        let newNavigationContoller = NavigationController(rootViewController: CoinsTableVCBuilder().build())
+//
+//        window.backgroundColor = UIColor.white
+//        window.rootViewController = newNavigationContoller
+//        window.frame = CGRect(x: 50, y: 50, width: 200, height: 200)
+//        window.windowLevel = .normal + 1
+//        window.makeKeyAndVisible()
+
+
+
+
+
     }
 }

@@ -17,4 +17,6 @@ protocol CoinsTableViewProtocolOut {
 
 class coinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOut {
     
+    var coinsStringsArray: [String] = CoinModel.coinsStringsArray
+   
 }
