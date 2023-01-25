@@ -15,7 +15,7 @@ struct CoinModel {
     
     let symbol: String
     let name: String
-    let price_usd: Double
+    let priceUsd: Double
     let percentChangeUsdLast1Hour: Double
     let percentChangeUsdLast24Hours: Double
 }

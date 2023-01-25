@@ -9,6 +9,12 @@ import UIKit
 
 class CoinCell: UITableViewCell {
     
+    var cellModel: CoinModel? {
+        didSet {
+          
+        }
+    }
+    
     private var iconView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -38,6 +44,7 @@ class CoinCell: UITableViewCell {
     
     
     func setHierarhy(){
+        self.addSubview(iconView)
         self.addSubview(label)
     }
     

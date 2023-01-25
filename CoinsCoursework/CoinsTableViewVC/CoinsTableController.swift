@@ -11,6 +11,7 @@ class CoinsTableController: UIViewController {
     
     var viewModel: (CoinsTableViewProtocolIn & CoinsTableViewProtocolOut)?
     private var tableView = CoinsTableView(frame: .zero, style: .plain)
+    var coinModel = CoinModel(symbol: "Bit", name: "Bitcoin", priceUsd: 3.78606050855, percentChangeUsdLast1Hour: 0, percentChangeUsdLast24Hours: 0)
     
     
     override func viewDidLoad() {
@@ -45,7 +46,6 @@ class CoinsTableController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
         tableView.dataSource = self
-       // tableView.rowHeight = 200
         tableView.register(CoinCell.self, forCellReuseIdentifier: "cell")
     }
 }

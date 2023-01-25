@@ -15,7 +15,7 @@ class NavigationController: UINavigationController {
         navigationBar.backgroundColor = .appBeige
         navigationBar.barStyle = UIBarStyle.default
         navigationBar.tintColor = .appIndigo
-        navigationItem.title = "Coins"
+        navigationBar.largeContentTitle = "Coins"
         // Do any additional setup after loading the view.
     }
     

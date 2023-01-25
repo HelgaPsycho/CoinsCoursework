@@ -15,7 +15,7 @@ class CoinsTableView: UITableView {
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: .zero, style: .plain)
-        backgroundColor = .red
+        self.rowHeight = 100
     
     }
     

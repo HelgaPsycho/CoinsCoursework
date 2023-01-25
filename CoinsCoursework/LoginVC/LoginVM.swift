@@ -19,13 +19,16 @@ protocol LoginVMProtocolOut {
 
 class LoginVM: LoginVMProtocolIn, LoginVMProtocolOut  {
     func checkUser(userModel: UserModel) {
-        //ПРОВЕРКА ПОЛЬЗОВАТЕЛЯ
-        pushCoinsTableVC()
+        if (userModel.email == "1234") && (userModel.password == "1234") {
+            changeRootController()
+        } else {
+            showMassage()
+        }
     }
     
-    func pushCoinsTableVC () {
+    func changeRootController () {
     
-     
+
         guard let window = navigationController.navigationBar.window else {
             return
         }
@@ -35,4 +38,9 @@ class LoginVM: LoginVMProtocolIn, LoginVMProtocolOut  {
         window.makeKeyAndVisible()
 
     }
+    
+    func showMassage() {
+        
+    }
+    
 }

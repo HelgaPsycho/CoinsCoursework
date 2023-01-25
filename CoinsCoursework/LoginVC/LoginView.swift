@@ -43,8 +43,6 @@ class LoginView: UIView {
         setupConstraints()
         setupSignInButton()
         
-        // тестовый метод
-        setLoginAndPassword()
 
     }
     
@@ -83,8 +81,8 @@ class LoginView: UIView {
 //MARK: - UITextFieldDelegate
 extension LoginView: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
-        emailTextField.text = userModel.email
-        passwordTextField.text = userModel.password
+         userModel.email = emailTextField.text ?? ""
+         userModel.password = passwordTextField.text ?? ""
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -103,6 +101,7 @@ extension LoginView: UITextFieldDelegate {
 extension LoginView {
     
     @objc func checkUser () {
+        print("checkUser called")
         viewModel?.checkUser(userModel: userModel)
         
     }
@@ -111,12 +110,4 @@ extension LoginView {
 
 //MARK: - LOGIN PASSWORD TEST
 
-extension LoginView {
-    func setLoginAndPassword() {
-        userModel.email = "1234"
-        userModel.password = "1234"
-        
-        emailTextField.text = userModel.email
-        passwordTextField.text = userModel.password
-    }
-}
+
