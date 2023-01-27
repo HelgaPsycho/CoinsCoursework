@@ -16,6 +16,7 @@ class CoinsTableView: UITableView {
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: .zero, style: .plain)
         self.rowHeight = 100
+        self.separatorStyle = .none
     
     }
     

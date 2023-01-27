@@ -29,6 +29,7 @@
 		9CA5822A297E712900449D20 /* CoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA58229297E712900449D20 /* CoinModel.swift */; };
 		9CA5822C297E717500449D20 /* CoinData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5822B297E717500449D20 /* CoinData.swift */; };
 		9CA5822E297E800A00449D20 /* CoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5822D297E800A00449D20 /* CoinCell.swift */; };
+		9CA582322983C9F100449D20 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA582312983C9F100449D20 /* Network.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		9CA58229297E712900449D20 /* CoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinModel.swift; sourceTree = "<group>"; };
 		9CA5822B297E717500449D20 /* CoinData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinData.swift; sourceTree = "<group>"; };
 		9CA5822D297E800A00449D20 /* CoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCell.swift; sourceTree = "<group>"; };
+		9CA582312983C9F100449D20 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +94,7 @@
 				9CA581F0297AC70A00449D20 /* SceneDelegate.swift */,
 				9CA5820A297ACAA700449D20 /* ModuleBuilder.swift */,
 				9CA58202297AC8F600449D20 /* NavigationController.swift */,
-				9CA58228297E70B400449D20 /* URL Manager */,
+				9CA58228297E70B400449D20 /* Network */,
 				9CA5820C297ACE0400449D20 /* LoginVC */,
 				9CA58211297AE0A000449D20 /* CoinsTableViewVC */,
 				9CA58214297AE12400449D20 /* DetailsVC */,
@@ -164,11 +166,12 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		9CA58228297E70B400449D20 /* URL Manager */ = {
+		9CA58228297E70B400449D20 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				9CA582312983C9F100449D20 /* Network.swift */,
 			);
-			path = "URL Manager";
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,6 +249,7 @@
 				9CA58203297AC8F600449D20 /* NavigationController.swift in Sources */,
 				9CA581EF297AC70A00449D20 /* AppDelegate.swift in Sources */,
 				9CA58209297ACA0E00449D20 /* DetailsViewController.swift in Sources */,
+				9CA582322983C9F100449D20 /* Network.swift in Sources */,
 				9CA5821E297D2B6700449D20 /* CoinsTableViewVM.swift in Sources */,
 				9CA5822E297E800A00449D20 /* CoinCell.swift in Sources */,
 				9CA5820E297ACE5B00449D20 /* LoginVM.swift in Sources */,

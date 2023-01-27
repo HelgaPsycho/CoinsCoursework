@@ -10,23 +10,33 @@ import UIKit
 class CoinsTableController: UIViewController {
     
     var viewModel: (CoinsTableViewProtocolIn & CoinsTableViewProtocolOut)?
-    private var tableView = CoinsTableView(frame: .zero, style: .plain)
-    var coinModel = CoinModel(symbol: "Bit", name: "Bitcoin", priceUsd: 3.78606050855, percentChangeUsdLast1Hour: 0, percentChangeUsdLast24Hours: 0)
+   
+    var coinsStringArray: [String]?
     
+    private var topView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        return view
+    }()
+    
+    private var tableView = CoinsTableView(frame: .zero, style: .plain)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .yellow
+        view.backgroundColor = UIColor.appLightBeige
         setupController()
         
         
     }
     
     func setupController() {
+        navigationController?.isNavigationBarHidden = true
         setupHierarhy()
         setupConstraints()
         configureTableView()
+        viewModel?.getCoinsArray()
     }
     
     func setupHierarhy() {
@@ -48,6 +58,27 @@ class CoinsTableController: UIViewController {
         tableView.dataSource = self
         tableView.register(CoinCell.self, forCellReuseIdentifier: "cell")
     }
+    
+//MARK: - ViewModel
+    
+    func listenVM() {
+        guard var VM = viewModel else {
+            return
+        }
+        VM.setCoinsArray = {[weak self] array in
+            self?.setCoinsArray(array: array)
+            
+        }
+    
+    }
+    
+    func setCoinsArray(array: [String]){
+        print("setCoinsArrayCalled")
+        coinsStringArray = array
+        print(coinsStringArray)
+    }
+    
+    
 }
     
 //MARK: - UITableViewDelegate
@@ -65,8 +96,10 @@ extension CoinsTableController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CoinCell else {fatalError()}
-        cell.label.text = CoinModel.coinsStringsArray[indexPath.row]
-        print("cell with \(CoinModel.coinsStringsArray[indexPath.row]) init")
+        guard let array = coinsStringArray else { return cell}
+        cell.viewModel = viewModel
+        cell.coinName = array[indexPath.row]
+      //  print("cell with \(coinsStringArray[indexPath.row]) init")
         return cell
     }
     

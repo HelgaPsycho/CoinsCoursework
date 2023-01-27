@@ -7,8 +7,9 @@
 
 import UIKit
 
-let navigationController = NavigationController(rootViewController: LoginVCBilder().build())
+let loginNavigationController = NavigationController(rootViewController: LoginVCBilder().build())
 
+let navigationContoller = NavigationController(rootViewController: CoinsTableVCBuilder().build())
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -30,7 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
              window.windowScene = windowScene
              window.makeKeyAndVisible()
 
-        window.rootViewController = navigationController
+        window.rootViewController = loginNavigationController
 
     }
     

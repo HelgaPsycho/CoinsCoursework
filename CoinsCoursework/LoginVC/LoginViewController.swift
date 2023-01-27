@@ -42,6 +42,7 @@ class LoginViewController: UIViewController  {
         view.backgroundColor = UIColor.appBeige
         
         setupVC()
+        
     }
     
     

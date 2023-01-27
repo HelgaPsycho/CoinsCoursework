@@ -19,7 +19,7 @@ protocol LoginVMProtocolOut {
 
 class LoginVM: LoginVMProtocolIn, LoginVMProtocolOut  {
     func checkUser(userModel: UserModel) {
-        if (userModel.email == "1234") && (userModel.password == "1234") {
+        if (userModel.email == "") && (userModel.password == "") {
             changeRootController()
         } else {
             showMassage()
@@ -28,13 +28,11 @@ class LoginVM: LoginVMProtocolIn, LoginVMProtocolOut  {
     
     func changeRootController () {
     
-
-        guard let window = navigationController.navigationBar.window else {
+        guard let window = loginNavigationController.navigationBar.window else {
             return
         }
         
-        let newNavigationContoller = NavigationController(rootViewController: CoinsTableVCBuilder().build())
-        window.rootViewController = newNavigationContoller
+        window.rootViewController = navigationContoller
         window.makeKeyAndVisible()
 
     }

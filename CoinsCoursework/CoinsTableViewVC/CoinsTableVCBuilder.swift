@@ -11,7 +11,7 @@ import UIKit
 class CoinsTableVCBuilder: Builder {
     func build() -> UIViewController {
         let VC = CoinsTableController()
-        let VM = coinsTableViewVM()
+        let VM = CoinsTableViewVM()
         VC.viewModel = VM
         
         return VC
