@@ -37,12 +37,13 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
     
     func changeRootController () {
     
-        guard let window = navigationController.navigationBar.window else {
+        guard let window = mainNavigationController.navigationBar.window else {
             return
         }
 
         window.rootViewController = loginNavigationController
         window.makeKeyAndVisible()
+        
 
     }
     
@@ -50,7 +51,7 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
     
     var coinsArray: [CoinModel] = [] {
         didSet {
-            print("coinsArray update")
+        
             coinsArrayClosure(coinsArray)
         }
     }
@@ -59,7 +60,7 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
 
     
     func getCoinsArray() {
-        print ("getCounsArray called")
+       
         for coin in coinsStringsArray {
             networkManager.fetchCoin(coin: coin)
         }
@@ -83,7 +84,7 @@ extension CoinsTableViewVM: NetworkingDelegate {
 //        
 //
         coinsArray.append(coin)
-        print("coins array append coin")
+     
 //
         
     }

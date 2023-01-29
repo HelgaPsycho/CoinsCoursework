@@ -13,14 +13,16 @@ class CoinsTableController: UIViewController {
     
     var coinsArray: [CoinModel] = []  {
         didSet {
-            print("coinsArray update")
+            
+            guard coinsArray.isEmpty == false else{
+                return
+            }
+            
             let indexPath: IndexPath = IndexPath(row: ((self.coinsArray.count - 1)), section: 0)
             DispatchQueue.main.sync { [weak self] in
                 self!.tableView.reloadRows(at: [indexPath], with: .fade)
 
             }
-
-            
         }
     }
 
@@ -57,6 +59,11 @@ class CoinsTableController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        print ("=========VIEW WILL APPEAR CALLED========")
+        getCoinsArray()
+    }
+    
 
     func setupController() {
         setupHierarhy()
@@ -64,7 +71,7 @@ class CoinsTableController: UIViewController {
         configureTableView()
         exitButton.addTarget(self, action: #selector(changeRootController), for: .touchUpInside)
         listenVM()
-        getCoinsArray()
+        //getCoinsArray()
 
     }
     
@@ -107,7 +114,6 @@ class CoinsTableController: UIViewController {
     }
     
     func getCoinsArray() {
-        print ("getCoinsArray in VC called")
         guard  let VM = viewModel else {return}
         VM.getCoinsArray()
     }
@@ -120,7 +126,7 @@ class CoinsTableController: UIViewController {
         }
         VM.coinsArrayClosure =  {[weak self] array in
             self?.coinsArray = array
-            //print(self?.coinsArray)
+          
             
         }
         
@@ -139,15 +145,17 @@ class CoinsTableController: UIViewController {
 
 extension CoinsTableController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, shouldSpringLoadRowAt indexPath: IndexPath, with context: UISpringLoadedInteractionContext) -> Bool {
+    
+        return true
+    }
 }
-
 //MARK: - UITableViewDataSourse
 
 extension CoinsTableController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         guard let VM = viewModel else {return 0}
-        print(VM.coinsStringsArray.count)
         return VM.coinsStringsArray.count
         
         
@@ -156,9 +164,9 @@ extension CoinsTableController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CoinCell else {fatalError()}
 
-        cell.viewModel = viewModel
+       // cell.viewModel = viewModel
         
-        if coinsArray.count != 0 {
+        if coinsArray.isEmpty == false {
             cell.coinModel = coinsArray[indexPath.row]
         }
         

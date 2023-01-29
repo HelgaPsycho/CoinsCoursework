@@ -52,7 +52,7 @@ class LoginVM: LoginVMProtocolIn, LoginVMProtocolOut  {
             return
         }
         
-        window.rootViewController = navigationController
+        window.rootViewController = mainNavigationController
         window.makeKeyAndVisible()
 
     }
