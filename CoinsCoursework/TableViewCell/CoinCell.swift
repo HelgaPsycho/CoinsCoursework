@@ -15,7 +15,7 @@ class CoinCell: UITableViewCell {
         didSet {
             
             guard let model = coinModel else {return}
-            
+            print (model)
             iconView.image = UIImage(named: model.symbol)
             titleLabel.text = model.name
             priceLabel.text = String(model.priceUsd)

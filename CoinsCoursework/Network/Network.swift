@@ -16,18 +16,16 @@ protocol NetworkingDelegate {
 
 struct NetworkManager {
     
-    static let shared = NetworkManager()
+    var delegate: NetworkingDelegate?
     
-    func getCoinData(named: String, compl: @escaping (CoinModel) -> Void) {
-//        DispatchQueue.background.async {
-//            fetchCoin(coin: named)
-//        }
-    }
+//    func getCoinData(named: String, compl: @escaping (CoinModel) -> Void) {
+////        DispatchQueue.background.async {
+////            fetchCoin(coin: named)
+////        }
+//    }
     
     let coinURL = "https://data.messari.io/api/v1/assets/"
     // https://data.messari.io/api/v1/assets/«тут монета»/metrics
-    
-    var delegate: NetworkingDelegate?
     
     func fetchCoin(coin: String) {
         let urlString = "\(coinURL)\(coin)/metrics"
@@ -39,7 +37,7 @@ struct NetworkManager {
             let task = session.dataTask(with: url) {(data, response, error) in
                 if error != nil {
                     self.delegate?.didFailWithError(error: error!)
-                    return
+                    performRequest(with: urlString)
                 }
                 if let safeData = data {
                     if let coin = self.parseJSON(safeData) {
@@ -64,7 +62,8 @@ func parseJSON(_ coinData: Data) -> CoinModel? {
         let percentChangeUsdLast1Hour = decodedData.data.market_data.percent_change_usd_last_1_hour
         let percentChangeUsdLast24Hours = decodedData.data.market_data.percent_change_usd_last_24_hours
         
-        
+        print(symbol)
+        print(name)
         return CoinModel(symbol: symbol, name: name, priceUsd: priceUsd, percentChangeUsdLast1Hour: percentChangeUsdLast1Hour, percentChangeUsdLast24Hours: percentChangeUsdLast24Hours)
     }
     catch {

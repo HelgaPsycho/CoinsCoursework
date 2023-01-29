@@ -30,6 +30,7 @@ class CustomUITextField: UITextField {
         backgroundColor = UIColor.appLightBeige
         layer.cornerRadius = 5
         textColor = .appIndigo
+       // attributedPlaceholder.
         returnKeyType = .done
         guard let imageString = systemImage else {
             return

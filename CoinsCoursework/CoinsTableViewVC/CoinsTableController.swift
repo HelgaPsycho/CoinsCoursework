@@ -11,9 +11,19 @@ class CoinsTableController: UIViewController {
     
     var viewModel: (CoinsTableViewProtocolIn & CoinsTableViewProtocolOut)?
     
-    var coinsArray: [CoinModel]?
-   
-    var coinsStringArray: [String]?
+    var coinsArray: [CoinModel] = []  {
+        didSet {
+            print("coinsArray update")
+            let indexPath: IndexPath = IndexPath(row: ((self.coinsArray.count - 1)), section: 0)
+            DispatchQueue.main.sync { [weak self] in
+                self!.tableView.reloadRows(at: [indexPath], with: .fade)
+
+            }
+
+            
+        }
+    }
+
     
     private var topView: UIView = {
         let view = UIView()
@@ -43,7 +53,7 @@ class CoinsTableController: UIViewController {
         
         view.backgroundColor = UIColor.appLightBeige
         setupController()
-        
+
         
     }
     
@@ -53,6 +63,9 @@ class CoinsTableController: UIViewController {
         setupConstraints()
         configureTableView()
         exitButton.addTarget(self, action: #selector(changeRootController), for: .touchUpInside)
+        listenVM()
+        getCoinsArray()
+
     }
     
 
@@ -93,17 +106,26 @@ class CoinsTableController: UIViewController {
         tableView.register(CoinCell.self, forCellReuseIdentifier: "cell")
     }
     
+    func getCoinsArray() {
+        print ("getCoinsArray in VC called")
+        guard  let VM = viewModel else {return}
+        VM.getCoinsArray()
+    }
+    
 //MARK: - ViewModel
     
     func listenVM() {
         guard var VM = viewModel else {
             return
         }
-      
+        VM.coinsArrayClosure =  {[weak self] array in
+            self?.coinsArray = array
+            //print(self?.coinsArray)
             
         }
-    
-    
+        
+    }
+
     
     @objc func changeRootController() {
         guard let VM = viewModel else {return}
@@ -123,13 +145,22 @@ extension CoinsTableController: UITableViewDelegate {
 
 extension CoinsTableController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return CoinModel.coinsStringsArray.count
+        
+        guard let VM = viewModel else {return 0}
+        print(VM.coinsStringsArray.count)
+        return VM.coinsStringsArray.count
+        
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CoinCell else {fatalError()}
-        guard let array = coinsStringArray else { return cell}
+
         cell.viewModel = viewModel
+        
+        if coinsArray.count != 0 {
+            cell.coinModel = coinsArray[indexPath.row]
+        }
         
         return cell
     }
