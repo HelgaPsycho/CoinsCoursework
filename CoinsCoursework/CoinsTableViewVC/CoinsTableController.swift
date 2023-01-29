@@ -10,6 +10,8 @@ import UIKit
 class CoinsTableController: UIViewController {
     
     var viewModel: (CoinsTableViewProtocolIn & CoinsTableViewProtocolOut)?
+    
+    var coinsArray: [CoinModel]?
    
     var coinsStringArray: [String]?
     
@@ -32,6 +34,8 @@ class CoinsTableController: UIViewController {
         return button
     }()
     
+//    func makeSortButton(
+    
     private var tableView = CoinsTableView(frame: .zero, style: .plain)
     
     override func viewDidLoad() {
@@ -48,7 +52,6 @@ class CoinsTableController: UIViewController {
         setupHierarhy()
         setupConstraints()
         configureTableView()
-        viewModel?.getCoinsArray()
         exitButton.addTarget(self, action: #selector(changeRootController), for: .touchUpInside)
     }
     
@@ -96,21 +99,13 @@ class CoinsTableController: UIViewController {
         guard var VM = viewModel else {
             return
         }
-        VM.setCoinsArray = {[weak self] array in
-            self?.setCoinsArray(array: array)
+      
             
         }
     
-    }
     
-    func setCoinsArray(array: [String]){
-        print("setCoinsArrayCalled")
-        coinsStringArray = array
-        print(coinsStringArray)
-    }
     
     @objc func changeRootController() {
-        print("changeRootController called")
         guard let VM = viewModel else {return}
         VM.changeRootController()
     }
@@ -135,8 +130,7 @@ extension CoinsTableController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CoinCell else {fatalError()}
         guard let array = coinsStringArray else { return cell}
         cell.viewModel = viewModel
-        cell.coinName = array[indexPath.row]
-      //  print("cell with \(coinsStringArray[indexPath.row]) init")
+        
         return cell
     }
     

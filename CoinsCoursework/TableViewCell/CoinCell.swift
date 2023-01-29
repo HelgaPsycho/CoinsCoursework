@@ -10,24 +10,7 @@ import UIKit
 class CoinCell: UITableViewCell {
     
     var viewModel: (CoinsTableViewProtocolIn & CoinsTableViewProtocolOut)?
-    
-    var coinName: String? {
-        didSet {
-            if coinName != nil {
-                viewModel?.getCoin(named: coinName!)}
-            else {return}
-        }
-    }
 
-    func listenViewModel() {
-        guard var VM = self.viewModel else{
-            return
-        }
-        VM.coinModel = {[weak self] model in
-            self?.coinModel = model
-        }
-    }
-    
     var coinModel: CoinModel? {
         didSet {
             
