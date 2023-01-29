@@ -16,8 +16,20 @@ class CoinsTableController: UIViewController {
     private var topView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.heightAnchor.constraint(equalToConstant: 44).isActive = true
         return view
+    }()
+
+    private var exitButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let image = UIImage(systemName: "rectangle.portrait.and.arrow.forward")
+        let colorConfig = UIImage.SymbolConfiguration(paletteColors: [UIColor.appIndigo])
+        let confNormalImage = image?.withConfiguration(UIImage.SymbolConfiguration(scale: .large)).withConfiguration(colorConfig)
+        let confHighlImage = image?.withConfiguration(UIImage.SymbolConfiguration(scale: .large)).withConfiguration(colorConfig)
+        button.setImage(confNormalImage, for: .normal)
+        button.setImage(confHighlImage, for: .highlighted)
+    
+        return button
     }()
     
     private var tableView = CoinsTableView(frame: .zero, style: .plain)
@@ -31,26 +43,45 @@ class CoinsTableController: UIViewController {
         
     }
     
+
     func setupController() {
-        navigationController?.isNavigationBarHidden = true
         setupHierarhy()
         setupConstraints()
         configureTableView()
         viewModel?.getCoinsArray()
+        exitButton.addTarget(self, action: #selector(changeRootController), for: .touchUpInside)
     }
     
+
+    
     func setupHierarhy() {
+        view.addSubview(navigationController!.navigationBar)
+        view.addSubview(topView)
+        topView.addSubview(exitButton)
         view.addSubview(tableView)
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            topView.topAnchor.constraint(equalTo: (navigationController?.navigationBar.topAnchor)!),
+            topView.heightAnchor.constraint(equalToConstant: 44),
+            topView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            topView.rightAnchor.constraint(equalTo: view.rightAnchor),
+
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            exitButton.rightAnchor.constraint(equalTo: topView.rightAnchor, constant: -20),
+            exitButton.centerYAnchor.constraint(equalTo: topView.centerYAnchor),
+            exitButton.heightAnchor.constraint(equalTo: topView.heightAnchor),
+            exitButton.widthAnchor.constraint(equalTo: topView.heightAnchor)
+            
         ])
     }
+    
+  
     
     func configureTableView(){
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -76,6 +107,12 @@ class CoinsTableController: UIViewController {
         print("setCoinsArrayCalled")
         coinsStringArray = array
         print(coinsStringArray)
+    }
+    
+    @objc func changeRootController() {
+        print("changeRootController called")
+        guard let VM = viewModel else {return}
+        VM.changeRootController()
     }
     
     

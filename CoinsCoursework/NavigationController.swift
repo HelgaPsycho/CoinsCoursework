@@ -11,11 +11,11 @@ class NavigationController: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationBar.backgroundColor = .appBeige
+
         navigationBar.barStyle = UIBarStyle.default
         navigationBar.tintColor = .appIndigo
         navigationBar.largeContentTitle = "Coins"
+        navigationBar.bounds = CGRect(x: 0, y: 0, width: 0, height: 0)
         // Do any additional setup after loading the view.
     }
     

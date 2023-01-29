@@ -6,12 +6,16 @@
 //
 
 import Foundation
+import UIKit
 
 protocol CoinsTableViewProtocolIn {
     
     func getCoinsArray()
     
     func getCoin(named: String)
+    
+    
+    func changeRootController()
 }
 
 protocol CoinsTableViewProtocolOut {
@@ -22,8 +26,8 @@ protocol CoinsTableViewProtocolOut {
     
 }
 
-class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOut {
-        
+final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOut {
+    
     var setCoinsArray: (Array<String>) -> Void = { _ in}
     
     var coinModel: (CoinModel) -> Void = { _ in}
@@ -43,6 +47,20 @@ class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOut {
 
     func configurateDataForCell() {
         
+    }
+    
+    func changeRootController () {
+    print("VM.changeViewController called")
+    
+        guard let window = navigationController.navigationBar.window else {
+            print("return")
+            return
+        }
+
+        window.rootViewController = loginNavigationController
+        print("rootViewController changed")
+        window.makeKeyAndVisible()
+
     }
    
 }

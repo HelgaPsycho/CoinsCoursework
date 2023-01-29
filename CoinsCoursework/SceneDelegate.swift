@@ -9,7 +9,7 @@ import UIKit
 
 let loginNavigationController = NavigationController(rootViewController: LoginVCBilder().build())
 
-let navigationContoller = NavigationController(rootViewController: CoinsTableVCBuilder().build())
+var navigationController = NavigationController(rootViewController: CoinsTableVCBuilder().build())
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 

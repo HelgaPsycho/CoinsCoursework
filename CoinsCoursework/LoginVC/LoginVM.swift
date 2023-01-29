@@ -11,6 +11,8 @@ import UIKit
 
 protocol LoginVMProtocolIn {
     
+    var messageText: String {get}
+    
     var warninngMessageIsShown: Bool {get set}
     
     func checkUser(userModel: UserModel)
@@ -23,13 +25,14 @@ protocol LoginVMProtocolOut {
 
 class LoginVM: LoginVMProtocolIn, LoginVMProtocolOut  {
     
+    var messageText = "Email or password is incorrect. Please, try again"
+    
     var warninngMessageIsShown: Bool = false {
         didSet {
             showMessage(warninngMessageIsShown)
         }
     }
   
-
     var showMessage: (Bool)->() = { _ in}
     
 
@@ -49,7 +52,7 @@ class LoginVM: LoginVMProtocolIn, LoginVMProtocolOut  {
             return
         }
         
-        window.rootViewController = navigationContoller
+        window.rootViewController = navigationController
         window.makeKeyAndVisible()
 
     }

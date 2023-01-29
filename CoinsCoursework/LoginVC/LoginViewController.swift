@@ -27,7 +27,6 @@ class LoginViewController: UIViewController  {
     private var centralView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-    //    view.layer.masksToBounds = true
         view.layer.cornerRadius = 20
         view.backgroundColor = UIColor.appWhite
         return view
@@ -40,7 +39,6 @@ class LoginViewController: UIViewController  {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(forTextStyle: .body)
         label.textColor = UIColor.red
-        label.text = "Email or password is incorrect. Please, try again"
         label.numberOfLines = 0
         label.textAlignment = .left
         label.isHidden = true
@@ -52,13 +50,14 @@ class LoginViewController: UIViewController  {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.appBeige
-        
+
         setupVC()
         
     }
     
     
     func setupVC() {
+        massageLabel.text = viewModel?.messageText
         listenViewModel()
         setHierarchy()
         setConstraints()
