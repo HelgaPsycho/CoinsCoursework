@@ -19,7 +19,7 @@ class CoinsTableController: UIViewController {
             }
             
             let indexPath: IndexPath = IndexPath(row: ((self.coinsArray.count - 1)), section: 0)
-            DispatchQueue.main.sync { [weak self] in
+            DispatchQueue.main.async { [weak self] in
                 self!.tableView.reloadRows(at: [indexPath], with: .fade)
 
             }
@@ -147,7 +147,7 @@ extension CoinsTableController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, shouldSpringLoadRowAt indexPath: IndexPath, with context: UISpringLoadedInteractionContext) -> Bool {
     
-        return true
+        return false
     }
 }
 //MARK: - UITableViewDataSourse

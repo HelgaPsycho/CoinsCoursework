@@ -17,7 +17,7 @@ extension CenterView {
         return activityIndicator
     }
     
-    func makeIconView() -> UIView {
+    func makeIconView() -> UIImageView {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
@@ -40,6 +40,16 @@ extension CenterView {
         label.font = font
         label.textColor = .white
         label.textAlignment = .left
+        return label
+    }
+    
+    func makeBodyTitleyLabel() -> UILabel {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        let font = UIFont.preferredFont(forTextStyle: .body)
+        label.font = font
+        label.textColor = .appBeige
+        label.textAlignment = .right
         return label
     }
     

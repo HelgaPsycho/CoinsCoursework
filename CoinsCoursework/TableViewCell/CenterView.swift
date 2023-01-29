@@ -15,12 +15,13 @@ class CenterView: UIView {
             guard let model = coinModel else {return}
             activityIndicator.isHidden = true
             activityIndicator.stopAnimating()
+            iconView.image = CoinCellViewModel.shared.getIconForCoin(named: model.name) ?? UIImage(systemName: "questionmark.square.dashed")
             titleLabel.text = model.name
-            priceLabel.text = String(model.priceUsd)
+            priceLabel.text = CoinCellViewModel.shared.getFormattedPrice(price: model.priceUsd)
             changeLastHourLabel.text = "Change last hour:"
-            persentsPerHour.text = String(model.percentChangeUsdLast1Hour)
+            persentsPerHour.text =  CoinCellViewModel.shared.getFormattedPercents(percent: model.percentChangeUsdLast1Hour)
             changeLastDayLabel.text = "Change last day:"
-            persaentsPerDay.text = String(model.percentChangeUsdLast24Hours)
+            persaentsPerDay.text = CoinCellViewModel.shared.getFormattedPercents(percent: model.percentChangeUsdLast24Hours)
             
         }
     }
@@ -31,9 +32,9 @@ class CenterView: UIView {
     lazy var titleLabel = makeTitleLabel()
     lazy var priceLabel = makeTitleLabel()
     
-    lazy var changeLastHourLabel = makeBodyLabel()
+    lazy var changeLastHourLabel = makeBodyTitleyLabel()
     lazy var persentsPerHour = makeBodyLabel()
-    lazy var changeLastDayLabel = makeBodyLabel()
+    lazy var changeLastDayLabel = makeBodyTitleyLabel()
     lazy var persaentsPerDay = makeBodyLabel()
     
     
@@ -74,7 +75,7 @@ class CenterView: UIView {
             iconView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20),
             iconView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             iconView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 2/3),
-            iconView.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/2),
+            iconView.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 2/3),
             
             stackView.leftAnchor.constraint(equalTo: iconView.rightAnchor, constant: 20),
             stackView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20),

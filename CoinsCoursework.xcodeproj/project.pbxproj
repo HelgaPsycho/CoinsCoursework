@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C43C221298703A400BAD019 /* CoinCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C43C220298703A400BAD019 /* CoinCellViewModel.swift */; };
 		9CA581EF297AC70A00449D20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA581EE297AC70A00449D20 /* AppDelegate.swift */; };
 		9CA581F1297AC70A00449D20 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA581F0297AC70A00449D20 /* SceneDelegate.swift */; };
 		9CA581F8297AC70C00449D20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CA581F7297AC70C00449D20 /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9C43C220298703A400BAD019 /* CoinCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCellViewModel.swift; sourceTree = "<group>"; };
 		9CA581EB297AC70A00449D20 /* CoinsCoursework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinsCoursework.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CA581EE297AC70A00449D20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9CA581F0297AC70A00449D20 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				9CA5822D297E800A00449D20 /* CoinCell.swift */,
 				9CA582642984453800449D20 /* CenterView.swift */,
 				9CA582662984454E00449D20 /* CenterView + extension.swift */,
+				9C43C220298703A400BAD019 /* CoinCellViewModel.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				9CA58209297ACA0E00449D20 /* DetailsViewController.swift in Sources */,
 				9CA582322983C9F100449D20 /* Network.swift in Sources */,
 				9CA582672984454E00449D20 /* CenterView + extension.swift in Sources */,
+				9C43C221298703A400BAD019 /* CoinCellViewModel.swift in Sources */,
 				9CA5821E297D2B6700449D20 /* CoinsTableViewVM.swift in Sources */,
 				9CA5822E297E800A00449D20 /* CoinCell.swift in Sources */,
 				9CA5820E297ACE5B00449D20 /* LoginVM.swift in Sources */,
