@@ -34,6 +34,18 @@ class LoginViewController: UIViewController  {
     }()
     
     private var loginView: LoginView?
+    
+    private var massageLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.textColor = UIColor.red
+        label.text = "Email or password is incorrect. Please, try again"
+        label.numberOfLines = 0
+        label.textAlignment = .left
+        label.isHidden = true
+        return label
+    }()
         
     
     override func viewDidLoad() {
@@ -47,6 +59,7 @@ class LoginViewController: UIViewController  {
     
     
     func setupVC() {
+        listenViewModel()
         setHierarchy()
         setConstraints()
         
@@ -57,6 +70,7 @@ class LoginViewController: UIViewController  {
     func setHierarchy(){
         view.addSubview(titleLabel)
         view.addSubview(centralView)
+        view.addSubview(massageLabel)
     
     }
     
@@ -71,7 +85,12 @@ class LoginViewController: UIViewController  {
             centralView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30),
             centralView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
             centralView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
-            centralView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/4)
+            centralView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/4),
+            
+            massageLabel.topAnchor.constraint(equalToSystemSpacingBelow: centralView.bottomAnchor, multiplier: 1),
+            massageLabel.centerXAnchor.constraint(equalTo: centralView.centerXAnchor),
+            massageLabel.widthAnchor.constraint(equalTo: centralView.widthAnchor, multiplier: 2/3)
+            
                                     
         ])
     
@@ -94,6 +113,18 @@ class LoginViewController: UIViewController  {
             loginView.heightAnchor.constraint(equalTo: centralView.heightAnchor)
         ])
         
+    }
+    
+    func listenViewModel() {
+        guard var VM = viewModel else { return }
+        VM.showMessage =  {[weak self] isShow in
+            self?.showMessage(isShown: isShow)
+            
+        }
+    }
+    
+    func showMessage(isShown: Bool) {
+        massageLabel.isHidden = !isShown
     }
    
 

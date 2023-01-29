@@ -48,7 +48,7 @@ class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOut {
 }
 
 extension CoinsTableViewVM: NetworkingDelegate {
-    func getCoinInformation(_ networking: Networking, coin: CoinModel) {
+    func getCoinInformation(_ networking: NetworkManager, coin: CoinModel) {
         DispatchQueue.main.async {
           
         }

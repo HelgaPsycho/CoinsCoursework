@@ -9,14 +9,14 @@ import Foundation
 
 protocol NetworkingDelegate {
     
-    func getCoinInformation(_ networking: Networking, coin: CoinModel)
+    func getCoinInformation(_ networking: NetworkManager, coin: CoinModel)
     func didFailWithError(error: Error)
     
 }
 
-struct Networking {
+struct NetworkManager {
     
-    static let shared = Networking()
+    static let shared = NetworkManager()
     
     func getCoinData(named: String, compl: @escaping (CoinModel) -> Void) {
 //        DispatchQueue.background.async {

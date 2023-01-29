@@ -35,7 +35,6 @@ class LoginView: UIView {
         super.init(frame: .zero)
         emailTextField.delegate = self
         passwordTextField.delegate = self
-        print("LoginView init")
         backgroundColor = .white
         layer.cornerRadius = 20
         
@@ -80,10 +79,15 @@ class LoginView: UIView {
 
 //MARK: - UITextFieldDelegate
 extension LoginView: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-         userModel.email = emailTextField.text ?? ""
-         userModel.password = passwordTextField.text ?? ""
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        viewModel?.warninngMessageIsShown = false
     }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+         changeUserModel()
+    }
+
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if emailTextField.isFirstResponder == true {
@@ -101,9 +105,15 @@ extension LoginView: UITextFieldDelegate {
 extension LoginView {
     
     @objc func checkUser () {
-        print("checkUser called")
+        changeUserModel()
+        changeUserModel()
         viewModel?.checkUser(userModel: userModel)
         
+    }
+    
+    func changeUserModel() {
+        userModel.email = emailTextField.text ?? ""
+        userModel.password = passwordTextField.text ?? ""
     }
     
 }

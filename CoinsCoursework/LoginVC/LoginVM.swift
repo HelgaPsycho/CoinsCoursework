@@ -10,21 +10,38 @@ import UIKit
 
 
 protocol LoginVMProtocolIn {
+    
+    var warninngMessageIsShown: Bool {get set}
+    
     func checkUser(userModel: UserModel)
 }
 
 protocol LoginVMProtocolOut {
+    var showMessage: (Bool)->() {get set}
     
 }
 
 class LoginVM: LoginVMProtocolIn, LoginVMProtocolOut  {
-    func checkUser(userModel: UserModel) {
-        if (userModel.email == "") && (userModel.password == "") {
-            changeRootController()
-        } else {
-            showMassage()
+    
+    var warninngMessageIsShown: Bool = false {
+        didSet {
+            showMessage(warninngMessageIsShown)
         }
     }
+  
+
+    var showMessage: (Bool)->() = { _ in}
+    
+
+    func checkUser(userModel: UserModel) {
+        if (userModel.email == "1234") && (userModel.password == "1234") {
+            changeRootController()
+        } else {
+            warninngMessageIsShown = true
+            
+        }
+ }
+    
     
     func changeRootController () {
     
@@ -35,10 +52,6 @@ class LoginVM: LoginVMProtocolIn, LoginVMProtocolOut  {
         window.rootViewController = navigationContoller
         window.makeKeyAndVisible()
 
-    }
-    
-    func showMassage() {
-        
     }
     
 }

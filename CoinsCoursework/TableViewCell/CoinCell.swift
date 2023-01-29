@@ -58,7 +58,6 @@ class CoinCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
-     //   imageView.image = UIImage(named: "")
         return imageView
     }()
     
