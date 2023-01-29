@@ -19,9 +19,9 @@ class CoinsTableController: UIViewController {
             }
             
             let indexPath: IndexPath = IndexPath(row: ((self.coinsArray.count - 1)), section: 0)
-            DispatchQueue.main.async { [weak self] in
-                self!.tableView.reloadRows(at: [indexPath], with: .fade)
-
+            DispatchQueue.main.async { 
+                self.tableView.reloadRows(at: [indexPath], with: .fade)
+                
             }
         }
     }
@@ -163,12 +163,11 @@ extension CoinsTableController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CoinCell else {fatalError()}
-
-       // cell.viewModel = viewModel
         
         if coinsArray.isEmpty == false {
             cell.coinModel = coinsArray[indexPath.row]
         }
+        
         
         return cell
     }

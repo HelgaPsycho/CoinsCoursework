@@ -12,7 +12,9 @@ class CenterView: UIView {
     
     var coinModel: CoinModel? {
         didSet {
+            
             guard let model = coinModel else {return}
+            
             activityIndicator.isHidden = true
             activityIndicator.stopAnimating()
             iconView.image = CoinCellViewModel.shared.getIconForCoin(named: model.name) ?? UIImage(systemName: "questionmark.square.dashed")
