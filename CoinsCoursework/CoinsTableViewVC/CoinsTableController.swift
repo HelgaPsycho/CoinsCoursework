@@ -19,7 +19,7 @@ class CoinsTableController: UIViewController {
             }
             
             let indexPath: IndexPath = IndexPath(row: ((self.coinsArray.count - 1)), section: 0)
-            DispatchQueue.main.async { 
+            DispatchQueue.main.sync {
                 self.tableView.reloadRows(at: [indexPath], with: .fade)
                 
             }
@@ -46,7 +46,20 @@ class CoinsTableController: UIViewController {
         return button
     }()
     
-//    func makeSortButton(
+    
+    
+    private var sortButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("  Sort  ", for: .normal)
+        button.setTitleColor(UIColor.appIndigo, for: .normal)
+        button.setTitleColor(UIColor.gray, for: .highlighted)
+        let image = UIImage(systemName: "chevron.down")
+        let colorConfig = UIImage.SymbolConfiguration(paletteColors: [UIColor.appIndigo])
+        let confImage = image?.withConfiguration(UIImage.SymbolConfiguration(scale: .large)).withConfiguration(colorConfig)
+        button.setImage(confImage, for: .normal)
+        return button
+    }()
     
     private var tableView = CoinsTableView(frame: .zero, style: .plain)
     
@@ -81,6 +94,7 @@ class CoinsTableController: UIViewController {
         view.addSubview(navigationController!.navigationBar)
         view.addSubview(topView)
         topView.addSubview(exitButton)
+        topView.addSubview(sortButton)
         view.addSubview(tableView)
     }
     
@@ -90,7 +104,7 @@ class CoinsTableController: UIViewController {
             topView.heightAnchor.constraint(equalToConstant: 44),
             topView.leftAnchor.constraint(equalTo: view.leftAnchor),
             topView.rightAnchor.constraint(equalTo: view.rightAnchor),
-
+            
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
@@ -99,11 +113,16 @@ class CoinsTableController: UIViewController {
             exitButton.rightAnchor.constraint(equalTo: topView.rightAnchor, constant: -20),
             exitButton.centerYAnchor.constraint(equalTo: topView.centerYAnchor),
             exitButton.heightAnchor.constraint(equalTo: topView.heightAnchor),
-            exitButton.widthAnchor.constraint(equalTo: topView.heightAnchor)
+            exitButton.widthAnchor.constraint(equalTo: topView.heightAnchor),
+            
+            sortButton.centerYAnchor.constraint(equalTo: topView.centerYAnchor),
+            sortButton.heightAnchor.constraint(equalToConstant: 40),
+            sortButton.centerXAnchor.constraint(equalTo: topView.centerXAnchor)
+
             
         ])
+        
     }
-    
   
     
     func configureTableView(){
@@ -145,10 +164,15 @@ class CoinsTableController: UIViewController {
 
 extension CoinsTableController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, shouldSpringLoadRowAt indexPath: IndexPath, with context: UISpringLoadedInteractionContext) -> Bool {
-    
-        return false
-    }
+//    func tableView(_ tableView: UITableView, shouldSpringLoadRowAt indexPath: IndexPath, with context: UISpringLoadedInteractionContext) -> Bool {
+//
+//        coinsArray = []
+//
+//        guard let VM = self.viewModel else {return false}
+//        VM.getCoinsArray()
+//
+//        return true
+//    }
 }
 //MARK: - UITableViewDataSourse
 
