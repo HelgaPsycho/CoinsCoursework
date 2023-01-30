@@ -58,6 +58,7 @@ class CoinsTableController: UIViewController {
         let colorConfig = UIImage.SymbolConfiguration(paletteColors: [UIColor.appIndigo])
         let confImage = image?.withConfiguration(UIImage.SymbolConfiguration(scale: .large)).withConfiguration(colorConfig)
         button.setImage(confImage, for: .normal)
+        button.addTarget(self, action: #selector(sortButtonPressed), for: .touchUpInside)
         return button
     }()
     
@@ -135,6 +136,19 @@ class CoinsTableController: UIViewController {
     func getCoinsArray() {
         guard  let VM = viewModel else {return}
         VM.getCoinsArray()
+        
+    }
+    
+    @objc func sortButtonPressed(sender: UIButton){
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Sort by ascending price per day", style: .default, handler: { (UIAlertAction) in self.viewModel?.sortBy(.ascendingPrisePerDay)}))
+        alert.addAction(UIAlertAction(title: "Sort by decrease price per day", style: .default, handler: {(UIAlertAction) in self.viewModel?.sortBy(.decreasePricePerDay)}))
+        alert.addAction(UIAlertAction(title: "Sort by ascending price per hour", style: .default, handler: {(UIAlertAction) in self.viewModel?.sortBy(.ascendingPricePerHour)}))
+        alert.addAction(UIAlertAction(title: "Sort by decrease price per hour", style: .default, handler: {(UIAlertAction) in self.viewModel?.sortBy(.decreasePricePerHour)}))
+               
+               
+               present(alert, animated: true, completion: nil)
     }
     
 //MARK: - ViewModel
@@ -145,12 +159,11 @@ class CoinsTableController: UIViewController {
         }
         VM.coinsArrayClosure =  {[weak self] array in
             self?.coinsArray = array
-          
+            
             
         }
         
     }
-
     
     @objc func changeRootController() {
         guard let VM = viewModel else {return}

@@ -15,6 +15,8 @@ protocol CoinsTableViewProtocolIn {
     func getCoinsArray()
     
     var coinsStringsArray: [String] {get}
+    
+    func sortBy(_ changes: PriceChanges)
 }
 
 protocol CoinsTableViewProtocolOut {
@@ -27,6 +29,8 @@ protocol CoinsTableViewProtocolOut {
 }
 
 final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOut {
+
+    
     
     var networkManager = NetworkManager()
     
@@ -66,6 +70,21 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
         }
     }
     
+    func sortBy(_ changes: PriceChanges) {
+        switch changes {
+        case .ascendingPrisePerDay:
+            break
+        case .decreasePricePerDay:
+            break
+        case .ascendingPricePerHour:
+            break
+        case .decreasePricePerHour:
+            break
+        default:
+            break
+        }
+    }
+    
     var coinModel: (CoinModel) -> () = {_ in }
 
    
@@ -94,4 +113,11 @@ extension CoinsTableViewVM: NetworkingDelegate {
     }
     
     
+}
+
+enum PriceChanges {
+    case ascendingPrisePerDay
+    case decreasePricePerDay
+    case ascendingPricePerHour
+    case decreasePricePerHour
 }
