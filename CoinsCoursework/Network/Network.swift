@@ -63,7 +63,6 @@ func parseJSON(_ coinData: Data) -> CoinModel? {
         let percentChangeUsdLast24Hours = decodedData.data.market_data.percent_change_usd_last_24_hours
         
         print(symbol)
-        print(name)
         return CoinModel(symbol: symbol, name: name, priceUsd: priceUsd, percentChangeUsdLast1Hour: percentChangeUsdLast1Hour, percentChangeUsdLast24Hours: percentChangeUsdLast24Hours)
     }
     catch {

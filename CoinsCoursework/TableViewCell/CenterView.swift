@@ -15,8 +15,8 @@ class CenterView: UIView {
             
             guard let model = coinModel else {return}
             
-            activityIndicator.isHidden = true
-            activityIndicator.stopAnimating()
+//            activityIndicator.isHidden = true
+//            activityIndicator.stopAnimating()
             iconView.image = CoinCellViewModel.shared.getIconForCoin(named: model.name) ?? UIImage(systemName: "questionmark.square.dashed")
             titleLabel.text = model.name
             priceLabel.text = CoinCellViewModel.shared.getFormattedPrice(price: model.priceUsd)
@@ -27,7 +27,7 @@ class CenterView: UIView {
             
         }
     }
-    lazy  var activityIndicator = makeActivityIndicator()
+  //  lazy  var activityIndicator = makeActivityIndicator()
     lazy var iconView = makeIconView()
     
     lazy var stackView = makeVerticalStackView()
@@ -47,8 +47,8 @@ class CenterView: UIView {
         backgroundColor = UIColor.appIndigo
         setupHierarhy()
         setupConstraints()
-        activityIndicator.isHidden = false
-        activityIndicator.startAnimating()
+//        activityIndicator.isHidden = false
+//        activityIndicator.startAnimating()
     }
     
     required init?(coder: NSCoder) {
@@ -58,7 +58,7 @@ class CenterView: UIView {
     
     func setupHierarhy() {
         
-        self.addSubview(activityIndicator)
+      //  self.addSubview(activityIndicator)
         self.addSubview(iconView)
         self.addSubview(stackView)
         stackView.addArrangedSubview(titleLabel)
@@ -84,10 +84,10 @@ class CenterView: UIView {
             stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
             stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
             
-            activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            activityIndicator.heightAnchor.constraint(equalTo: self.heightAnchor),
-            activityIndicator.widthAnchor.constraint(equalTo: self.widthAnchor)
+//            activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+//            activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+//            activityIndicator.heightAnchor.constraint(equalTo: self.heightAnchor),
+//            activityIndicator.widthAnchor.constraint(equalTo: self.widthAnchor)
             
         ])
     }

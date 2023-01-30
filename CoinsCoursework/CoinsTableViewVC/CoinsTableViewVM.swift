@@ -66,6 +66,7 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
     func getCoinsArray() {
        
         for coin in coinsStringsArray {
+    
             networkManager.fetchCoin(coin: coin)
         }
     }
@@ -95,16 +96,15 @@ extension CoinsTableViewVM: NetworkingDelegate {
         
 //
 //                DispatchQueue.main.async { [self] in
-//                    coinModel(coin)
+//                    coinsArray.append(coin)
 //                    print(coin)
 //                }
-//        coinModel(coin)
-//        print(coin)
-//        
-//
+        
+
         coinsArray.append(coin)
+        coinsArray = coinsArray.compactMap{$0}
      
-//
+
         
     }
     

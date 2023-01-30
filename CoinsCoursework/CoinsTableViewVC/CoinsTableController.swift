@@ -14,15 +14,26 @@ class CoinsTableController: UIViewController {
     var coinsArray: [CoinModel] = []  {
         didSet {
             
-            guard coinsArray.isEmpty == false else{
-                return
-            }
-            
+//            guard coinsArray.isEmpty == false else{
+//                return
+//            }
+
             let indexPath: IndexPath = IndexPath(row: ((self.coinsArray.count - 1)), section: 0)
-            DispatchQueue.main.sync {
-                self.tableView.reloadRows(at: [indexPath], with: .fade)
-                
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+               // self?.tableView.reloadRows(at: [indexPath], with: .fade)
+
             }
+//            guard  let VM = viewModel else {return}
+//            if coinsArray.count == VM.coinsStringsArray.count
+
+//            {
+//                DispatchQueue.main.sync
+//                { [weak self] in
+//                    self?.hideActivityIndicator()
+//                    self?.tableView.reloadData()
+//                }
+//            }
         }
     }
 
@@ -64,6 +75,16 @@ class CoinsTableController: UIViewController {
     
     private var tableView = CoinsTableView(frame: .zero, style: .plain)
     
+    var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.color = .appIndigo
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.isHidden =  false
+        activityIndicator.startAnimating()
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        return activityIndicator
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -73,7 +94,7 @@ class CoinsTableController: UIViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         print ("=========VIEW WILL APPEAR CALLED========")
         getCoinsArray()
     }
@@ -97,6 +118,7 @@ class CoinsTableController: UIViewController {
         topView.addSubview(exitButton)
         topView.addSubview(sortButton)
         view.addSubview(tableView)
+        tableView.addSubview(activityIndicator)
     }
     
     func setupConstraints() {
@@ -118,7 +140,12 @@ class CoinsTableController: UIViewController {
             
             sortButton.centerYAnchor.constraint(equalTo: topView.centerYAnchor),
             sortButton.heightAnchor.constraint(equalToConstant: 40),
-            sortButton.centerXAnchor.constraint(equalTo: topView.centerXAnchor)
+            sortButton.centerXAnchor.constraint(equalTo: topView.centerXAnchor),
+            
+            activityIndicator.centerXAnchor.constraint(equalTo: tableView.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: tableView.centerYAnchor),
+            activityIndicator.heightAnchor.constraint(equalToConstant: 100),
+            activityIndicator.widthAnchor.constraint(equalToConstant: 100)
 
             
         ])
@@ -131,6 +158,11 @@ class CoinsTableController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(CoinCell.self, forCellReuseIdentifier: "cell")
+    }
+    
+    func hideActivityIndicator() {
+        activityIndicator.isHidden = true
+        activityIndicator.stopAnimating()
     }
     
     func getCoinsArray() {
@@ -177,35 +209,40 @@ class CoinsTableController: UIViewController {
 
 extension CoinsTableController: UITableViewDelegate {
     
-//    func tableView(_ tableView: UITableView, shouldSpringLoadRowAt indexPath: IndexPath, with context: UISpringLoadedInteractionContext) -> Bool {
-//
+    func tableView(_ tableView: UITableView, shouldSpringLoadRowAt indexPath: IndexPath, with context: UISpringLoadedInteractionContext) -> Bool {
+
 //        coinsArray = []
 //
 //        guard let VM = self.viewModel else {return false}
 //        VM.getCoinsArray()
-//
-//        return true
-//    }
+
+        return false
+    }
 }
 //MARK: - UITableViewDataSourse
 
 extension CoinsTableController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        guard let VM = viewModel else {return 0}
-        return VM.coinsStringsArray.count
+//        guard let VM = viewModel else {return 0}
+//        return VM.coinsStringsArray.count
         
+        return coinsArray.count
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CoinCell else {fatalError()}
         
-        if coinsArray.isEmpty == false {
-            cell.coinModel = coinsArray[indexPath.row]
-        }
+//        if coinsArray.isEmpty == false {
+//            cell.coinModel = coinsArray[indexPath.row]
+//        }
+//
+//
+//        return cell
         
-        
+        cell.coinModel = coinsArray[indexPath.row]
         return cell
     }
     
