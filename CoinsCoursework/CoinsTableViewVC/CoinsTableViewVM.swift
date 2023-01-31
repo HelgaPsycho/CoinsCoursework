@@ -74,17 +74,18 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
     func sortBy(_ changes: PriceChanges) {
         switch changes {
         case .ascendingPrisePerDay:
-            break
+            coinsArray = coinsArray.sorted(by: { $0.percentChangeUsdLast24Hours < $1.percentChangeUsdLast24Hours })
         case .decreasePricePerDay:
-            break
+            coinsArray = coinsArray.sorted(by: { $0.percentChangeUsdLast24Hours > $1.percentChangeUsdLast24Hours })
         case .ascendingPricePerHour:
-            break
+            coinsArray = coinsArray.sorted(by: { $0.percentChangeUsdLast1Hour < $1.percentChangeUsdLast1Hour })
         case .decreasePricePerHour:
-            break
+            coinsArray = coinsArray.sorted(by: { $0.percentChangeUsdLast1Hour > $1.percentChangeUsdLast1Hour })
         default:
             break
         }
     }
+    
     
     var coinModel: (CoinModel) -> () = {_ in }
 

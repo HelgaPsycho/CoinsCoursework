@@ -18,10 +18,11 @@ class CoinsTableController: UIViewController {
 //                return
 //            }
 
-            let indexPath: IndexPath = IndexPath(row: ((self.coinsArray.count - 1)), section: 0)
+           // let indexPath: IndexPath = IndexPath(row: ((self.coinsArray.count - 1)), section: 0)
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
-               // self?.tableView.reloadRows(at: [indexPath], with: .fade)
+                //self?.tableView.reloadRows(at: [indexPath], with: .fade)
+            
 
             }
 //            guard  let VM = viewModel else {return}
@@ -174,10 +175,12 @@ class CoinsTableController: UIViewController {
     @objc func sortButtonPressed(sender: UIButton){
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: "Sort by ascending price per day", style: .default, handler: { (UIAlertAction) in self.viewModel?.sortBy(.ascendingPrisePerDay)}))
-        alert.addAction(UIAlertAction(title: "Sort by decrease price per day", style: .default, handler: {(UIAlertAction) in self.viewModel?.sortBy(.decreasePricePerDay)}))
-        alert.addAction(UIAlertAction(title: "Sort by ascending price per hour", style: .default, handler: {(UIAlertAction) in self.viewModel?.sortBy(.ascendingPricePerHour)}))
         alert.addAction(UIAlertAction(title: "Sort by decrease price per hour", style: .default, handler: {(UIAlertAction) in self.viewModel?.sortBy(.decreasePricePerHour)}))
+        alert.addAction(UIAlertAction(title: "Sort by ascending price per hour", style: .default, handler: {(UIAlertAction) in self.viewModel?.sortBy(.ascendingPricePerHour)}))
+        alert.addAction(UIAlertAction(title: "Sort by decrease price per day", style: .default, handler: {(UIAlertAction) in self.viewModel?.sortBy(.decreasePricePerDay)}))
+        alert.addAction(UIAlertAction(title: "Sort by ascending price per day", style: .default, handler: { (UIAlertAction) in self.viewModel?.sortBy(.ascendingPrisePerDay)}))
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
                
                
                present(alert, animated: true, completion: nil)
