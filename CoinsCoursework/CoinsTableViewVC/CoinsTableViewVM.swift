@@ -54,9 +54,11 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
     
     func getCoinsArray() {
         coinsArray = []
-        for coin in coinsStringsArray {
-            counter = counter + 1
-            networkManager.fetchCoin(coin: coin)
+            for coin in self.coinsStringsArray {
+                self.counter = self.counter + 1
+                DispatchQueue.global(qos: .userInitiated).async {
+                self.networkManager.fetchCoin(coin: coin)
+            }
         }
     }
     
@@ -64,12 +66,16 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
         switch changes {
         case .ascendingPrisePerDay:
             coinsArray = coinsArray.sorted(by: { $0.percentChangeUsdLast24Hours < $1.percentChangeUsdLast24Hours })
+            coinsArrayClosure(coinsArray)
         case .decreasePricePerDay:
             coinsArray = coinsArray.sorted(by: { $0.percentChangeUsdLast24Hours > $1.percentChangeUsdLast24Hours })
+            coinsArrayClosure(coinsArray)
         case .ascendingPricePerHour:
             coinsArray = coinsArray.sorted(by: { $0.percentChangeUsdLast1Hour < $1.percentChangeUsdLast1Hour })
+            coinsArrayClosure(coinsArray)
         case .decreasePricePerHour:
             coinsArray = coinsArray.sorted(by: { $0.percentChangeUsdLast1Hour > $1.percentChangeUsdLast1Hour })
+            coinsArrayClosure(coinsArray)
         default:
             break
         }
@@ -105,6 +111,7 @@ extension CoinsTableViewVM: NetworkingDelegate {
             return
         } else {
             coinsArrayClosure(coinsArray)
+            print("")
         }
     }
 

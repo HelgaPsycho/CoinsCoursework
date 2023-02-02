@@ -25,7 +25,7 @@ class CoinsTableController: UIViewController {
                 
             }
             
-            DispatchQueue.main.asyncAfter(deadline:  .now() + 2) {
+            DispatchQueue.main.asyncAfter(deadline:  .now() + 1) {
                 if self.coinsArray.count == 0 {
                     self.hideActivityIndicator()
                     self.message.isHidden = false
@@ -42,6 +42,7 @@ class CoinsTableController: UIViewController {
     private var tableView = CoinsTableView(frame: .zero, style: .plain)
     private lazy var activityIndicator: UIActivityIndicatorView = makeActivityIndicator()
     private lazy var message: UILabel = makeMessageLabel()
+    private var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,6 +120,8 @@ class CoinsTableController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(CoinCell.self, forCellReuseIdentifier: "cell")
+        tableView.addSubview(refreshControl)
+        refreshControl.addTarget(self, action: #selector(getCoinArrayWithRefreshControl), for: .valueChanged)
     }
     
     func hideActivityIndicator() {
@@ -153,12 +156,26 @@ class CoinsTableController: UIViewController {
         VM.getCoinsArray()
     }
     
+    @objc func getCoinArrayWithRefreshControl() {
+        hideActivityIndicator()
+        message.isHidden = true
+        guard  let VM = viewModel else {return}
+        VM.getCoinsArray()
+        
+    }
+    
     func listenVM() {
         guard var VM = viewModel else {
             return
         }
         VM.coinsArrayClosure =  {[weak self] array in
             self?.coinsArray = array
+            
+                DispatchQueue.main.async {
+                    self?.refreshControl.endRefreshing()
+                
+            }
+     
         }
     }
     
@@ -166,6 +183,7 @@ class CoinsTableController: UIViewController {
         guard let VM = viewModel else {return}
         VM.changeRootController()
     }
+    
     
 }
 

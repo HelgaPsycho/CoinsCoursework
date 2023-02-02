@@ -8,6 +8,8 @@
 import UIKit
 
 class DetailsViewController: UIViewController {
+    
+    var viewModel: (DetailsVMProtocolIn & DetailsVMProtocolOut)? 
 
     override func viewDidLoad() {
         super.viewDidLoad()
