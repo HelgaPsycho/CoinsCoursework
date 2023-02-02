@@ -26,6 +26,7 @@ class CoinsTableView: UITableView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
    
     
 }

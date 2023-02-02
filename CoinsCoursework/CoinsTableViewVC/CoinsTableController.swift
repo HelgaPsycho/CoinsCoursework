@@ -14,37 +14,34 @@ class CoinsTableController: UIViewController {
     var coinsArray: [CoinModel] = []  {
         didSet {
             
-//            guard coinsArray.isEmpty == false else{
-//                return
-//            }
-
-           // let indexPath: IndexPath = IndexPath(row: ((self.coinsArray.count - 1)), section: 0)
             DispatchQueue.main.async { [weak self] in
+                
+                if self?.coinsArray.count != 0 {
+                    self?.hideActivityIndicator()
+                    self?.message.isHidden = true
+                }
+                
                 self?.tableView.reloadData()
-                //self?.tableView.reloadRows(at: [indexPath], with: .fade)
-            
-
+                
             }
-//            guard  let VM = viewModel else {return}
-//            if coinsArray.count == VM.coinsStringsArray.count
-
-//            {
-//                DispatchQueue.main.sync
-//                { [weak self] in
-//                    self?.hideActivityIndicator()
-//                    self?.tableView.reloadData()
-//                }
-//            }
+            
+            DispatchQueue.main.asyncAfter(deadline:  .now() + 3) {
+                if self.coinsArray.count == 0 {
+                    self.hideActivityIndicator()
+                    self.message.isHidden = false
+                }
+            }
+            
         }
     }
-
+    
     
     private var topView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-
+    
     private var exitButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -54,7 +51,7 @@ class CoinsTableController: UIViewController {
         let confHighlImage = image?.withConfiguration(UIImage.SymbolConfiguration(scale: .large)).withConfiguration(colorConfig)
         button.setImage(confNormalImage, for: .normal)
         button.setImage(confHighlImage, for: .highlighted)
-    
+        
         return button
     }()
     
@@ -86,12 +83,28 @@ class CoinsTableController: UIViewController {
         return activityIndicator
     }()
     
+    var message: UILabel = {
+        let label = UILabel()
+        label.text = """
+        Server is not available now.
+        Please try later.
+        """
+        label.translatesAutoresizingMaskIntoConstraints = false
+        let font = UIFont.preferredFont(forTextStyle: .headline)
+        label.font = font
+        label.textColor = .appBeige
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.isHidden = true
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.appLightBeige
         setupController()
-
+        
         
     }
     
@@ -100,18 +113,18 @@ class CoinsTableController: UIViewController {
         getCoinsArray()
     }
     
-
+    
     func setupController() {
         setupHierarhy()
         setupConstraints()
         configureTableView()
         exitButton.addTarget(self, action: #selector(changeRootController), for: .touchUpInside)
         listenVM()
-        //getCoinsArray()
-
+        
+        
     }
     
-
+    
     
     func setupHierarhy() {
         view.addSubview(navigationController!.navigationBar)
@@ -120,6 +133,7 @@ class CoinsTableController: UIViewController {
         topView.addSubview(sortButton)
         view.addSubview(tableView)
         tableView.addSubview(activityIndicator)
+        tableView.addSubview(message)
     }
     
     func setupConstraints() {
@@ -146,13 +160,18 @@ class CoinsTableController: UIViewController {
             activityIndicator.centerXAnchor.constraint(equalTo: tableView.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: tableView.centerYAnchor),
             activityIndicator.heightAnchor.constraint(equalToConstant: 100),
-            activityIndicator.widthAnchor.constraint(equalToConstant: 100)
-
+            activityIndicator.widthAnchor.constraint(equalToConstant: 100),
+            
+            message.centerXAnchor.constraint(equalTo: tableView.centerXAnchor),
+            message.centerYAnchor.constraint(equalTo: tableView.centerYAnchor),
+            message.rightAnchor.constraint(equalTo: tableView.rightAnchor, constant: -30),
+            message.leftAnchor.constraint(equalTo: tableView.leftAnchor, constant: 30)
+            
             
         ])
         
     }
-  
+    
     
     func configureTableView(){
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -166,7 +185,13 @@ class CoinsTableController: UIViewController {
         activityIndicator.stopAnimating()
     }
     
+    func showActivityIndicator() {
+        activityIndicator.startAnimating()
+        activityIndicator.isHidden = false
+    }
+    
     func getCoinsArray() {
+        showActivityIndicator()
         guard  let VM = viewModel else {return}
         VM.getCoinsArray()
         
@@ -179,14 +204,14 @@ class CoinsTableController: UIViewController {
         alert.addAction(UIAlertAction(title: "Sort by ascending price per hour", style: .default, handler: {(UIAlertAction) in self.viewModel?.sortBy(.ascendingPricePerHour)}))
         alert.addAction(UIAlertAction(title: "Sort by decrease price per day", style: .default, handler: {(UIAlertAction) in self.viewModel?.sortBy(.decreasePricePerDay)}))
         alert.addAction(UIAlertAction(title: "Sort by ascending price per day", style: .default, handler: { (UIAlertAction) in self.viewModel?.sortBy(.ascendingPrisePerDay)}))
-
+        
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-               
-               
-               present(alert, animated: true, completion: nil)
+        
+        
+        present(alert, animated: true, completion: nil)
     }
     
-//MARK: - ViewModel
+    //MARK: - ViewModel
     
     func listenVM() {
         guard var VM = viewModel else {
@@ -207,18 +232,18 @@ class CoinsTableController: UIViewController {
     
     
 }
-    
+
 //MARK: - UITableViewDelegate
 
 extension CoinsTableController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, shouldSpringLoadRowAt indexPath: IndexPath, with context: UISpringLoadedInteractionContext) -> Bool {
-
-//        coinsArray = []
-//
-//        guard let VM = self.viewModel else {return false}
-//        VM.getCoinsArray()
-
+        
+        //        coinsArray = []
+        //
+        //        guard let VM = self.viewModel else {return false}
+        //        VM.getCoinsArray()
+        
         return false
     }
 }
@@ -226,10 +251,7 @@ extension CoinsTableController: UITableViewDelegate {
 
 extension CoinsTableController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-//        guard let VM = viewModel else {return 0}
-//        return VM.coinsStringsArray.count
-        
+    
         return coinsArray.count
         
     }
@@ -237,13 +259,7 @@ extension CoinsTableController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CoinCell else {fatalError()}
-        
-//        if coinsArray.isEmpty == false {
-//            cell.coinModel = coinsArray[indexPath.row]
-//        }
-//
-//
-//        return cell
+
         
         cell.coinModel = coinsArray[indexPath.row]
         return cell
