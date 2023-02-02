@@ -14,8 +14,6 @@ protocol CoinsTableViewProtocolIn {
     
     func getCoinsArray()
     
-    //var coinsStringsArray: [String] {get}
-    
     func sortBy(_ changes: PriceChanges)
 }
 
@@ -23,16 +21,18 @@ protocol CoinsTableViewProtocolOut {
     
     var coinsArrayClosure: ([CoinModel]) -> (){get set}
     
-    var coinModel: (CoinModel) -> (){get set}
-  
     
 }
 
 final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOut {
     
-    let coinsStringsArray: [String] = ["btc", "eth", "tron", "lunc", "polkadot", "dogecoin", "tether", "stellar", "cardano", "xrp"]
+    let coinsStringsArray: [String] = ["btc", "eth", "tron", "luna", "polkadot", "dogecoin", "tether", "stellar", "cardano", "xrp"]
 
+    var counter = 0
+    
     var networkManager = NetworkManager()
+    
+    let coinsDispatchGroup = DispatchGroup()
     
     init() {
         networkManager.delegate = self
@@ -50,17 +50,12 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
         
     }
     
-    
-    var coinsArray: [CoinModel] = [] {
-        didSet {
-            coinsArrayClosure(coinsArray)
-        }
-    }
+    var coinsArray: [CoinModel] = []
     
     func getCoinsArray() {
         coinsArray = []
         for coin in coinsStringsArray {
-    
+            counter = counter + 1
             networkManager.fetchCoin(coin: coin)
         }
     }
@@ -89,16 +84,28 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
 }
 
 extension CoinsTableViewVM: NetworkingDelegate {
+
+    
     
     func getCoinInformation(_ networking: NetworkManager, coin: CoinModel) {
-        
+        counter = counter - 1
         coinsArray.append(coin)
-        coinsArray = coinsArray.compactMap{$0}
+        checkCounter()
     
     }
     
     func didFailWithError(error: Error) {
+       counter = counter - 1
         print(error)
+        checkCounter()
+    }
+    
+    func checkCounter(){
+        if counter != 0 {
+            return
+        } else {
+            coinsArrayClosure(coinsArray)
+        }
     }
 
 }
