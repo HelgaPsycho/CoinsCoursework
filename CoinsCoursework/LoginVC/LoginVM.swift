@@ -13,13 +13,13 @@ protocol LoginVMProtocolIn {
     
     var messageText: String {get}
     
-    var warninngMessageIsShown: Bool {get set}
-    
     func checkUser(userModel: UserModel)
 }
 
 protocol LoginVMProtocolOut {
     var showMessage: (Bool)->() {get set}
+    
+    var clearTextFieldsClosure: (String) ->() {get set}
     
 }
 
@@ -27,27 +27,23 @@ class LoginVM: LoginVMProtocolIn, LoginVMProtocolOut  {
     
     var messageText = "Email or password is incorrect. Please, try again"
     
-    var warninngMessageIsShown: Bool = false {
-        didSet {
-            showMessage(warninngMessageIsShown)
-        }
-    }
-  
-    var showMessage: (Bool)->() = { _ in}
-    
-
     func checkUser(userModel: UserModel) {
         if (userModel.email == "1234") && (userModel.password == "1234") {
+            clearTextFieldsClosure("")
             changeRootController()
         } else {
-            warninngMessageIsShown = true
-            
+        
+            showMessage(true)
         }
  }
     
+    var clearTextFieldsClosure: (String)->() = { _ in }
+    
+    var showMessage: (Bool)->() = { _ in}
+
     
     func changeRootController () {
-    
+        showMessage(false)
         guard let window = loginNavigationController.navigationBar.window else {
             return
         }

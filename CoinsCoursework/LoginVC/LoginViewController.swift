@@ -100,6 +100,7 @@ class LoginViewController: UIViewController  {
         
         let loginView = LoginView(frame: .zero)
         loginView.viewModel = viewModel
+        loginView.listenViewModel()
         
         loginView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -118,6 +119,7 @@ class LoginViewController: UIViewController  {
         guard var VM = viewModel else { return }
         VM.showMessage =  {[weak self] isShow in
             self?.showMessage(isShown: isShow)
+            print ("listenViewModel called")
             
         }
     }

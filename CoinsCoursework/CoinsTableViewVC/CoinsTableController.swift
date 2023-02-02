@@ -25,7 +25,7 @@ class CoinsTableController: UIViewController {
                 
             }
             
-            DispatchQueue.main.asyncAfter(deadline:  .now() + 3) {
+            DispatchQueue.main.asyncAfter(deadline:  .now() + 2) {
                 if self.coinsArray.count == 0 {
                     self.hideActivityIndicator()
                     self.message.isHidden = false
@@ -112,7 +112,9 @@ class CoinsTableController: UIViewController {
         print ("=========VIEW WILL APPEAR CALLED========")
         getCoinsArray()
     }
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        message.isHidden = true
+    }
     
     func setupController() {
         setupHierarhy()
@@ -190,12 +192,6 @@ class CoinsTableController: UIViewController {
         activityIndicator.isHidden = false
     }
     
-    func getCoinsArray() {
-        showActivityIndicator()
-        guard  let VM = viewModel else {return}
-        VM.getCoinsArray()
-        
-    }
     
     @objc func sortButtonPressed(sender: UIButton){
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -213,6 +209,13 @@ class CoinsTableController: UIViewController {
     
     //MARK: - ViewModel
     
+    func getCoinsArray() {
+        showActivityIndicator()
+        guard  let VM = viewModel else {return}
+        VM.getCoinsArray()
+        
+    }
+    
     func listenVM() {
         guard var VM = viewModel else {
             return
@@ -221,9 +224,11 @@ class CoinsTableController: UIViewController {
             self?.coinsArray = array
             
             
+            
         }
         
     }
+    
     
     @objc func changeRootController() {
         guard let VM = viewModel else {return}

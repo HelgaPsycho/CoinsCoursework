@@ -23,10 +23,10 @@ class LoginView: UIView {
     }()
 
     
-    private var emailTextField: UITextField = CustomUITextField(systemImage: "envelope", placeHolder: " Email")
+    var emailTextField: UITextField = CustomUITextField(systemImage: "envelope", placeHolder: " Email")
     
     
-    private var passwordTextField: UITextField = CustomUITextField(systemImage: "lock.fill", placeHolder: " Password")
+    var passwordTextField: UITextField = CustomUITextField(systemImage: "lock.fill", placeHolder: " Password")
   
 
     private var signInButton: UIButton = CustomButtonWithText(title: "Sign In")
@@ -41,8 +41,7 @@ class LoginView: UIView {
         setupHierarhy()
         setupConstraints()
         setupSignInButton()
-        
-
+    
     }
     
     required init?(coder: NSCoder) {
@@ -81,7 +80,7 @@ class LoginView: UIView {
 extension LoginView: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        viewModel?.warninngMessageIsShown = false
+        viewModel?.showMessage(false)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -114,6 +113,21 @@ extension LoginView {
     func changeUserModel() {
         userModel.email = emailTextField.text ?? ""
         userModel.password = passwordTextField.text ?? ""
+    }
+    
+    func listenViewModel() {
+        guard var VM = viewModel else { return }
+        VM.clearTextFieldsClosure =  { [weak self] text in
+            self?.clearTextFields(text: text)
+             print("clearTextFielClosure called")
+            
+        }
+        
+    }
+    
+    func clearTextFields(text: String){
+        emailTextField.text = text
+        passwordTextField.text = text
     }
     
 }
