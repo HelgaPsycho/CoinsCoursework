@@ -14,7 +14,7 @@ protocol CoinsTableViewProtocolIn {
     
     func getCoinsArray()
     
-    var coinsStringsArray: [String] {get}
+    //var coinsStringsArray: [String] {get}
     
     func sortBy(_ changes: PriceChanges)
 }
@@ -29,16 +29,16 @@ protocol CoinsTableViewProtocolOut {
 }
 
 final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOut {
+    
+    let coinsStringsArray: [String] = ["btc", "eth", "tron", "lunc", "polkadot", "dogecoin", "tether", "stellar", "cardano", "xrp"]
 
-    
-    
     var networkManager = NetworkManager()
     
     init() {
         networkManager.delegate = self
     }
     
-    
+    //MARK: -  CoinsTableViewProtocolIn
     func changeRootController () {
     
         guard let window = mainNavigationController.navigationBar.window else {
@@ -48,20 +48,14 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
         window.rootViewController = loginNavigationController
         window.makeKeyAndVisible()
         
-
     }
     
-    let coinsStringsArray: [String] = ["btc", "eth", "tron", "lunc", "polkadot", "dogecoin", "tether", "stellar", "cardano", "xrp"]
     
     var coinsArray: [CoinModel] = [] {
         didSet {
-        
             coinsArrayClosure(coinsArray)
         }
     }
-    
-    var coinsArrayClosure: ([CoinModel]) -> () = { _ in}
-
     
     func getCoinsArray() {
         coinsArray = []
@@ -88,25 +82,25 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
     
     
     var coinModel: (CoinModel) -> () = {_ in }
+    
+    var coinsArrayClosure: ([CoinModel]) -> () = { _ in}
 
    
 }
 
 extension CoinsTableViewVM: NetworkingDelegate {
+    
     func getCoinInformation(_ networking: NetworkManager, coin: CoinModel) {
         
         coinsArray.append(coin)
         coinsArray = coinsArray.compactMap{$0}
-     
-
-        
+    
     }
     
     func didFailWithError(error: Error) {
         print(error)
     }
-    
-    
+
 }
 
 enum PriceChanges {

@@ -13,43 +13,13 @@ class LoginViewController: UIViewController  {
     var viewModel: (LoginVMProtocolIn & LoginVMProtocolOut)?
 
     
-    private var titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Sign In"
-        let font = UIFont.preferredFont(forTextStyle: .title1)
-        label.font = font
-        label.textColor = UIColor.appWhite
-        label.textAlignment = .left
-        return label
-    }()
-    
-    private var centralView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 20
-        view.backgroundColor = UIColor.appWhite
-        return view
-    }()
-    
+    private lazy var titleLabel: UILabel = makeTitleLabel()
+    private lazy var centralView: UIView = makeCentralView()
     private var loginView: LoginView?
-    
-    private var massageLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.preferredFont(forTextStyle: .body)
-        label.textColor = UIColor.red
-        label.numberOfLines = 0
-        label.textAlignment = .left
-        label.isHidden = true
-        return label
-    }()
-        
+    private lazy var massageLabel: UILabel = makeMessageLabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = UIColor.appBeige
 
         setupVC()
         
@@ -57,6 +27,7 @@ class LoginViewController: UIViewController  {
     
     
     func setupVC() {
+        view.backgroundColor = UIColor.appBeige
         massageLabel.text = viewModel?.messageText
         listenViewModel()
         setHierarchy()
@@ -101,11 +72,8 @@ class LoginViewController: UIViewController  {
         let loginView = LoginView(frame: .zero)
         loginView.viewModel = viewModel
         loginView.listenViewModel()
-        
         loginView.translatesAutoresizingMaskIntoConstraints = false
-        
         centralView.addSubview(loginView)
-        
         NSLayoutConstraint.activate([
             loginView.topAnchor.constraint(equalTo: centralView.topAnchor),
             loginView.leftAnchor.constraint(equalTo: centralView.leftAnchor),
@@ -114,6 +82,8 @@ class LoginViewController: UIViewController  {
         ])
         
     }
+    
+    //MARK: - ViewModel methods
     
     func listenViewModel() {
         guard var VM = viewModel else { return }

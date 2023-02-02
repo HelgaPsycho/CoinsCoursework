@@ -23,7 +23,7 @@ protocol LoginVMProtocolOut {
     
 }
 
-class LoginVM: LoginVMProtocolIn, LoginVMProtocolOut  {
+final class LoginVM: LoginVMProtocolIn, LoginVMProtocolOut  {
     
     var messageText = "Email or password is incorrect. Please, try again"
     

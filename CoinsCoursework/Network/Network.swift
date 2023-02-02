@@ -37,7 +37,7 @@ struct NetworkManager {
             let task = session.dataTask(with: url) {(data, response, error) in
                 if error != nil {
                     self.delegate?.didFailWithError(error: error!)
-                    performRequest(with: urlString)
+                    return
                 }
                 if let safeData = data {
                     if let coin = self.parseJSON(safeData) {

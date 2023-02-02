@@ -22,13 +22,8 @@ class LoginView: UIView {
         return stackView
     }()
 
-    
     var emailTextField: UITextField = CustomUITextField(systemImage: "envelope", placeHolder: " Email")
-    
-    
     var passwordTextField: UITextField = CustomUITextField(systemImage: "lock.fill", placeHolder: " Password")
-  
-
     private var signInButton: UIButton = CustomButtonWithText(title: "Sign In")
 
     override init(frame: CGRect) {
@@ -76,7 +71,7 @@ class LoginView: UIView {
 }
 
 
-//MARK: - UITextFieldDelegate
+//MARK: - TextFieldDelegate methods
 extension LoginView: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -100,12 +95,12 @@ extension LoginView: UITextFieldDelegate {
     }
 }
 
-//MARK: - CHECK USER
+//MARK: - ViewModel methods
 extension LoginView {
     
     @objc func checkUser () {
         changeUserModel()
-        changeUserModel()
+       // changeUserModel()
         viewModel?.checkUser(userModel: userModel)
         
     }
@@ -131,7 +126,4 @@ extension LoginView {
     }
     
 }
-
-//MARK: - LOGIN PASSWORD TEST
-
 

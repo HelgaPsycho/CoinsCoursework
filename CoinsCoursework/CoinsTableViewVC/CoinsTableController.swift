@@ -36,75 +36,18 @@ class CoinsTableController: UIViewController {
     }
     
     
-    private var topView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private var exitButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        let image = UIImage(systemName: "rectangle.portrait.and.arrow.forward")
-        let colorConfig = UIImage.SymbolConfiguration(paletteColors: [UIColor.appIndigo])
-        let confNormalImage = image?.withConfiguration(UIImage.SymbolConfiguration(scale: .large)).withConfiguration(colorConfig)
-        let confHighlImage = image?.withConfiguration(UIImage.SymbolConfiguration(scale: .large)).withConfiguration(colorConfig)
-        button.setImage(confNormalImage, for: .normal)
-        button.setImage(confHighlImage, for: .highlighted)
-        
-        return button
-    }()
-    
-    
-    
-    private var sortButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("  Sort  ", for: .normal)
-        button.setTitleColor(UIColor.appIndigo, for: .normal)
-        button.setTitleColor(UIColor.gray, for: .highlighted)
-        let image = UIImage(systemName: "chevron.down")
-        let colorConfig = UIImage.SymbolConfiguration(paletteColors: [UIColor.appIndigo])
-        let confImage = image?.withConfiguration(UIImage.SymbolConfiguration(scale: .large)).withConfiguration(colorConfig)
-        button.setImage(confImage, for: .normal)
-        button.addTarget(self, action: #selector(sortButtonPressed), for: .touchUpInside)
-        return button
-    }()
-    
+    private lazy var topView: UIView = makeTopView()
+    private lazy var exitButton: UIButton = makeExitButton()
+    private lazy var sortButton: UIButton = makeSortButton()
     private var tableView = CoinsTableView(frame: .zero, style: .plain)
-    
-    var activityIndicator: UIActivityIndicatorView = {
-        let activityIndicator = UIActivityIndicatorView()
-        activityIndicator.color = .appIndigo
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.isHidden =  false
-        activityIndicator.startAnimating()
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        return activityIndicator
-    }()
-    
-    var message: UILabel = {
-        let label = UILabel()
-        label.text = """
-        Server is not available now.
-        Please try later.
-        """
-        label.translatesAutoresizingMaskIntoConstraints = false
-        let font = UIFont.preferredFont(forTextStyle: .headline)
-        label.font = font
-        label.textColor = .appBeige
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        label.isHidden = true
-        return label
-    }()
+    private lazy var activityIndicator: UIActivityIndicatorView = makeActivityIndicator()
+    private lazy var message: UILabel = makeMessageLabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.appLightBeige
         setupController()
-        
         
     }
     
@@ -123,10 +66,7 @@ class CoinsTableController: UIViewController {
         exitButton.addTarget(self, action: #selector(changeRootController), for: .touchUpInside)
         listenVM()
         
-        
     }
-    
-    
     
     func setupHierarhy() {
         view.addSubview(navigationController!.navigationBar)
@@ -173,8 +113,7 @@ class CoinsTableController: UIViewController {
         ])
         
     }
-    
-    
+        
     func configureTableView(){
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
@@ -203,7 +142,6 @@ class CoinsTableController: UIViewController {
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         
-        
         present(alert, animated: true, completion: nil)
     }
     
@@ -213,7 +151,6 @@ class CoinsTableController: UIViewController {
         showActivityIndicator()
         guard  let VM = viewModel else {return}
         VM.getCoinsArray()
-        
     }
     
     func listenVM() {
@@ -222,19 +159,13 @@ class CoinsTableController: UIViewController {
         }
         VM.coinsArrayClosure =  {[weak self] array in
             self?.coinsArray = array
-            
-            
-            
         }
-        
     }
-    
     
     @objc func changeRootController() {
         guard let VM = viewModel else {return}
         VM.changeRootController()
     }
-    
     
 }
 
@@ -243,11 +174,8 @@ class CoinsTableController: UIViewController {
 extension CoinsTableController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, shouldSpringLoadRowAt indexPath: IndexPath, with context: UISpringLoadedInteractionContext) -> Bool {
-        
-        //        coinsArray = []
-        //
-        //        guard let VM = self.viewModel else {return false}
-        //        VM.getCoinsArray()
+      
+    //   getCoinsArray()
         
         return false
     }
