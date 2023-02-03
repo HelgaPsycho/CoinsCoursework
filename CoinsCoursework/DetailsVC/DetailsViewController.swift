@@ -18,8 +18,6 @@ class DetailsViewController: UIViewController {
             iconView.image = UIImage.getIconForCoin(named: coin.name)
             nameLabel.text = coin.name
             symbolLabel.text = coin.symbol
-            topHorizontalStack.updateConstraints()
-            topVerticalStack.updateConstraints()
             
         }
     }
@@ -29,6 +27,7 @@ class DetailsViewController: UIViewController {
     private lazy var topVerticalStack = makeVerticalTopStackView()
     private lazy var nameLabel = makeTitleLabel()
     private lazy var symbolLabel = makeTitleLabel()
+    private lazy var verticalStackView = makeVerticalStackView()
     
 
     override func viewDidLoad() {
@@ -53,16 +52,32 @@ class DetailsViewController: UIViewController {
         topHorizontalStack.addArrangedSubview(topVerticalStack)
         topVerticalStack.addArrangedSubview(nameLabel)
         topVerticalStack.addArrangedSubview(symbolLabel)
+        view.addSubview(verticalStackView)
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            topHorizontalStack.topAnchor.constraint(equalTo: mainNavigationController.navigationBar.bottomAnchor, constant: 50),
+            topHorizontalStack.topAnchor.constraint(equalTo: mainNavigationController.navigationBar.bottomAnchor, constant: 20),
             topHorizontalStack.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
             topHorizontalStack.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
-            topHorizontalStack.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/4)
+            topHorizontalStack.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/6),
+            
+            verticalStackView.topAnchor.constraint(equalTo: topHorizontalStack.bottomAnchor, constant: 20),
+            verticalStackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            verticalStackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            verticalStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40)
 
         ])
      
     }
+    
+    func loadData() {
+        updateViewConstraints()
+    }
+    
+    override func updateViewConstraints(){
+        super.updateViewConstraints()
+        
+    }
+    
 }
