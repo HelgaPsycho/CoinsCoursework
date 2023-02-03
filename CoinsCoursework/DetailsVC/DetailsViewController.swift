@@ -11,7 +11,25 @@ class DetailsViewController: UIViewController {
     
     var viewModel: (DetailsVMProtocolIn & DetailsVMProtocolOut)?
     
-    private lazy var topView = makeTopView()
+    var coinModel: CoinModel? {
+        didSet {
+            
+            guard let coin = coinModel else {return}
+            iconView.image = UIImage.getIconForCoin(named: coin.name)
+            nameLabel.text = coin.name
+            symbolLabel.text = coin.symbol
+            topHorizontalStack.updateConstraints()
+            topVerticalStack.updateConstraints()
+            
+        }
+    }
+    
+    private lazy var topHorizontalStack = makeHorizontalTopStackView()
+    private lazy var iconView = makeImageView()
+    private lazy var topVerticalStack = makeVerticalTopStackView()
+    private lazy var nameLabel = makeTitleLabel()
+    private lazy var symbolLabel = makeTitleLabel()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,16 +47,21 @@ class DetailsViewController: UIViewController {
     }
     
     private func  setupHierarhy() {
-        view.addSubview(topView)
         view.addSubview(mainNavigationController.navigationBar)
+        view.addSubview(topHorizontalStack)
+        topHorizontalStack.addArrangedSubview(iconView)
+        topHorizontalStack.addArrangedSubview(topVerticalStack)
+        topVerticalStack.addArrangedSubview(nameLabel)
+        topVerticalStack.addArrangedSubview(symbolLabel)
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            topView.topAnchor.constraint(equalTo: mainNavigationController.navigationBar.topAnchor),
-            topView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            topView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            topView.heightAnchor.constraint(equalToConstant: 44)
+            topHorizontalStack.topAnchor.constraint(equalTo: mainNavigationController.navigationBar.bottomAnchor, constant: 50),
+            topHorizontalStack.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            topHorizontalStack.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            topHorizontalStack.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/4)
+
         ])
      
     }

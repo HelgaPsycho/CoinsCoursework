@@ -197,7 +197,8 @@ extension CoinsTableController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let detailsVC = DetailsVCBuilder().build()
+        let detailsVC = DetailsVCBuilder().build() as! DetailsViewController
+        detailsVC.coinModel = coinsArray[indexPath.row]
         mainNavigationController.pushViewController(detailsVC, animated: true)
     }
 }

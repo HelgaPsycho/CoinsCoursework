@@ -62,6 +62,7 @@ class LoginView: UIView {
             passwordTextField.heightAnchor.constraint(equalToConstant:  44),
             signInButton.heightAnchor.constraint(equalToConstant: 44)
         ])
+
     }
     
     func setupSignInButton() {

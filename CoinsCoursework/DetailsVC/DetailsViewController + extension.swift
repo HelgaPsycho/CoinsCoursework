@@ -10,16 +10,44 @@ import UIKit
 
 extension DetailsViewController {
     
-    func makeTopView() -> UIView {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .yellow
-        return view
+    func makeHorizontalTopStackView() ->UIStackView {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.alignment = .leading
+        return stackView
+    }
+    
+    func makeVerticalTopStackView() ->UIStackView {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.alignment = .trailing
+        return stackView
+    }
+    
+    func makeVerticalStackView() ->UIStackView {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.alignment = .leading
+        return stackView
+    }
+    
+    func makeImageView() -> UIImageView {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        return imageView
     }
     
     func makeTitleLabel() -> UILabel {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+    //    label.translatesAutoresizingMaskIntoConstraints = false
         let font = UIFont.preferredFont(forTextStyle: .title2)
         label.font = font
         label.textColor = .appIndigo
@@ -31,7 +59,7 @@ extension DetailsViewController {
     
     func makeHeaderLabel() -> UILabel {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+    //    label.translatesAutoresizingMaskIntoConstraints = false
         let font = UIFont.preferredFont(forTextStyle: .subheadline)
         label.font = font
         label.textColor = .appGreen

@@ -13,6 +13,7 @@
 		9C43C247298C5D2300BAD019 /* DetailsVCBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C43C246298C5D2300BAD019 /* DetailsVCBuilder.swift */; };
 		9C43C249298C632500BAD019 /* DetailsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C43C248298C632500BAD019 /* DetailsVM.swift */; };
 		9C43C24B298C6BB300BAD019 /* DetailsViewController + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C43C24A298C6BB300BAD019 /* DetailsViewController + extension.swift */; };
+		9C43C24D298D225B00BAD019 /* UIImage + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C43C24C298D225B00BAD019 /* UIImage + ext.swift */; };
 		9CA581EF297AC70A00449D20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA581EE297AC70A00449D20 /* AppDelegate.swift */; };
 		9CA581F1297AC70A00449D20 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA581F0297AC70A00449D20 /* SceneDelegate.swift */; };
 		9CA581F8297AC70C00449D20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CA581F7297AC70C00449D20 /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 		9C43C246298C5D2300BAD019 /* DetailsVCBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVCBuilder.swift; sourceTree = "<group>"; };
 		9C43C248298C632500BAD019 /* DetailsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVM.swift; sourceTree = "<group>"; };
 		9C43C24A298C6BB300BAD019 /* DetailsViewController + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailsViewController + extension.swift"; sourceTree = "<group>"; };
+		9C43C24C298D225B00BAD019 /* UIImage + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + ext.swift"; sourceTree = "<group>"; };
 		9CA581EB297AC70A00449D20 /* CoinsCoursework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinsCoursework.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CA581EE297AC70A00449D20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9CA581F0297AC70A00449D20 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				9CA58212297AE0F500449D20 /* UIColors + colorsForApp.swift */,
+				9C43C24C298D225B00BAD019 /* UIImage + ext.swift */,
 			);
 			path = "UIElements + ext";
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				9CA582652984453800449D20 /* CenterView.swift in Sources */,
 				9CA5820B297ACAA700449D20 /* ModuleBuilder.swift in Sources */,
 				9CA58213297AE0F500449D20 /* UIColors + colorsForApp.swift in Sources */,
+				9C43C24D298D225B00BAD019 /* UIImage + ext.swift in Sources */,
 				9CA5822A297E712900449D20 /* CoinModel.swift in Sources */,
 				9CA58222297D2CAC00449D20 /* CoinsTableView.swift in Sources */,
 			);
