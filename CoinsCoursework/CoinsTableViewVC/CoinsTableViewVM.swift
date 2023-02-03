@@ -26,7 +26,7 @@ protocol CoinsTableViewProtocolOut {
 
 final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOut {
     
-    let coinsStringsArray: [String] = ["btc", "eth", "tron", "luna", "polkadot", "dogecoin", "tether", "stellar", "cardano", "xrp"]
+    let coinsStringsArray: [String] = ["busd", "btc", "eth", "tron", "luna", "polkadot", "dogecoin", "tether", "stellar", "cardano", "xrp"]
 
     var counter = 0
     
@@ -40,12 +40,14 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
     
     //MARK: -  CoinsTableViewProtocolIn
     func changeRootController () {
-    
+    print("changeRootController in VM called")
+        mainNavigationController.isNavigationBarHidden = false
         guard let window = mainNavigationController.navigationBar.window else {
             return
         }
 
         window.rootViewController = loginNavigationController
+        print(loginNavigationController)
         window.makeKeyAndVisible()
         
     }

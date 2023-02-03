@@ -52,8 +52,10 @@ class CoinsTableController: UIViewController {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    
+    override func viewWillAppear(_ animated: Bool) {
         print ("=========VIEW WILL APPEAR CALLED========")
+        mainNavigationController.isNavigationBarHidden = true
         getCoinsArray()
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -61,6 +63,7 @@ class CoinsTableController: UIViewController {
     }
     
     func setupController() {
+        mainNavigationController.isNavigationBarHidden = true
         setupHierarhy()
         setupConstraints()
         configureTableView()
@@ -70,7 +73,7 @@ class CoinsTableController: UIViewController {
     }
     
     func setupHierarhy() {
-        view.addSubview(navigationController!.navigationBar)
+    //    view.addSubview(mainNavigationController.navigationBar)
         view.addSubview(topView)
         topView.addSubview(exitButton)
         topView.addSubview(sortButton)
@@ -81,12 +84,12 @@ class CoinsTableController: UIViewController {
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            topView.topAnchor.constraint(equalTo: (navigationController?.navigationBar.topAnchor)!),
+            topView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             topView.heightAnchor.constraint(equalToConstant: 44),
             topView.leftAnchor.constraint(equalTo: view.leftAnchor),
             topView.rightAnchor.constraint(equalTo: view.rightAnchor),
             
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            tableView.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: 10),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -180,6 +183,7 @@ class CoinsTableController: UIViewController {
     }
     
     @objc func changeRootController() {
+        print("chanfeRootController called")
         guard let VM = viewModel else {return}
         VM.changeRootController()
     }
@@ -191,11 +195,10 @@ class CoinsTableController: UIViewController {
 
 extension CoinsTableController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, shouldSpringLoadRowAt indexPath: IndexPath, with context: UISpringLoadedInteractionContext) -> Bool {
-      
-    //   getCoinsArray()
-        
-        return false
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let detailsVC = DetailsVCBuilder().build()
+        mainNavigationController.pushViewController(detailsVC, animated: true)
     }
 }
 //MARK: - UITableViewDataSourse

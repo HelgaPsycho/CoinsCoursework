@@ -56,14 +56,18 @@ func parseJSON(_ coinData: Data) -> CoinModel? {
     let decoder = JSONDecoder()
     do {
         let decodedData = try decoder.decode(CoinData.self, from: coinData)
-        let symbol = decodedData.data.symbol
-        let name = decodedData.data.name
-        let priceUsd = decodedData.data.market_data.price_usd
-        let percentChangeUsdLast1Hour = decodedData.data.market_data.percent_change_usd_last_1_hour
-        let percentChangeUsdLast24Hours = decodedData.data.market_data.percent_change_usd_last_24_hours
-        
-        print(symbol)
-        return CoinModel(symbol: symbol, name: name, priceUsd: priceUsd, percentChangeUsdLast1Hour: percentChangeUsdLast1Hour, percentChangeUsdLast24Hours: percentChangeUsdLast24Hours)
+        print(decodedData.data.symbol)
+        return CoinModel(symbol: decodedData.data.symbol,
+                         name: decodedData.data.name,
+                         priceUsd: decodedData.data.market_data.price_usd,
+                         percentChangeUsdLast1Hour: decodedData.data.market_data.percent_change_usd_last_1_hour,
+                         percentChangeUsdLast24Hours: decodedData.data.market_data.percent_change_usd_last_24_hours,
+                         countOfActiveAddresses24Hours: decodedData.data.blockchain_stats_24_hours.count_of_active_addresses,
+                         transactionVolume24Hours: decodedData.data.blockchain_stats_24_hours.transaction_volume,
+                         percentChangeLast1Week: decodedData.data.roi_data.percent_change_last_1_week,
+                         percentChangeLast1Month: decodedData.data.roi_data.percent_change_last_1_month,
+                         percentChangeLast3Month: decodedData.data.roi_data.percent_change_last_3_months,
+                         percentChangeLast1Year: decodedData.data.roi_data.percent_change_last_1_year)
     }
     catch {
         delegate?.didFailWithError(error: error)

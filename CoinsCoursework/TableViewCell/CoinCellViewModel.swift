@@ -46,7 +46,7 @@ final class CoinCellViewModel {
         case "XRP":
             return UIImage(named: "xcp")
         default:
-            return UIImage(systemName: "questionmark.square.dashed")
+            return UIImage(systemName: "questionmark.square.dashed")?.withConfiguration(UIImage.SymbolConfiguration(paletteColors: [.appBeige]))
         }
     }
     

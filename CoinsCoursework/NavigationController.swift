@@ -16,6 +16,7 @@ class NavigationController: UINavigationController {
         navigationBar.tintColor = .appIndigo
         navigationBar.largeContentTitle = "Coins"
         navigationBar.bounds = CGRect(x: 0, y: 0, width: 0, height: 0)
+
         // Do any additional setup after loading the view.
     }
     
