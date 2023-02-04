@@ -10,7 +10,6 @@ import UIKit
 class CoinsTableView: UITableView {
     
     var viewModel: (CoinsTableViewProtocolIn & CoinsTableViewProtocolOut)?
- //   var coinsStringsArray: [String] = CoinModel.coinsStringsArray
 
     
     override init(frame: CGRect, style: UITableView.Style) {

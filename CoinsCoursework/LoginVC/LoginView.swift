@@ -115,7 +115,6 @@ extension LoginView {
         guard var VM = viewModel else { return }
         VM.clearTextFieldsClosure =  { [weak self] text in
             self?.clearTextFields(text: text)
-             print("clearTextFielClosure called")
             
         }
         

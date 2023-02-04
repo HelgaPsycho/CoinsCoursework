@@ -49,14 +49,13 @@ class CoinsTableController: UIViewController {
         
         view.backgroundColor = UIColor.appLightBeige
         setupController()
+        getCoinsArray()
         
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
-        print ("=========VIEW WILL APPEAR CALLED========")
+    
         mainNavigationController.isNavigationBarHidden = true
-        getCoinsArray()
     }
     override func viewWillDisappear(_ animated: Bool) {
         message.isHidden = true
@@ -73,7 +72,6 @@ class CoinsTableController: UIViewController {
     }
     
     func setupHierarhy() {
-    //    view.addSubview(mainNavigationController.navigationBar)
         view.addSubview(topView)
         topView.addSubview(exitButton)
         topView.addSubview(sortButton)
@@ -183,7 +181,6 @@ class CoinsTableController: UIViewController {
     }
     
     @objc func changeRootController() {
-        print("chanfeRootController called")
         guard let VM = viewModel else {return}
         VM.changeRootController()
     }

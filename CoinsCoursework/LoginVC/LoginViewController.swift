@@ -89,7 +89,6 @@ class LoginViewController: UIViewController  {
         guard var VM = viewModel else { return }
         VM.showMessage =  {[weak self] isShow in
             self?.showMessage(isShown: isShow)
-            print ("listenViewModel called")
             
         }
     }
