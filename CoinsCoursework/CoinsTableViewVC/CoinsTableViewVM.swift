@@ -44,7 +44,7 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
         window.rootViewController = loginNavigationController
 
         window.makeKeyAndVisible()
-        
+    
     }
     
     

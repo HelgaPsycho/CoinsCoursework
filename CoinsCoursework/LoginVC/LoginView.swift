@@ -36,6 +36,7 @@ class LoginView: UIView {
         setupHierarhy()
         setupConstraints()
         setupSignInButton()
+        listenViewModel()
     
     }
     

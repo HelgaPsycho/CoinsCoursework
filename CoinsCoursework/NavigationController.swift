@@ -20,6 +20,10 @@ class NavigationController: UINavigationController {
         // Do any additional setup after loading the view.
     }
     
+    deinit {
+        print("navigationController deinit")
+    }
+    
 
     /*
     // MARK: - Navigation

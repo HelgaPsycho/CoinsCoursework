@@ -10,9 +10,8 @@ import UIKit
 
 class DetailsVCBuilder: Builder {
     func build() -> UIViewController {
-        let VC = DetailsViewController()
         let VM = DetailsViewModel()
-        VC.viewModel = VM
+        let VC = DetailsViewController(nibName: nil, bundle: nil, viewModel: VM)
         
         return VC
     }

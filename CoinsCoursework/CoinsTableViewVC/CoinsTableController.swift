@@ -9,9 +9,9 @@ import UIKit
 
 class CoinsTableController: UIViewController {
     
-    var viewModel: (CoinsTableViewProtocolIn & CoinsTableViewProtocolOut)?
+    public var viewModel: (CoinsTableViewProtocolIn & CoinsTableViewProtocolOut)?
     
-    var coinsArray: [CoinModel] = []  {
+    private var coinsArray: [CoinModel] = []  {
         didSet {
             
             DispatchQueue.main.async { [weak self] in
@@ -49,29 +49,29 @@ class CoinsTableController: UIViewController {
         
         view.backgroundColor = UIColor.appLightBeige
         setupController()
-        getCoinsArray()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
-    
+        getCoinsArray()
         mainNavigationController.isNavigationBarHidden = true
     }
     override func viewWillDisappear(_ animated: Bool) {
         message.isHidden = true
     }
     
-    func setupController() {
+    private func setupController() {
         mainNavigationController.isNavigationBarHidden = true
         setupHierarhy()
         setupConstraints()
         configureTableView()
+        sortButton.addTarget(self, action: #selector(sortButtonPressed), for: .touchUpInside)
         exitButton.addTarget(self, action: #selector(changeRootController), for: .touchUpInside)
         listenVM()
         
     }
     
-    func setupHierarhy() {
+    private func setupHierarhy() {
         view.addSubview(topView)
         topView.addSubview(exitButton)
         topView.addSubview(sortButton)
@@ -80,7 +80,7 @@ class CoinsTableController: UIViewController {
         tableView.addSubview(message)
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         NSLayoutConstraint.activate([
             topView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             topView.heightAnchor.constraint(equalToConstant: 44),
@@ -116,7 +116,7 @@ class CoinsTableController: UIViewController {
         
     }
         
-    func configureTableView(){
+    private func configureTableView(){
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
         tableView.dataSource = self
@@ -125,18 +125,18 @@ class CoinsTableController: UIViewController {
         refreshControl.addTarget(self, action: #selector(getCoinArrayWithRefreshControl), for: .valueChanged)
     }
     
-    func hideActivityIndicator() {
+    private func hideActivityIndicator() {
         activityIndicator.isHidden = true
         activityIndicator.stopAnimating()
     }
     
-    func showActivityIndicator() {
+    private func showActivityIndicator() {
         activityIndicator.startAnimating()
         activityIndicator.isHidden = false
     }
     
     
-    @objc func sortButtonPressed(sender: UIButton){
+    @objc private func sortButtonPressed(sender: UIButton){
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "Sort by decrease price per hour", style: .default, handler: {(UIAlertAction) in self.viewModel?.sortBy(.decreasePricePerHour)}))
@@ -157,7 +157,7 @@ class CoinsTableController: UIViewController {
         VM.getCoinsArray()
     }
     
-    @objc func getCoinArrayWithRefreshControl() {
+    @objc private func getCoinArrayWithRefreshControl() {
         showActivityIndicator()
         message.isHidden = true
         guard  let VM = viewModel else {return}
@@ -181,7 +181,7 @@ class CoinsTableController: UIViewController {
         }
     }
     
-    @objc func changeRootController() {
+    @objc private func changeRootController() {
         guard let VM = viewModel else {return}
         VM.changeRootController()
     }
@@ -196,7 +196,8 @@ extension CoinsTableController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let detailsVC = DetailsVCBuilder().build() as! DetailsViewController
-        detailsVC.coinModel = coinsArray[indexPath.row]
+        if var VM = detailsVC.viewModel {
+            VM.coinModel = coinsArray[indexPath.row]}
         mainNavigationController.pushViewController(detailsVC, animated: true)
     }
 }
@@ -215,6 +216,7 @@ extension CoinsTableController: UITableViewDataSource {
 
         
         cell.coinModel = coinsArray[indexPath.row]
+        
         return cell
     }
     

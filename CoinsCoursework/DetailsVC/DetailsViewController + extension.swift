@@ -10,6 +10,14 @@ import UIKit
 
 extension DetailsViewController {
     
+    func makeCentralView() -> UIView {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .appIndigo
+        view.layer.cornerRadius = 20
+        return view
+    }
+    
     func makeHorizontalTopStackView() ->UIStackView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -31,7 +39,7 @@ extension DetailsViewController {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.distribution = .fillProportionally
+        stackView.distribution = .equalCentering
         stackView.alignment = .leading
         return stackView
     }
@@ -55,11 +63,9 @@ extension DetailsViewController {
     
     func makeHeaderLabel(with text: String) -> UILabel {
         let label = UILabel()
-     //   label.translatesAutoresizingMaskIntoConstraints = false
-
         let font = UIFont.preferredFont(forTextStyle: .title3)
         label.font = font
-        label.textColor = .appGreen
+        label.textColor = .appBeige
         label.textAlignment = .left
         label.numberOfLines = 0
         label.text = text
@@ -68,10 +74,9 @@ extension DetailsViewController {
     
     func makeInfoLabel() -> UILabel {
         let label = UILabel()
-       // label.translatesAutoresizingMaskIntoConstraints = false
         let font = UIFont.preferredFont(forTextStyle: .title3)
         label.font = font
-        label.textColor = .appIndigo
+        label.textColor = .white
         label.textAlignment = .right
         label.numberOfLines = 1
         return label

@@ -14,7 +14,8 @@
 		9C43C249298C632500BAD019 /* DetailsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C43C248298C632500BAD019 /* DetailsVM.swift */; };
 		9C43C24B298C6BB300BAD019 /* DetailsViewController + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C43C24A298C6BB300BAD019 /* DetailsViewController + extension.swift */; };
 		9C43C24D298D225B00BAD019 /* UIImage + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C43C24C298D225B00BAD019 /* UIImage + ext.swift */; };
-		9C43C253298D491700BAD019 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C43C252298D491700BAD019 /* DetailsView.swift */; };
+		9C7B3B862990571F00B38A02 /* FormattedCoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7B3B852990571F00B38A02 /* FormattedCoinModel.swift */; };
+		9C7B3B8829905D0A00B38A02 /* Date + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7B3B8729905D0A00B38A02 /* Date + extension.swift */; };
 		9CA581EF297AC70A00449D20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA581EE297AC70A00449D20 /* AppDelegate.swift */; };
 		9CA581F1297AC70A00449D20 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA581F0297AC70A00449D20 /* SceneDelegate.swift */; };
 		9CA581F8297AC70C00449D20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CA581F7297AC70C00449D20 /* Assets.xcassets */; };
@@ -50,7 +51,8 @@
 		9C43C248298C632500BAD019 /* DetailsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVM.swift; sourceTree = "<group>"; };
 		9C43C24A298C6BB300BAD019 /* DetailsViewController + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailsViewController + extension.swift"; sourceTree = "<group>"; };
 		9C43C24C298D225B00BAD019 /* UIImage + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + ext.swift"; sourceTree = "<group>"; };
-		9C43C252298D491700BAD019 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
+		9C7B3B852990571F00B38A02 /* FormattedCoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattedCoinModel.swift; sourceTree = "<group>"; };
+		9C7B3B8729905D0A00B38A02 /* Date + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + extension.swift"; sourceTree = "<group>"; };
 		9CA581EB297AC70A00449D20 /* CoinsCoursework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinsCoursework.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CA581EE297AC70A00449D20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9CA581F0297AC70A00449D20 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -120,7 +122,7 @@
 				9CA582612984449F00449D20 /* TableViewCell */,
 				9CA58214297AE12400449D20 /* DetailsVC */,
 				9CA58227297D377C00449D20 /* Models */,
-				9CA58217297BF7CC00449D20 /* UIElements + ext */,
+				9CA58217297BF7CC00449D20 /* Ext. for UI and date */,
 				9CA5821C297C90CC00449D20 /* Custon UIElements inits */,
 				9CA581F7297AC70C00449D20 /* Assets.xcassets */,
 				9CA581F9297AC70C00449D20 /* LaunchScreen.storyboard */,
@@ -158,20 +160,20 @@
 			children = (
 				9C43C246298C5D2300BAD019 /* DetailsVCBuilder.swift */,
 				9CA58208297ACA0E00449D20 /* DetailsViewController.swift */,
-				9C43C252298D491700BAD019 /* DetailsView.swift */,
 				9C43C24A298C6BB300BAD019 /* DetailsViewController + extension.swift */,
 				9C43C248298C632500BAD019 /* DetailsVM.swift */,
 			);
 			path = DetailsVC;
 			sourceTree = "<group>";
 		};
-		9CA58217297BF7CC00449D20 /* UIElements + ext */ = {
+		9CA58217297BF7CC00449D20 /* Ext. for UI and date */ = {
 			isa = PBXGroup;
 			children = (
 				9CA58212297AE0F500449D20 /* UIColors + colorsForApp.swift */,
 				9C43C24C298D225B00BAD019 /* UIImage + ext.swift */,
+				9C7B3B8729905D0A00B38A02 /* Date + extension.swift */,
 			);
-			path = "UIElements + ext";
+			path = "Ext. for UI and date";
 			sourceTree = "<group>";
 		};
 		9CA5821C297C90CC00449D20 /* Custon UIElements inits */ = {
@@ -188,6 +190,7 @@
 			children = (
 				9CA58225297D377600449D20 /* UserModel.swift */,
 				9CA58229297E712900449D20 /* CoinModel.swift */,
+				9C7B3B852990571F00B38A02 /* FormattedCoinModel.swift */,
 				9CA5822B297E717500449D20 /* CoinData.swift */,
 			);
 			path = Models;
@@ -289,10 +292,10 @@
 				9CA58203297AC8F600449D20 /* NavigationController.swift in Sources */,
 				9CA581EF297AC70A00449D20 /* AppDelegate.swift in Sources */,
 				9CA58209297ACA0E00449D20 /* DetailsViewController.swift in Sources */,
-				9C43C253298D491700BAD019 /* DetailsView.swift in Sources */,
 				9CA582322983C9F100449D20 /* Network.swift in Sources */,
 				9C43C249298C632500BAD019 /* DetailsVM.swift in Sources */,
 				9CA582672984454E00449D20 /* CenterView + extension.swift in Sources */,
+				9C7B3B8829905D0A00B38A02 /* Date + extension.swift in Sources */,
 				9C43C243298C1C6200BAD019 /* CoinsTableController + extension.swift in Sources */,
 				9C43C221298703A400BAD019 /* CoinCellViewModel.swift in Sources */,
 				9CA5821E297D2B6700449D20 /* CoinsTableViewVM.swift in Sources */,
@@ -301,6 +304,7 @@
 				9CA5820E297ACE5B00449D20 /* LoginVM.swift in Sources */,
 				9CA58219297BF7F800449D20 /* CustomUITextField.swift in Sources */,
 				9CA58226297D377600449D20 /* UserModel.swift in Sources */,
+				9C7B3B862990571F00B38A02 /* FormattedCoinModel.swift in Sources */,
 				9CA58224297D2DF100449D20 /* CoinsTableVCBuilder.swift in Sources */,
 				9CA58205297AC9A000449D20 /* LoginViewController.swift in Sources */,
 				9CA5822C297E717500449D20 /* CoinData.swift in Sources */,

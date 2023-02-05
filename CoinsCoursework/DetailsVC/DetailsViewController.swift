@@ -11,19 +11,18 @@ class DetailsViewController: UIViewController {
     
     var viewModel: (DetailsVMProtocolIn & DetailsVMProtocolOut)?
     
-    var coinModel: CoinModel? {
+    var formatedCoin: FormatedCoinModel? {
         didSet {
-            
-            guard let coin = coinModel else {return}
+            guard var coin = formatedCoin else {return}
+            print(coin)
             iconView.image = UIImage.getIconForCoin(named: coin.name)
             nameLabel.text = coin.name
             symbolLabel.text = coin.symbol
-            percentChangeUsdLast1Hourinfo.text = String(coin.percentChangeUsdLast1Hour)
-            percentChangeUsdLast24HoursInfo.text = String(coin.percentChangeUsdLast24Hours)
-            countOfActiveAddresses24HoursInfo.text = String(coin.countOfActiveAddresses24Hours)
-            allTimesHightPriceInfo.text = String(coin.allTimesHightPrice)
-            allTimesHightPriceDateInfo.text = DateFormatter().string(from: coin.allTimesHightPriceDate)
-            let _: String = DateFormatter().string(from: coin.allTimesHightPriceDate)
+            percentChangeUsdLast1Hourinfo.text = coin.percentChangeUsdLast1Hour
+            percentChangeUsdLast24HoursInfo.text = coin.percentChangeUsdLast24Hours
+            countOfActiveAddresses24HoursInfo.text = coin.countOfActiveAddresses24Hours
+            allTimesHightPriceInfo.text = coin.allTimesHightPrice
+            allTimesHightPriceDateInfo.text = coin.allTimesHightPriceDate
             
         }
     }
@@ -34,6 +33,7 @@ class DetailsViewController: UIViewController {
     private lazy var nameLabel = makeTitleLabel()
     private lazy var symbolLabel = makeTitleLabel()
     
+    private lazy var centralView = makeCentralView()
     private lazy var verticalStackView = makeVerticalStackView()
     
     private lazy var percentChangeUsdLast1HourLabel = makeHeaderLabel(with: "Persent change last 1 hour:")
@@ -47,20 +47,31 @@ class DetailsViewController: UIViewController {
     private lazy var allTimesHightPriceInfo = makeInfoLabel()
     private lazy var allTimesHightPriceDate = makeHeaderLabel(with: "All times high price date:")
     private lazy var allTimesHightPriceDateInfo = makeInfoLabel()
-
+    
+    
+    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, viewModel: DetailsViewModel) {
+        super .init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        self.viewModel = viewModel
+        listenViewModel()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mainNavigationController.isNavigationBarHidden = false
         setupVC()
-
         // Do any additional setup after loading the view.
     }
-
+    
     private func setupVC() {
         view.backgroundColor = .appBeige
         mainNavigationController.navigationBar.tintColor = .appIndigo
         setupHierarhy()
         setupConstraints()
+
     }
     
     private func  setupHierarhy() {
@@ -71,7 +82,8 @@ class DetailsViewController: UIViewController {
         topVerticalStack.addArrangedSubview(nameLabel)
         topVerticalStack.addArrangedSubview(symbolLabel)
         
-        view.addSubview(verticalStackView)
+        view.addSubview(centralView)
+        centralView.addSubview(verticalStackView)
         verticalStackView.addArrangedSubview(percentChangeUsdLast1HourLabel)
         verticalStackView.addArrangedSubview(percentChangeUsdLast1Hourinfo)
         verticalStackView.addArrangedSubview(percentChangeUsdLast24HoursLabel)
@@ -91,22 +103,31 @@ class DetailsViewController: UIViewController {
             topHorizontalStack.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
             topHorizontalStack.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/6),
             
-            verticalStackView.topAnchor.constraint(equalTo: topHorizontalStack.bottomAnchor, constant: 20),
-            verticalStackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
-            verticalStackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
-            verticalStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40)
-
+            centralView.topAnchor.constraint(equalTo: topHorizontalStack.bottomAnchor, constant: 20),
+            centralView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            centralView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            centralView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40),
+            
+            verticalStackView.topAnchor.constraint(equalTo: centralView.topAnchor, constant: 20),
+            verticalStackView.leftAnchor.constraint(equalTo: centralView.leftAnchor, constant: 20),
+            verticalStackView.rightAnchor.constraint(equalTo: centralView.rightAnchor, constant: -20),
+            verticalStackView.bottomAnchor.constraint(equalTo: centralView.bottomAnchor, constant: -20)
+            
         ])
-     
-    }
-    
-    func loadData() {
-        updateViewConstraints()
-    }
-    
-    override func updateViewConstraints(){
-        super.updateViewConstraints()
         
     }
     
+    private func listenViewModel() {
+        guard var VM = viewModel else {return}
+        VM.catchFormattedCoinModel = {[weak self] coin in
+            self?.updateFotmattedCoin(coin: coin)
+            print("formatted coin in listenVM")
+            
+        }
+    }
+    
+    func updateFotmattedCoin(coin: FormatedCoinModel){
+        formatedCoin = coin
+        
+    }
 }
