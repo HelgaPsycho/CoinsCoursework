@@ -8,10 +8,8 @@
 import UIKit
 
 class CoinCell: UITableViewCell {
-    
-    var viewModel: (CoinsTableViewProtocolIn & CoinsTableViewProtocolOut)?
 
-    var coinModel: CoinModel? {
+    public var coinModel: CoinModel? {
         didSet {
             guard let model = coinModel else {return}
             centerView.coinModel = model
@@ -34,13 +32,13 @@ class CoinCell: UITableViewCell {
     }
     
     
-    func setHierarhy(){
+    private  func setHierarhy(){
         self.addSubview(centerView)
 
 
     }
     
-    func setupConstraints(){
+    private func setupConstraints(){
         NSLayoutConstraint.activate([
             centerView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20),
             centerView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20),
@@ -50,12 +48,6 @@ class CoinCell: UITableViewCell {
           
         ])
     }
-
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
 
 }
 

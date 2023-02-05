@@ -23,18 +23,18 @@ protocol CoinsTableViewProtocolOut {
 
 final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOut {
     
-    let coinsStringsArray: [String] = ["busd", "btc", "eth", "tron", "luna", "polkadot", "dogecoin", "tether", "stellar", "cardano", "xrp"]
+    private let coinsStringsArray: [String] = ["busd", "btc", "eth", "tron", "luna", "polkadot", "dogecoin", "tether", "stellar", "cardano", "xrp"]
     
     private var coinsArray: [CoinModel] = []
     
-    var coinsArrayClosure: ([CoinModel]) -> () = { _ in}
+    public var coinsArrayClosure: ([CoinModel]) -> () = { _ in}
     
     init() {
        listenNetwork()
     }
     
     //MARK: -  CoinsTableViewProtocolIn
-    func changeRootController () {
+    public func changeRootController () {
 
         mainNavigationController.isNavigationBarHidden = false
         guard let window = mainNavigationController.navigationBar.window else {
@@ -48,7 +48,7 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
     }
     
     
-    func getCoinsArray() {
+    public func getCoinsArray() {
 
         coinsArray = []
         coinsArrayClosure([])
@@ -59,7 +59,7 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
     }
 
     
-    func sortBy(_ changes: PriceChanges) {
+    public func sortBy(_ changes: PriceChanges) {
         switch changes {
         case .ascendingPrisePerDay:
             coinsArray = coinsArray.sorted(by: { $0.percentChangeUsdLast24Hours < $1.percentChangeUsdLast24Hours })
@@ -80,7 +80,7 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
     
 // MARK: - Listen Network
     
-    func listenNetwork() {
+    private func listenNetwork() {
         NetworkManager.shared.giveResponse = {[weak self] array in
             self?.setCoinsArray(coinsArray: array)
 
