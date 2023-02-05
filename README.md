@@ -13,7 +13,7 @@ My course project with crypto coins <br>
       <li> UIKit without storyboard and xib </li>  
       <li> MVVM</li> 
       <li> URLSession, Decodable protocol </li>  
-      <li> DispacthQueue, DispatchGroup </li>  
+      <li> GCD (DispacthQueue, DispatchGroup) </li>  
      </ul>
 </div>
 
