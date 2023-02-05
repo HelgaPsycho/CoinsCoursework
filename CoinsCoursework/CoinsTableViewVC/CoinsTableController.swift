@@ -25,7 +25,7 @@ class CoinsTableController: UIViewController {
                 
             }
             
-            DispatchQueue.main.asyncAfter(deadline:  .now() + 1) {
+            DispatchQueue.main.asyncAfter(deadline:  .now() + 4) {
                 if self.coinsArray.count == 0 {
                     self.hideActivityIndicator()
                     self.message.isHidden = false
@@ -158,7 +158,7 @@ class CoinsTableController: UIViewController {
     }
     
     @objc func getCoinArrayWithRefreshControl() {
-        hideActivityIndicator()
+        showActivityIndicator()
         message.isHidden = true
         guard  let VM = viewModel else {return}
         VM.getCoinsArray()
@@ -166,6 +166,7 @@ class CoinsTableController: UIViewController {
     }
     
     func listenVM() {
+        coinsArray = []
         guard var VM = viewModel else {
             return
         }

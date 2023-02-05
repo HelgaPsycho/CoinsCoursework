@@ -34,8 +34,11 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
     
     let coinsDispatchGroup = DispatchGroup()
     
+    var coinsArrayClosure: ([CoinModel]) -> () = { _ in}
+
+    
     init() {
-        networkManager.delegate = self
+       listenNetwork()
     }
     
     //MARK: -  CoinsTableViewProtocolIn
@@ -52,16 +55,29 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
         
     }
     
-    var coinsArray: [CoinModel] = []
+     var coinsArray: [CoinModel] = []
     
     func getCoinsArray() {
         coinsArray = []
-            for coin in self.coinsStringsArray {
-                self.counter = self.counter + 1
-                DispatchQueue.global(qos: .userInitiated).async {
-                self.networkManager.fetchCoin(coin: coin)
-            }
+        coinsArrayClosure([])
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.networkManager.getCoinsModelsArray(coinsStrings: self.coinsStringsArray)
         }
+    }
+
+    func listenNetwork() {
+        networkManager.giveResponse = {[weak self] array in
+            self?.setCoinsArray(coinsArray: array)
+            for i in array {
+                print(i.name)
+            }
+        
+        }
+    }
+    
+    func setCoinsArray(coinsArray: [CoinModel]){
+        coinsArrayClosure(coinsArray)
+        self.coinsArray = coinsArray
     }
     
     func sortBy(_ changes: PriceChanges) {
@@ -86,38 +102,10 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
     
     var coinModel: (CoinModel) -> () = {_ in }
     
-    var coinsArrayClosure: ([CoinModel]) -> () = { _ in}
-
    
 }
 
-extension CoinsTableViewVM: NetworkingDelegate {
 
-    
-    
-    func getCoinInformation(_ networking: NetworkManager, coin: CoinModel) {
-        counter = counter - 1
-        coinsArray.append(coin)
-        checkCounter()
-    
-    }
-    
-    func didFailWithError(error: Error) {
-       counter = counter - 1
-        print(error)
-        checkCounter()
-    }
-    
-    func checkCounter(){
-        if counter != 0 {
-            return
-        } else {
-            coinsArrayClosure(coinsArray)
-            print("")
-        }
-    }
-
-}
 
 enum PriceChanges {
     case ascendingPrisePerDay

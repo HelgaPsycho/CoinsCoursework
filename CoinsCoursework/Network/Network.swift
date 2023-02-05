@@ -7,63 +7,87 @@
 
 import Foundation
 
-protocol NetworkingDelegate {
-    
-    func getCoinInformation(_ networking: NetworkManager, coin: CoinModel)
-    func didFailWithError(error: Error)
-    
+
+protocol NetworkManagerProtocolOut {
+    var giveResponse: ([CoinModel]) -> () {get}
 }
 
-struct NetworkManager {
-    
-    var delegate: NetworkingDelegate?
-    
-//    func getCoinData(named: String, compl: @escaping (CoinModel) -> Void) {
-////        DispatchQueue.background.async {
-////            fetchCoin(coin: named)
-////        }
-//    }
+class NetworkManager {
     
     let coinURL = "https://data.messari.io/api/v1/assets/"
-    // https://data.messari.io/api/v1/assets/«тут монета»/metrics
     
-    func fetchCoin(coin: String) {
-        let urlString = "\(coinURL)\(coin)/metrics"
-        performRequest(with: urlString)
-    }
-    func performRequest(with urlString: String){
-        if let url =  URL(string: urlString) {
-            let session = URLSession(configuration: .default)
-            let task = session.dataTask(with: url) {(data, response, error) in
-                
+    var coinsModelsArray = [CoinModel?]()
+    
+    var giveResponse: ([CoinModel]) -> () = {_ in}
+    
+    func getCoinsModelsArray(coinsStrings: [String]){
+        coinsModelsArray = []
+        let coinsURLs = coinsStrings.map{coinURL + $0 + "/metrics"}
+       
+        let group = DispatchGroup()
+        
+        for string in coinsURLs {
+            group.enter()
+            performRequest(with: string){(result, error) in
+                let coin = result
+        
+                self.coinsModelsArray.append(coin)
                 if error != nil {
-                    self.delegate?.didFailWithError(error: error!)
-                    return
+
                 }
-                
-                if let safeData = data {
-                 //   let jsonString = String(data: safeData, encoding: .utf8)
-                    if let coin = self.parseJSON(safeData) {
-                        self.delegate?.getCoinInformation(self, coin: coin)
-                    }
-                }
-               
+                group.leave()
+            
             }
-            task.resume()
+        
         }
         
+        group.notify(queue: .main){
+        
+            self.giveResponse(self.coinsModelsArray.compactMap{$0})
+    
+        }
+    }
+
+
+    func performRequest(with urlString: String,
+                        completion: @escaping(CoinModel?, Error?) -> ()){
+        DispatchQueue.global().async {
+            if let url =  URL(string: urlString) {
+                let session = URLSession(configuration: .default)
+                let task = session.dataTask(with: url) {(data, response, error) in
+                    
+                    if error != nil {
+                        print("error with URLsession")
+                        DispatchQueue.global().async { completion(nil, error) }
+                 
+                    }
+                    
+                    if let safeData = data {
+                    
+                         let coin = self.parseJSON(safeData)
+                            DispatchQueue.global().async{completion( coin, nil)
+                    
+                        }
+                    }
+                    
+                }
+                task.resume()
+            }
+            
+        }
     }
     
   
 func parseJSON(_ coinData: Data) -> CoinModel? {
     let decoder = JSONDecoder()
     do {
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
         
         let decodedData = try decoder.decode(CoinData.self, from: coinData)
-        print(decodedData.data.symbol)
+
         return CoinModel(symbol: decodedData.data.symbol,
                          name: decodedData.data.name,
                          priceUsd: decodedData.data.market_data.price_usd,
@@ -79,7 +103,7 @@ func parseJSON(_ coinData: Data) -> CoinModel? {
                          percentChangeLast1Year: decodedData.data.roi_data.percent_change_last_1_year)
     }
     catch {
-        delegate?.didFailWithError(error: error)
+    print ("error in parsing")
         return nil
     }
     
