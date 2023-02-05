@@ -12,7 +12,8 @@ My course project with crypto coins <br>
       <li> IOS, Swift </li> 
       <li> UIKit without storyboard and xib </li>  
       <li> MVVM</li> 
-      <li> URLSession </li>  
+      <li> URLSession, Decodable protocol </li>  
+      <li> DispacthQueue, DispatchGroup </li>  
      </ul>
 </div>
 
