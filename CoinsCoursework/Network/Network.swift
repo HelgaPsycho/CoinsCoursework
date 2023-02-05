@@ -10,6 +10,8 @@ import Foundation
 
 protocol NetworkManagerProtocolOut {
     var giveResponse: ([CoinModel]) -> () {get}
+    
+    var catchError: (Error) -> () {get}
 }
 
 class NetworkManager {
@@ -19,6 +21,8 @@ class NetworkManager {
     var coinsModelsArray = [CoinModel?]()
     
     var giveResponse: ([CoinModel]) -> () = {_ in}
+    
+    var catchError: (Error) -> () = {_ in}
     
     func getCoinsModelsArray(coinsStrings: [String]){
         coinsModelsArray = []
@@ -33,7 +37,7 @@ class NetworkManager {
         
                 self.coinsModelsArray.append(coin)
                 if error != nil {
-                        print ("error with perform request")
+                    self.catchError(error!)
                         return
                 }
                 group.leave()
@@ -58,7 +62,6 @@ class NetworkManager {
                 let task = session.dataTask(with: url) {(data, response, error) in
                     
                     if error != nil {
-                        print("error with URLsession")
                         DispatchQueue.global().async { completion(nil, error) }
                  
                     }
@@ -104,7 +107,7 @@ func parseJSON(_ coinData: Data) -> CoinModel? {
                          percentChangeLast1Year: decodedData.data.roi_data.percent_change_last_1_year)
     }
     catch {
-    print ("error with parsing")
+        self.catchError(error)
         return nil
     }
     

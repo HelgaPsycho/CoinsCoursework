@@ -73,6 +73,11 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
             }
         
         }
+        
+        networkManager.catchError = { error in
+            print(error)
+            
+        }
     }
     
     func setCoinsArray(coinsArray: [CoinModel]){
