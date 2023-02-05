@@ -31,9 +31,8 @@ extension DetailsViewController {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.backgroundColor = .yellow
-        stackView.distribution = .fillEqually
-        stackView.alignment = .fill
+        stackView.distribution = .fillProportionally
+        stackView.alignment = .leading
         return stackView
     }
     
@@ -50,32 +49,31 @@ extension DetailsViewController {
         label.font = font
         label.textColor = .appIndigo
         label.textAlignment = .left
-        label.numberOfLines = 1
+        label.numberOfLines = 0
         return label
     }
     
-    func makeHeaderLabel() -> UILabel {
+    func makeHeaderLabel(with text: String) -> UILabel {
         let label = UILabel()
      //   label.translatesAutoresizingMaskIntoConstraints = false
 
-        let font = UIFont.preferredFont(forTextStyle: .subheadline)
+        let font = UIFont.preferredFont(forTextStyle: .title3)
         label.font = font
         label.textColor = .appGreen
-        label.textAlignment = .center
-        label.numberOfLines = 1
-        label.isHidden = true
+        label.textAlignment = .left
+        label.numberOfLines = 0
+        label.text = text
         return label
     }
     
     func makeInfoLabel() -> UILabel {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        let font = UIFont.preferredFont(forTextStyle: .headline)
+       // label.translatesAutoresizingMaskIntoConstraints = false
+        let font = UIFont.preferredFont(forTextStyle: .title3)
         label.font = font
         label.textColor = .appIndigo
-        label.textAlignment = .center
+        label.textAlignment = .right
         label.numberOfLines = 1
-        label.isHidden = true
         return label
     }
     

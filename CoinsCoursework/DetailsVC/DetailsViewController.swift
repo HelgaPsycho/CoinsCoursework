@@ -18,6 +18,12 @@ class DetailsViewController: UIViewController {
             iconView.image = UIImage.getIconForCoin(named: coin.name)
             nameLabel.text = coin.name
             symbolLabel.text = coin.symbol
+            percentChangeUsdLast1Hourinfo.text = String(coin.percentChangeUsdLast1Hour)
+            percentChangeUsdLast24HoursInfo.text = String(coin.percentChangeUsdLast24Hours)
+            countOfActiveAddresses24HoursInfo.text = String(coin.countOfActiveAddresses24Hours)
+            allTimesHightPriceInfo.text = String(coin.allTimesHightPrice)
+            allTimesHightPriceDateInfo.text = DateFormatter().string(from: coin.allTimesHightPriceDate)
+            let _: String = DateFormatter().string(from: coin.allTimesHightPriceDate)
             
         }
     }
@@ -27,8 +33,20 @@ class DetailsViewController: UIViewController {
     private lazy var topVerticalStack = makeVerticalTopStackView()
     private lazy var nameLabel = makeTitleLabel()
     private lazy var symbolLabel = makeTitleLabel()
+    
     private lazy var verticalStackView = makeVerticalStackView()
     
+    private lazy var percentChangeUsdLast1HourLabel = makeHeaderLabel(with: "Persent change last 1 hour:")
+    private lazy var percentChangeUsdLast1Hourinfo = makeInfoLabel()
+    private lazy var percentChangeUsdLast24HoursLabel = makeHeaderLabel(with: "Persent change last 24 hours:")
+    private lazy var percentChangeUsdLast24HoursInfo = makeInfoLabel()
+    private lazy var countOfActiveAddresses24HoursLabel = makeHeaderLabel(with: "Count of active addresses last 24 hours:" )
+    private lazy var countOfActiveAddresses24HoursInfo = makeInfoLabel()
+    
+    private lazy var allTimesHightPriceLabel = makeHeaderLabel(with: "All times hight price:")
+    private lazy var allTimesHightPriceInfo = makeInfoLabel()
+    private lazy var allTimesHightPriceDate = makeHeaderLabel(with: "All times high price date:")
+    private lazy var allTimesHightPriceDateInfo = makeInfoLabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +70,18 @@ class DetailsViewController: UIViewController {
         topHorizontalStack.addArrangedSubview(topVerticalStack)
         topVerticalStack.addArrangedSubview(nameLabel)
         topVerticalStack.addArrangedSubview(symbolLabel)
+        
         view.addSubview(verticalStackView)
+        verticalStackView.addArrangedSubview(percentChangeUsdLast1HourLabel)
+        verticalStackView.addArrangedSubview(percentChangeUsdLast1Hourinfo)
+        verticalStackView.addArrangedSubview(percentChangeUsdLast24HoursLabel)
+        verticalStackView.addArrangedSubview(percentChangeUsdLast24HoursInfo)
+        verticalStackView.addArrangedSubview(countOfActiveAddresses24HoursLabel)
+        verticalStackView.addArrangedSubview(countOfActiveAddresses24HoursInfo)
+        verticalStackView.addArrangedSubview(allTimesHightPriceLabel)
+        verticalStackView.addArrangedSubview(allTimesHightPriceInfo)
+        verticalStackView.addArrangedSubview(allTimesHightPriceDate)
+        verticalStackView.addArrangedSubview(allTimesHightPriceDateInfo)
     }
     
     private func setupConstraints() {
