@@ -6,55 +6,59 @@
 //
 
 import Foundation
+protocol NetworkManagerProtocolIn {
+    
+    func getCoinsModelsArray(coinsStrings: [String])
+}
 
 
 protocol NetworkManagerProtocolOut {
-    var giveResponse: ([CoinModel]) -> () {get}
+    var giveResponse: ([CoinModel]) -> () {get set}
     
-    var catchError: (Error) -> () {get}
+    var catchError: (Error) -> () {get set}
 }
 
-class NetworkManager {
+final class NetworkManager: NetworkManagerProtocolIn, NetworkManagerProtocolOut {
     
-    let coinURL = "https://data.messari.io/api/v1/assets/"
-    
-    var coinsModelsArray = [CoinModel?]()
+    private let coinURL = "https://data.messari.io/api/v1/assets/"
     
     var giveResponse: ([CoinModel]) -> () = {_ in}
     
     var catchError: (Error) -> () = {_ in}
     
     func getCoinsModelsArray(coinsStrings: [String]){
-        coinsModelsArray = []
+
+        var coinsModelsArray = [CoinModel?]()
         let coinsURLs = coinsStrings.map{coinURL + $0 + "/metrics"}
        
         let group = DispatchGroup()
         
         for string in coinsURLs {
             group.enter()
-            performRequest(with: string){(result, error) in
-                let coin = result
-        
-                self.coinsModelsArray.append(coin)
-                if error != nil {
-                    self.catchError(error!)
+            DispatchQueue.global(qos: .userInitiated).async {
+                self.performRequest(with: string){(result, error) in
+                    let coin = result
+                
+                    coinsModelsArray.append(coin)
+                    if error != nil {
+                        self.catchError(error!)
                         return
+                    }
+                    group.leave()
                 }
-                group.leave()
-            
             }
         
         }
         
         group.notify(queue: .main){
-        
-            self.giveResponse(self.coinsModelsArray.compactMap{$0})
+            let array = coinsModelsArray.compactMap{$0}
+            self.giveResponse(array)
     
         }
     }
 
 
-    func performRequest(with urlString: String,
+    private func performRequest(with urlString: String,
                         completion: @escaping(CoinModel?, Error?) -> ()){
         DispatchQueue.global().async {
             if let url =  URL(string: urlString) {
@@ -82,7 +86,7 @@ class NetworkManager {
     }
     
   
-func parseJSON(_ coinData: Data) -> CoinModel? {
+private func parseJSON(_ coinData: Data) -> CoinModel? {
     let decoder = JSONDecoder()
     do {
         

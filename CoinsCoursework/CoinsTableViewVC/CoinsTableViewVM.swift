@@ -11,9 +11,7 @@ import UIKit
 protocol CoinsTableViewProtocolIn {
     
     func changeRootController()
-    
     func getCoinsArray()
-    
     func sortBy(_ changes: PriceChanges)
 }
 
@@ -21,69 +19,48 @@ protocol CoinsTableViewProtocolOut {
     
     var coinsArrayClosure: ([CoinModel]) -> (){get set}
     
-    
 }
 
 final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOut {
     
     let coinsStringsArray: [String] = ["busd", "btc", "eth", "tron", "luna", "polkadot", "dogecoin", "tether", "stellar", "cardano", "xrp"]
-
-    var counter = 0
     
-    var networkManager = NetworkManager()
+    var networkManager: (NetworkManagerProtocolIn & NetworkManagerProtocolOut)?
     
-    let coinsDispatchGroup = DispatchGroup()
+    private var coinsArray: [CoinModel] = []
     
     var coinsArrayClosure: ([CoinModel]) -> () = { _ in}
-
     
-    init() {
+    init(networkManager: NetworkManager) {
+        self.networkManager = networkManager
        listenNetwork()
     }
     
     //MARK: -  CoinsTableViewProtocolIn
     func changeRootController () {
-    print("changeRootController in VM called")
+
         mainNavigationController.isNavigationBarHidden = false
         guard let window = mainNavigationController.navigationBar.window else {
             return
         }
 
         window.rootViewController = loginNavigationController
-        print(loginNavigationController)
+
         window.makeKeyAndVisible()
         
     }
     
-     var coinsArray: [CoinModel] = []
     
     func getCoinsArray() {
+
         coinsArray = []
         coinsArrayClosure([])
-        DispatchQueue.global(qos: .userInitiated).async {
-            self.networkManager.getCoinsModelsArray(coinsStrings: self.coinsStringsArray)
+        DispatchQueue.global(qos: .userInitiated).async { 
+            guard let NM = self.networkManager else {return}
+            NM.getCoinsModelsArray(coinsStrings: self.coinsStringsArray)
         }
     }
 
-    func listenNetwork() {
-        networkManager.giveResponse = {[weak self] array in
-            self?.setCoinsArray(coinsArray: array)
-            for i in array {
-                print(i.name)
-            }
-        
-        }
-        
-        networkManager.catchError = { error in
-            print(error)
-            
-        }
-    }
-    
-    func setCoinsArray(coinsArray: [CoinModel]){
-        coinsArrayClosure(coinsArray)
-        self.coinsArray = coinsArray
-    }
     
     func sortBy(_ changes: PriceChanges) {
         switch changes {
@@ -104,8 +81,26 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
         }
     }
     
+// MARK: - Listen Network
     
-    var coinModel: (CoinModel) -> () = {_ in }
+    func listenNetwork() {
+        guard var NM = networkManager else {return}
+        NM.giveResponse = {[weak self] array in
+            self?.setCoinsArray(coinsArray: array)
+
+        
+        }
+        
+        NM.catchError = { error in
+            print(error)
+            
+        }
+    }
+    
+    private func setCoinsArray(coinsArray: [CoinModel]){
+        coinsArrayClosure(coinsArray)
+        self.coinsArray = coinsArray
+    }
     
    
 }

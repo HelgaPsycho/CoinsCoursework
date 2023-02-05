@@ -22,8 +22,8 @@ class LoginView: UIView {
         return stackView
     }()
 
-    var emailTextField: UITextField = CustomUITextField(systemImage: "envelope", placeHolder: " Email")
-    var passwordTextField: UITextField = CustomUITextField(systemImage: "lock.fill", placeHolder: " Password")
+    private var emailTextField: UITextField = CustomUITextField(systemImage: "envelope", placeHolder: " Email")
+    private var passwordTextField: UITextField = CustomUITextField(systemImage: "lock.fill", placeHolder: " Password")
     private var signInButton: UIButton = CustomButtonWithText(title: "Sign In")
 
     override init(frame: CGRect) {
@@ -43,7 +43,7 @@ class LoginView: UIView {
         super.init(coder: coder)
     }
 
-    func setupHierarhy(){
+    private func setupHierarhy(){
         self.addSubview(stackView)
         stackView.addArrangedSubview(emailTextField)
         stackView.addArrangedSubview(passwordTextField)
@@ -51,7 +51,7 @@ class LoginView: UIView {
         stackView.addArrangedSubview(signInButton)
     }
 
-    func setupConstraints(){
+    private func setupConstraints(){
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
             stackView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20),
@@ -65,7 +65,7 @@ class LoginView: UIView {
 
     }
     
-    func setupSignInButton() {
+    private func setupSignInButton() {
         signInButton.addTarget(self, action: #selector(checkUser), for: .touchUpInside)
     }
     

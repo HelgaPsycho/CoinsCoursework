@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class LoginVCBilder: Builder {
+final class LoginVCBilder: Builder {
     
     func build() -> UIViewController {
         let VC = LoginViewController()

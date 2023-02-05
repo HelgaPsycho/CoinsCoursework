@@ -8,11 +8,13 @@
 import Foundation
 import UIKit
 
-class CoinsTableVCBuilder: Builder {
+final class CoinsTableVCBuilder: Builder {
     func build() -> UIViewController {
         let VC = CoinsTableController()
-        let VM = CoinsTableViewVM()
+        let NM = NetworkManager()
+        let VM = CoinsTableViewVM(networkManager: NM)
         VC.viewModel = VM
+        
         
         return VC
     }

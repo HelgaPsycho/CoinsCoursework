@@ -26,7 +26,7 @@ class LoginViewController: UIViewController  {
     }
     
     
-    func setupVC() {
+    private func setupVC() {
         view.backgroundColor = UIColor.appBeige
         massageLabel.text = viewModel?.messageText
         listenViewModel()
@@ -37,14 +37,14 @@ class LoginViewController: UIViewController  {
     
     }
     
-    func setHierarchy(){
+    private func setHierarchy(){
         view.addSubview(titleLabel)
         view.addSubview(centralView)
         view.addSubview(massageLabel)
     
     }
     
-    func setConstraints() {
+    private func setConstraints() {
         NSLayoutConstraint.activate([
             
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
@@ -67,7 +67,7 @@ class LoginViewController: UIViewController  {
     }
 
     
-    func setLoginView(){
+    private func setLoginView(){
         
         let loginView = LoginView(frame: .zero)
         loginView.viewModel = viewModel
@@ -85,18 +85,14 @@ class LoginViewController: UIViewController  {
     
     //MARK: - ViewModel methods
     
-    func listenViewModel() {
+    private func listenViewModel() {
         guard var VM = viewModel else { return }
         VM.showMessage =  {[weak self] isShow in
-            self?.showMessage(isShown: isShow)
+        
+            self?.massageLabel.isHidden = !isShow
             
         }
     }
-    
-    func showMessage(isShown: Bool) {
-        massageLabel.isHidden = !isShown
-    }
-   
 
 }
 

@@ -25,9 +25,9 @@ protocol LoginVMProtocolOut {
 
 final class LoginVM: LoginVMProtocolIn, LoginVMProtocolOut  {
     
-    var messageText = "Email or password is incorrect. Please, try again"
+    public var messageText = "Email or password is incorrect. Please, try again"
     
-    func checkUser(userModel: UserModel) {
+    public func checkUser(userModel: UserModel) {
         if (userModel.email == "1234") && (userModel.password == "1234") {
             clearTextFieldsClosure("")
             changeRootController()
@@ -42,7 +42,7 @@ final class LoginVM: LoginVMProtocolIn, LoginVMProtocolOut  {
     var showMessage: (Bool)->() = { _ in}
 
     
-    func changeRootController () {
+    public func changeRootController () {
         showMessage(false)
         guard let window = loginNavigationController.navigationBar.window else {
             return
