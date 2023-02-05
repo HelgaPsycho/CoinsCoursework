@@ -33,7 +33,8 @@ class NetworkManager {
         
                 self.coinsModelsArray.append(coin)
                 if error != nil {
-
+                        print ("error with perform request")
+                        return
                 }
                 group.leave()
             
@@ -103,7 +104,7 @@ func parseJSON(_ coinData: Data) -> CoinModel? {
                          percentChangeLast1Year: decodedData.data.roi_data.percent_change_last_1_year)
     }
     catch {
-    print ("error in parsing")
+    print ("error with parsing")
         return nil
     }
     
