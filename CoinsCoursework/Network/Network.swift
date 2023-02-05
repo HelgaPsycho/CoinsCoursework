@@ -6,19 +6,11 @@
 //
 
 import Foundation
-protocol NetworkManagerProtocolIn {
+
+
+final class NetworkManager {
     
-    func getCoinsModelsArray(coinsStrings: [String])
-}
-
-
-protocol NetworkManagerProtocolOut {
-    var giveResponse: ([CoinModel]) -> () {get set}
-    
-    var catchError: (Error) -> () {get set}
-}
-
-final class NetworkManager: NetworkManagerProtocolIn, NetworkManagerProtocolOut {
+    static let shared = NetworkManager()
     
     private let coinURL = "https://data.messari.io/api/v1/assets/"
     

@@ -25,14 +25,11 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
     
     let coinsStringsArray: [String] = ["busd", "btc", "eth", "tron", "luna", "polkadot", "dogecoin", "tether", "stellar", "cardano", "xrp"]
     
-    var networkManager: (NetworkManagerProtocolIn & NetworkManagerProtocolOut)?
-    
     private var coinsArray: [CoinModel] = []
     
     var coinsArrayClosure: ([CoinModel]) -> () = { _ in}
     
-    init(networkManager: NetworkManager) {
-        self.networkManager = networkManager
+    init() {
        listenNetwork()
     }
     
@@ -56,8 +53,8 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
         coinsArray = []
         coinsArrayClosure([])
         DispatchQueue.global(qos: .userInitiated).async { 
-            guard let NM = self.networkManager else {return}
-            NM.getCoinsModelsArray(coinsStrings: self.coinsStringsArray)
+
+            NetworkManager.shared.getCoinsModelsArray(coinsStrings: self.coinsStringsArray)
         }
     }
 
@@ -84,14 +81,13 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
 // MARK: - Listen Network
     
     func listenNetwork() {
-        guard var NM = networkManager else {return}
-        NM.giveResponse = {[weak self] array in
+        NetworkManager.shared.giveResponse = {[weak self] array in
             self?.setCoinsArray(coinsArray: array)
 
         
         }
         
-        NM.catchError = { error in
+        NetworkManager.shared.catchError = { error in
             print(error)
             
         }
