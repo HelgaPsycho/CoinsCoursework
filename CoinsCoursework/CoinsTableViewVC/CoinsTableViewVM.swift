@@ -36,21 +36,21 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
     public var coinsArrayClosure: ([CoinModel]) -> () = { _ in}
     
     init() {
-       listenNetwork()
+        listenNetwork()
     }
     
     //MARK: -  CoinsTableViewProtocolIn
     
     public func getCoinsArray() {
-
+        
         coinsArray = []
         coinsArrayClosure([])
-        DispatchQueue.global(qos: .userInitiated).async { 
-
+        DispatchQueue.global(qos: .userInitiated).async {
+            
             NetworkManager.shared.getCoinsModelsArray(coinsStrings: self.coinsStringsArray)
         }
     }
-
+    
     
     public func sortBy(_ changes: PriceChanges) {
         switch changes {
@@ -71,13 +71,13 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
         }
     }
     
-// MARK: - Listen Network
+    // MARK: - Listen Network
     
     private func listenNetwork() {
         NetworkManager.shared.giveResponse = {[weak self] array in
             self?.setCoinsArray(coinsArray: array)
-
-        
+            
+            
         }
         
         NetworkManager.shared.catchError = { error in
@@ -93,7 +93,7 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
     
     //MARK: - Navigation
     
-    func navigateToDetailsCV(coin: CoinModel) {
+    public func navigateToDetailsCV(coin: CoinModel) {
         let detailsVC = DetailsVCBuilder().build() as! DetailsViewController
         detailsVC.viewModel?.coinModel = coin
         mainNavigationController.pushViewController(detailsVC, animated: true)

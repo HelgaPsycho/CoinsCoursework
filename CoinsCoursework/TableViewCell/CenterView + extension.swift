@@ -21,6 +21,8 @@ extension CenterView {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
+        imageView.backgroundColor = .appIndigo
+        imageView.layer.cornerRadius = 10
         return imageView
     }
     
@@ -28,7 +30,7 @@ extension CenterView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fillProportionally
         stackView.alignment = .leading
         return stackView
     }
@@ -46,7 +48,7 @@ extension CenterView {
     func makeBodyTitleyLabel() -> UILabel {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        let font = UIFont.preferredFont(forTextStyle: .body)
+        let font = UIFont.preferredFont(forTextStyle: .callout)
         label.font = font
         label.textColor = .appBeige
         label.textAlignment = .right

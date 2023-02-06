@@ -13,13 +13,13 @@ final class CoinCellViewModel {
     static let shared = CoinCellViewModel()
     
     public func getFormattedPrice(price: Double) -> String {
-        let formattedString = "    " + String(format: "%.8f", price) + " $"
+        let formattedString = "    " + String(format: "%.7f", price) + " $"
         return formattedString
     }
     
     public func getFormattedPercents(percent: Double) -> String {
         
-        let formattedString = "      " + String(format: "%.8f", percent) + " %"
+        let formattedString = "    " + String(format: "%.10f", percent) + " %"
         return formattedString
     }
     

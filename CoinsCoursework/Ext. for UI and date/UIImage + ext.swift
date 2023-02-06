@@ -33,7 +33,7 @@ extension UIImage {
         case "XRP":
             return UIImage(named: "xcp")
         default:
-            return UIImage(systemName: "questionmark.square.dashed")?.withConfiguration(UIImage.SymbolConfiguration(paletteColors: [.appBeige]))
+            return UIImage(systemName: "questionmark.square.dashed")?.withConfiguration(UIImage.SymbolConfiguration(paletteColors: [.appGreen]))
         }
     }
     

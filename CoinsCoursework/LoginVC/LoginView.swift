@@ -55,6 +55,8 @@ class LoginView: UIView {
 
     private func setupConstraints(){
         NSLayoutConstraint.activate([
+            self.heightAnchor.constraint(equalToConstant: 202),
+            
             stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
             stackView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20),
             stackView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20),

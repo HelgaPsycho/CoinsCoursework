@@ -25,7 +25,7 @@ class CoinsTableController: UIViewController {
                 
             }
             
-            DispatchQueue.main.asyncAfter(deadline:  .now() + 4) {
+            DispatchQueue.main.asyncAfter(deadline:  .now() + 3) {
                 if self.coinsArray.count == 0 {
                     self.hideActivityIndicator()
                     self.message.isHidden = false
@@ -91,7 +91,7 @@ class CoinsTableController: UIViewController {
             tableView.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: 10),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             exitButton.rightAnchor.constraint(equalTo: topView.rightAnchor, constant: -20),
             exitButton.centerYAnchor.constraint(equalTo: topView.centerYAnchor),

@@ -49,15 +49,19 @@ final class LoginVM: LoginVMProtocolIn, LoginVMProtocolOut, NavigationOfLoginVC 
     
     //MARK: - Navigaton
     public func changeRootController () {
-        showMessage(false)
-        guard let window = loginNavigationController.navigationBar.window else {
-            return
-        }
         
-        window.rootViewController = mainNavigationController
-        
-        window.makeKeyAndVisible()
+        DispatchQueue.main.async { [self] in
+            showMessage(false)
+            guard let window = loginNavigationController.navigationBar.window else {
+                return
+            }
+            
+            window.rootViewController = mainNavigationController
+            
+            window.makeKeyAndVisible()
 
+        }
+       
     }
     
 }
