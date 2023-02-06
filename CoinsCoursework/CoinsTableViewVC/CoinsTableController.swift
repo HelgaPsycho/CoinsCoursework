@@ -49,11 +49,12 @@ class CoinsTableController: UIViewController {
         
         view.backgroundColor = UIColor.appLightBeige
         setupController()
+        getCoinsArray()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        getCoinsArray()
+    
         mainNavigationController.isNavigationBarHidden = true
         message.isHidden = true
     }
@@ -159,11 +160,8 @@ class CoinsTableController: UIViewController {
     }
     
     @objc private func getCoinArrayWithRefreshControl() {
-        showActivityIndicator()
         message.isHidden = true
-        guard  let VM = viewModel else {return}
-        VM.getCoinsArray()
-        
+        getCoinsArray()
     }
     
     func listenVM() {

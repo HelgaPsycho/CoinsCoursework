@@ -55,7 +55,7 @@ final class LoginVM: LoginVMProtocolIn, LoginVMProtocolOut, NavigationOfLoginVC 
             guard let window = loginNavigationController.navigationBar.window else {
                 return
             }
-            
+            if let VC = loginNavigationController.viewControllers[0] as? CoinsTableController { VC.getCoinsArray() }
             window.rootViewController = mainNavigationController
             
             window.makeKeyAndVisible()
