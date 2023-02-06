@@ -9,7 +9,7 @@ import UIKit
 
 class CoinsTableController: UIViewController {
     
-    public var viewModel: (CoinsTableViewProtocolIn & CoinsTableViewProtocolOut)?
+    public var viewModel: (CoinsTableViewProtocolIn & CoinsTableViewProtocolOut & NavigationOfCoincTableVC)?
     
     private var coinsArray: [CoinModel] = []  {
         didSet {
@@ -55,6 +55,7 @@ class CoinsTableController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         getCoinsArray()
         mainNavigationController.isNavigationBarHidden = true
+        message.isHidden = true
     }
     override func viewWillDisappear(_ animated: Bool) {
         message.isHidden = true
@@ -66,7 +67,7 @@ class CoinsTableController: UIViewController {
         setupConstraints()
         configureTableView()
         sortButton.addTarget(self, action: #selector(sortButtonPressed), for: .touchUpInside)
-        exitButton.addTarget(self, action: #selector(changeRootController), for: .touchUpInside)
+        exitButton.addTarget(self, action: #selector(navigateToLoginVC), for: .touchUpInside)
         listenVM()
         
     }
@@ -181,9 +182,9 @@ class CoinsTableController: UIViewController {
         }
     }
     
-    @objc private func changeRootController() {
+    @objc private func navigateToLoginVC() {
         guard let VM = viewModel else {return}
-        VM.changeRootController()
+        VM.navigateToLoginVC()
     }
     
     
@@ -195,10 +196,10 @@ extension CoinsTableController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let detailsVC = DetailsVCBuilder().build() as! DetailsViewController
-        if var VM = detailsVC.viewModel {
-            VM.coinModel = coinsArray[indexPath.row]}
-        mainNavigationController.pushViewController(detailsVC, animated: true)
+        
+        guard let VM = viewModel else {return}
+        
+        VM.navigateToDetailsCV(coin: coinsArray[indexPath.row])
     }
 }
 //MARK: - UITableViewDataSourse

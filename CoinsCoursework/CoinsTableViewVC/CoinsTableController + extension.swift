@@ -39,7 +39,6 @@ extension CoinsTableController {
         let colorConfig = UIImage.SymbolConfiguration(paletteColors: [UIColor.appIndigo])
         let confImage = image?.withConfiguration(UIImage.SymbolConfiguration(scale: .large)).withConfiguration(colorConfig)
         button.setImage(confImage, for: .normal)
-       // button.addTarget(self, action: #selector(sortButtonPressed), for: .touchUpInside)
         return button
     }
     

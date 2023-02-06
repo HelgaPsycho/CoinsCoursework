@@ -23,7 +23,12 @@ protocol LoginVMProtocolOut {
     
 }
 
-final class LoginVM: LoginVMProtocolIn, LoginVMProtocolOut  {
+protocol NavigationOfLoginVC {
+    func changeRootController ()
+}
+
+
+final class LoginVM: LoginVMProtocolIn, LoginVMProtocolOut, NavigationOfLoginVC {
     
     public var messageText = "Email or password is incorrect. Please, try again"
     
@@ -42,6 +47,7 @@ final class LoginVM: LoginVMProtocolIn, LoginVMProtocolOut  {
     var showMessage: (Bool)->() = { _ in}
 
     
+    //MARK: - Navigaton
     public func changeRootController () {
         showMessage(false)
         guard let window = loginNavigationController.navigationBar.window else {

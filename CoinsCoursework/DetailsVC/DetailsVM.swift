@@ -17,7 +17,9 @@ protocol DetailsVMProtocolOut {
     var catchFormattedCoinModel: (FormatedCoinModel)->(){get set}
 }
 
-final class DetailsViewModel: DetailsVMProtocolIn, DetailsVMProtocolOut {
+
+
+final class DetailsViewModel: DetailsVMProtocolIn, DetailsVMProtocolOut{
     
     var catchFormattedCoinModel: (FormatedCoinModel) -> () = {_ in}
     
@@ -43,7 +45,6 @@ final class DetailsViewModel: DetailsVMProtocolIn, DetailsVMProtocolOut {
             catchFormattedCoinModel(formattedCoinModel)
         }
     }
-
-
+    
 
 }

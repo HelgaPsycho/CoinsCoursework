@@ -55,7 +55,7 @@ class LoginViewController: UIViewController  {
             centralView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30),
             centralView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
             centralView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
-            centralView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/4),
+            centralView.heightAnchor.constraint(greaterThanOrEqualTo: view.heightAnchor, multiplier: 1/4),
             
             massageLabel.topAnchor.constraint(equalToSystemSpacingBelow: centralView.bottomAnchor, multiplier: 1),
             massageLabel.centerXAnchor.constraint(equalTo: centralView.centerXAnchor),

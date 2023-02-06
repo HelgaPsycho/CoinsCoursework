@@ -10,7 +10,6 @@ import UIKit
 
 protocol CoinsTableViewProtocolIn {
     
-    func changeRootController()
     func getCoinsArray()
     func sortBy(_ changes: PriceChanges)
 }
@@ -21,7 +20,14 @@ protocol CoinsTableViewProtocolOut {
     
 }
 
-final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOut {
+protocol NavigationOfCoincTableVC {
+    func navigateToDetailsCV(coin: CoinModel)
+    
+    func navigateToLoginVC()
+    
+}
+
+final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOut, NavigationOfCoincTableVC {
     
     private let coinsStringsArray: [String] = ["busd", "btc", "eth", "tron", "luna", "polkadot", "dogecoin", "tether", "stellar", "cardano", "xrp"]
     
@@ -34,19 +40,6 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
     }
     
     //MARK: -  CoinsTableViewProtocolIn
-    public func changeRootController () {
-
-        mainNavigationController.isNavigationBarHidden = false
-        guard let window = mainNavigationController.navigationBar.window else {
-            return
-        }
-
-        window.rootViewController = loginNavigationController
-
-        window.makeKeyAndVisible()
-    
-    }
-    
     
     public func getCoinsArray() {
 
@@ -96,6 +89,28 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
     private func setCoinsArray(coinsArray: [CoinModel]){
         coinsArrayClosure(coinsArray)
         self.coinsArray = coinsArray
+    }
+    
+    //MARK: - Navigation
+    
+    func navigateToDetailsCV(coin: CoinModel) {
+        let detailsVC = DetailsVCBuilder().build() as! DetailsViewController
+        detailsVC.viewModel?.coinModel = coin
+        mainNavigationController.pushViewController(detailsVC, animated: true)
+    }
+    
+    func navigateToLoginVC(){
+
+            mainNavigationController.isNavigationBarHidden = false
+            guard let window = mainNavigationController.navigationBar.window else {
+                return
+            }
+
+            window.rootViewController = loginNavigationController
+
+            window.makeKeyAndVisible()
+    
+        
     }
     
    

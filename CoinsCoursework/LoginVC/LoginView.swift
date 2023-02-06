@@ -18,6 +18,7 @@ class LoginView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
+        stackView.spacing = 10
         stackView.alignment = .fill
         return stackView
     }()
