@@ -90,17 +90,17 @@ private func parseJSON(_ coinData: Data) -> CoinModel? {
 
         return CoinModel(symbol: decodedData.data.symbol,
                          name: decodedData.data.name,
-                         priceUsd: decodedData.data.market_data.price_usd,
-                         percentChangeUsdLast1Hour: decodedData.data.market_data.percent_change_usd_last_1_hour,
-                         percentChangeUsdLast24Hours: decodedData.data.market_data.percent_change_usd_last_24_hours,
-                         countOfActiveAddresses24Hours: decodedData.data.blockchain_stats_24_hours.count_of_active_addresses,
-                         transactionVolume24Hours: decodedData.data.blockchain_stats_24_hours.transaction_volume,
-                         allTimesHightPrice: decodedData.data.all_time_high.price,
-                         allTimesHightPriceDate: decodedData.data.all_time_high.at,
-                         percentChangeLast1Week: decodedData.data.roi_data.percent_change_last_1_week,
-                         percentChangeLast1Month: decodedData.data.roi_data.percent_change_last_1_month,
-                         percentChangeLast3Month: decodedData.data.roi_data.percent_change_last_3_months,
-                         percentChangeLast1Year: decodedData.data.roi_data.percent_change_last_1_year)
+                         priceUsd: decodedData.data.market_data?.price_usd ?? 0,
+                         percentChangeUsdLast1Hour: decodedData.data.market_data?.percent_change_usd_last_1_hour  ?? 0,
+                         percentChangeUsdLast24Hours: decodedData.data.market_data?.percent_change_usd_last_24_hours  ?? 0,
+                         countOfActiveAddresses24Hours: decodedData.data.blockchain_stats_24_hours?.count_of_active_addresses  ?? 0,
+                         transactionVolume24Hours:  decodedData.data.blockchain_stats_24_hours?.transaction_volume  ?? 0,
+                         allTimesHightPrice: decodedData.data.all_time_high?.price  ?? 0,
+                         allTimesHightPriceDate: decodedData.data.all_time_high?.at ?? Date(timeIntervalSince1970: 0),
+                         percentChangeLast1Week: decodedData.data.roi_data?.percent_change_last_1_week  ?? 0,
+                         percentChangeLast1Month: decodedData.data.roi_data?.percent_change_last_1_month  ?? 0,
+                         percentChangeLast3Month: decodedData.data.roi_data?.percent_change_last_3_months  ?? 0,
+                         percentChangeLast1Year: decodedData.data.roi_data?.percent_change_last_1_year  ?? 0)
     }
     catch {
         self.catchError(error)
