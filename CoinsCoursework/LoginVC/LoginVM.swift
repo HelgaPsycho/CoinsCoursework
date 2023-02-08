@@ -37,17 +37,17 @@ final class LoginVM: LoginVMProtocolIn, LoginVMProtocolOut, NavigationOfLoginVC 
             clearTextFieldsClosure("")
             changeRootController()
         } else {
-        
+            
             showMessage(true)
         }
- }
+    }
     
     var clearTextFieldsClosure: (String)->() = { _ in }
     
     var showMessage: (Bool)->() = { _ in}
-
     
-    //MARK: - Navigaton
+    
+    //MARK: - Navigation
     public func changeRootController () {
         
         DispatchQueue.main.async { [self] in
@@ -59,9 +59,9 @@ final class LoginVM: LoginVMProtocolIn, LoginVMProtocolOut, NavigationOfLoginVC 
             window.rootViewController = mainNavigationController
             
             window.makeKeyAndVisible()
-
+            
         }
-       
+        
     }
     
 }

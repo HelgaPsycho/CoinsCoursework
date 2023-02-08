@@ -8,7 +8,7 @@
 import UIKit
 
 class LoginView: UIView {
-
+    
     var viewModel: (LoginVMProtocolIn & LoginVMProtocolOut)?
     
     var userModel: UserModel = UserModel(email: "", password: "")
@@ -22,11 +22,11 @@ class LoginView: UIView {
         stackView.alignment = .fill
         return stackView
     }()
-
+    
     private var emailTextField: UITextField = CustomUITextField(systemImage: "envelope", placeHolder: " Email")
     private var passwordTextField: UITextField = CustomUITextField(systemImage: "lock.fill", placeHolder: " Password")
     private var signInButton: UIButton = CustomButtonWithText(title: "Sign In")
-
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         emailTextField.delegate = self
@@ -38,13 +38,13 @@ class LoginView: UIView {
         setupConstraints()
         setupSignInButton()
         listenViewModel()
-    
+        
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-
+    
     private func setupHierarhy(){
         self.addSubview(stackView)
         stackView.addArrangedSubview(emailTextField)
@@ -52,7 +52,7 @@ class LoginView: UIView {
         stackView.addArrangedSubview(passwordTextField)
         stackView.addArrangedSubview(signInButton)
     }
-
+    
     private func setupConstraints(){
         NSLayoutConstraint.activate([
             self.heightAnchor.constraint(equalToConstant: 202),
@@ -66,7 +66,7 @@ class LoginView: UIView {
             passwordTextField.heightAnchor.constraint(equalToConstant:  44),
             signInButton.heightAnchor.constraint(equalToConstant: 44)
         ])
-
+        
     }
     
     private func setupSignInButton() {
@@ -84,9 +84,9 @@ extension LoginView: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-         changeUserModel()
+        changeUserModel()
     }
-
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if emailTextField.isFirstResponder == true {
@@ -94,7 +94,7 @@ extension LoginView: UITextFieldDelegate {
             passwordTextField.becomeFirstResponder()
         }
         else {
-           checkUser()
+            checkUser()
         }
         return true
     }
@@ -105,7 +105,7 @@ extension LoginView {
     
     @objc func checkUser () {
         changeUserModel()
-       // changeUserModel()
+        // changeUserModel()
         viewModel?.checkUser(userModel: userModel)
         
     }

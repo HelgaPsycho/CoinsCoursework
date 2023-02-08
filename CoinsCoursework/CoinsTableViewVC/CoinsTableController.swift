@@ -54,7 +54,7 @@ class CoinsTableController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-    
+        
         mainNavigationController.isNavigationBarHidden = true
         message.isHidden = true
     }
@@ -117,7 +117,7 @@ class CoinsTableController: UIViewController {
         ])
         
     }
-        
+    
     private func configureTableView(){
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
@@ -172,11 +172,11 @@ class CoinsTableController: UIViewController {
         VM.coinsArrayClosure =  {[weak self] array in
             self?.coinsArray = array
             
-                DispatchQueue.main.async {
-                    self?.refreshControl.endRefreshing()
+            DispatchQueue.main.async {
+                self?.refreshControl.endRefreshing()
                 
             }
-     
+            
         }
     }
     
@@ -204,7 +204,7 @@ extension CoinsTableController: UITableViewDelegate {
 
 extension CoinsTableController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    
+        
         return coinsArray.count
         
     }
@@ -212,7 +212,7 @@ extension CoinsTableController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CoinCell else {fatalError()}
-
+        
         
         cell.coinModel = coinsArray[indexPath.row]
         

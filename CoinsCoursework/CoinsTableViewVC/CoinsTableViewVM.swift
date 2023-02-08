@@ -55,16 +55,16 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
     public func sortBy(_ changes: PriceChanges) {
         switch changes {
         case .ascendingPrisePerDay:
-            coinsArray = coinsArray.sorted(by: { $0.percentChangeUsdLast24Hours  ?? 0.0 < $1.percentChangeUsdLast24Hours ?? 0.0})
+            coinsArray = coinsArray.sorted(by: { $0.percentChangeUsdLast24Hours  ?? Double.max < $1.percentChangeUsdLast24Hours ?? Double.max})
             coinsArrayClosure(coinsArray)
         case .decreasePricePerDay:
-            coinsArray = coinsArray.sorted(by: { $0.percentChangeUsdLast24Hours ?? 0.0 > $1.percentChangeUsdLast24Hours ?? 0.0})
+            coinsArray = coinsArray.sorted(by: { $0.percentChangeUsdLast24Hours ?? Double.min > $1.percentChangeUsdLast24Hours ?? Double.min})
             coinsArrayClosure(coinsArray)
         case .ascendingPricePerHour:
-            coinsArray = coinsArray.sorted(by: { $0.percentChangeUsdLast1Hour ?? 0.0 < $1.percentChangeUsdLast1Hour ?? 0.0 })
+            coinsArray = coinsArray.sorted(by: { $0.percentChangeUsdLast1Hour ?? Double.max < $1.percentChangeUsdLast1Hour ?? Double.max })
             coinsArrayClosure(coinsArray)
         case .decreasePricePerHour:
-            coinsArray = coinsArray.sorted(by: { $0.percentChangeUsdLast1Hour ?? 0.0 > $1.percentChangeUsdLast1Hour ?? 00 })
+            coinsArray = coinsArray.sorted(by: { $0.percentChangeUsdLast1Hour ?? Double.min > $1.percentChangeUsdLast1Hour ?? Double.min })
             coinsArrayClosure(coinsArray)
         default:
             break
@@ -100,20 +100,20 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
     }
     
     func navigateToLoginVC(){
-
-            mainNavigationController.isNavigationBarHidden = false
-            guard let window = mainNavigationController.navigationBar.window else {
-                return
-            }
-
-            window.rootViewController = loginNavigationController
-
-            window.makeKeyAndVisible()
-    
+        
+        mainNavigationController.isNavigationBarHidden = false
+        guard let window = mainNavigationController.navigationBar.window else {
+            return
+        }
+        
+        window.rootViewController = loginNavigationController
+        
+        window.makeKeyAndVisible()
+        
         
     }
     
-   
+    
 }
 
 

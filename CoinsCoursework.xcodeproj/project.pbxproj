@@ -16,6 +16,7 @@
 		9C43C24D298D225B00BAD019 /* UIImage + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C43C24C298D225B00BAD019 /* UIImage + ext.swift */; };
 		9C7B3B862990571F00B38A02 /* FormattedCoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7B3B852990571F00B38A02 /* FormattedCoinModel.swift */; };
 		9C7B3B8829905D0A00B38A02 /* Date + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7B3B8729905D0A00B38A02 /* Date + extension.swift */; };
+		9C7B3BAE2993A9A800B38A02 /* Double + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7B3BAD2993A9A800B38A02 /* Double + ext.swift */; };
 		9CA581EF297AC70A00449D20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA581EE297AC70A00449D20 /* AppDelegate.swift */; };
 		9CA581F1297AC70A00449D20 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA581F0297AC70A00449D20 /* SceneDelegate.swift */; };
 		9CA581F8297AC70C00449D20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CA581F7297AC70C00449D20 /* Assets.xcassets */; };
@@ -53,6 +54,7 @@
 		9C43C24C298D225B00BAD019 /* UIImage + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + ext.swift"; sourceTree = "<group>"; };
 		9C7B3B852990571F00B38A02 /* FormattedCoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattedCoinModel.swift; sourceTree = "<group>"; };
 		9C7B3B8729905D0A00B38A02 /* Date + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + extension.swift"; sourceTree = "<group>"; };
+		9C7B3BAD2993A9A800B38A02 /* Double + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + ext.swift"; sourceTree = "<group>"; };
 		9CA581EB297AC70A00449D20 /* CoinsCoursework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinsCoursework.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CA581EE297AC70A00449D20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9CA581F0297AC70A00449D20 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				9CA58212297AE0F500449D20 /* UIColors + colorsForApp.swift */,
 				9C43C24C298D225B00BAD019 /* UIImage + ext.swift */,
 				9C7B3B8729905D0A00B38A02 /* Date + extension.swift */,
+				9C7B3BAD2993A9A800B38A02 /* Double + ext.swift */,
 			);
 			path = "Ext. for UI and date";
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				9CA58219297BF7F800449D20 /* CustomUITextField.swift in Sources */,
 				9CA58226297D377600449D20 /* UserModel.swift in Sources */,
 				9C7B3B862990571F00B38A02 /* FormattedCoinModel.swift in Sources */,
+				9C7B3BAE2993A9A800B38A02 /* Double + ext.swift in Sources */,
 				9CA58224297D2DF100449D20 /* CoinsTableVCBuilder.swift in Sources */,
 				9CA58205297AC9A000449D20 /* LoginViewController.swift in Sources */,
 				9CA5822C297E717500449D20 /* CoinData.swift in Sources */,

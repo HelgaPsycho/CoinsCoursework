@@ -10,14 +10,14 @@ import UIKit
 class CoinsTableView: UITableView {
     
     var viewModel: (CoinsTableViewProtocolIn & CoinsTableViewProtocolOut)?
-
+    
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: .zero, style: .plain)
         self.rowHeight = 150
         self.separatorStyle = .none
         backgroundColor = .appLightBeige
-    
+        
     }
     
     required init?(coder: NSCoder) {

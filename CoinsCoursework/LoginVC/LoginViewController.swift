@@ -9,9 +9,9 @@ import UIKit
 
 
 class LoginViewController: UIViewController  {
-     
+    
     var viewModel: (LoginVMProtocolIn & LoginVMProtocolOut)?
-
+    
     
     private lazy var titleLabel: UILabel = makeTitleLabel()
     private lazy var centralView: UIView = makeCentralView()
@@ -20,7 +20,7 @@ class LoginViewController: UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupVC()
         
     }
@@ -34,14 +34,14 @@ class LoginViewController: UIViewController  {
         setConstraints()
         
         setLoginView()
-    
+        
     }
     
     private func setHierarchy(){
         view.addSubview(titleLabel)
         view.addSubview(centralView)
         view.addSubview(massageLabel)
-    
+        
     }
     
     private func setConstraints() {
@@ -61,11 +61,11 @@ class LoginViewController: UIViewController  {
             massageLabel.centerXAnchor.constraint(equalTo: centralView.centerXAnchor),
             massageLabel.widthAnchor.constraint(equalTo: centralView.widthAnchor, multiplier: 2/3)
             
-                                    
+            
         ])
-    
+        
     }
-
+    
     
     private func setLoginView(){
         
@@ -88,12 +88,12 @@ class LoginViewController: UIViewController  {
     private func listenViewModel() {
         guard var VM = viewModel else { return }
         VM.showMessage =  {[weak self] isShow in
-        
+            
             self?.massageLabel.isHidden = !isShow
             
         }
     }
-
+    
 }
 
 

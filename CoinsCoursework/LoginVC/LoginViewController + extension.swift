@@ -10,7 +10,7 @@ import UIKit
 
 extension LoginViewController {
     
-     func makeTitleLabel() -> UILabel {
+    func makeTitleLabel() -> UILabel {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Sign In"
