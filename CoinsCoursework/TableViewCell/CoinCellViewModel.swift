@@ -27,9 +27,9 @@ final class CoinCellViewModel {
         
         return UIImage.getIconForCoin(named: image)
         
-        }
-        
-        
     }
     
+    
+}
+
 

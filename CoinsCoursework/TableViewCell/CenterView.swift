@@ -25,7 +25,7 @@ class CenterView: UIView {
             
         }
     }
-
+    
     private lazy var iconView = makeIconView()
     
     private  lazy var stackView = makeVerticalStackView()
@@ -45,13 +45,13 @@ class CenterView: UIView {
         backgroundColor = UIColor.appIndigo
         setupHierarhy()
         setupConstraints()
-
+        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     
     private func setupHierarhy() {
         
@@ -63,7 +63,7 @@ class CenterView: UIView {
         stackView.addArrangedSubview(persentsPerHour)
         stackView.addArrangedSubview(changeLastDayLabel)
         stackView.addArrangedSubview(persaentsPerDay)
-    
+        
         
         
     }

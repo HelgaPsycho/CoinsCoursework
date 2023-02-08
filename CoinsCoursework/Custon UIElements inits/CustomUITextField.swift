@@ -54,11 +54,11 @@ class CustomUITextField: UITextField {
             imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
             return view
         }()
-      
+        
         self.leftView = leftView
         self.leftViewMode = .always
     }
     
 }
 
-   
+

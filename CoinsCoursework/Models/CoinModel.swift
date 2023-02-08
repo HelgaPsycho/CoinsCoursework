@@ -59,7 +59,7 @@ struct CoinModel {
         self.percentChangeLast3Month = percentChangeLast3Month
         self.percentChangeLast1Year = percentChangeLast1Year
     }
-
+    
 }
 
 

@@ -73,7 +73,7 @@ class DetailsViewController: UIViewController {
         mainNavigationController.navigationBar.tintColor = .appIndigo
         setupHierarhy()
         setupConstraints()
-
+        
     }
     
     private func  setupHierarhy() {

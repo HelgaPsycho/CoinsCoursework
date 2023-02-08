@@ -8,11 +8,11 @@
 import Foundation
 
 public extension Double {
-
+    
     static var max: Double {
         return Double(greatestFiniteMagnitude)
     }
-
+    
     static var min: Double {
         return Double(-greatestFiniteMagnitude)
     }

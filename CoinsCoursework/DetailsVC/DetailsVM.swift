@@ -24,7 +24,7 @@ final class DetailsViewModel: DetailsVMProtocolIn, DetailsVMProtocolOut{
     var catchFormattedCoinModel: (FormatedCoinModel) -> () = {_ in}
     
     var coinModel: CoinModel? {
-
+        
         didSet { var formattedCoinModel = FormatedCoinModel()
             guard let coin = coinModel else {return}
             formattedCoinModel.symbol = coin.symbol
@@ -44,7 +44,7 @@ final class DetailsViewModel: DetailsVMProtocolIn, DetailsVMProtocolOut{
         }
     }
     
-
+    
     func getString <T> (value: T?, symbol: String)-> String {
         guard let startValue = value else {
             return "    Value is not avaliable now"

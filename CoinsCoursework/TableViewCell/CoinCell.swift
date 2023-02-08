@@ -8,17 +8,17 @@
 import UIKit
 
 class CoinCell: UITableViewCell {
-
+    
     public var coinModel: CoinModel? {
         didSet {
             guard let model = coinModel else {return}
             centerView.coinModel = model
-
+            
         }
     }
     
     private var centerView = CenterView()
-
+    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -34,8 +34,8 @@ class CoinCell: UITableViewCell {
     
     private  func setHierarhy(){
         self.addSubview(centerView)
-
-
+        
+        
     }
     
     private func setupConstraints(){
@@ -45,10 +45,10 @@ class CoinCell: UITableViewCell {
             centerView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
             centerView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5),
             
-          
+            
         ])
     }
-
+    
 }
 
 
