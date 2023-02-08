@@ -47,7 +47,7 @@ class CoinsTableController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.appLightBeige
+        view.backgroundColor = UIColor.appBeige
         setupController()
        // getCoinsArray()
         
@@ -154,7 +154,6 @@ class CoinsTableController: UIViewController {
     //MARK: - ViewModel
     
     func getCoinsArray() {
-        print ("getCoinsArray called")
         showActivityIndicator()
         guard  let VM = viewModel else {return}
         VM.getCoinsArray()

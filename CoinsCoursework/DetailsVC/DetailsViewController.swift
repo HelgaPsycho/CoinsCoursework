@@ -63,10 +63,15 @@ class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainNavigationController.isNavigationBarHidden = false
+        //mainNavigationController.isNavigationBarHidden = false
         setupVC()
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        mainNavigationController.isNavigationBarHidden = false
+    }
+    
     
     private func setupVC() {
         view.backgroundColor = .appBeige

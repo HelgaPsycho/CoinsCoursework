@@ -16,7 +16,7 @@ class CoinsTableView: UITableView {
         super.init(frame: .zero, style: .plain)
         self.rowHeight = 150
         self.separatorStyle = .none
-        backgroundColor = .appLightBeige
+        backgroundColor = .appBeige
         
     }
     
