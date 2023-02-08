@@ -8,6 +8,7 @@
 import Foundation
 extension Date {
     var dayText: String {
+        
         if Locale.current.calendar.isDateInToday(self) {
             let timeText = formatted(date: .omitted, time: .shortened)
             let timeFormat = NSLocalizedString("Today at %@", comment: "Today and time format string")

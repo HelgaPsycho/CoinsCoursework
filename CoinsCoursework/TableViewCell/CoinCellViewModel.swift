@@ -12,19 +12,21 @@ final class CoinCellViewModel {
     
     static let shared = CoinCellViewModel()
     
-    public func getFormattedPrice(price: Double) -> String {
-        let formattedString = "    " + String(format: "%.7f", price) + " $"
-        return formattedString
-    }
-    
-    public func getFormattedPercents(percent: Double) -> String {
+    public func getFormattedString (string: Double?, symbol: String) -> String{
         
-        let formattedString = "    " + String(format: "%.10f", percent) + " %"
+        guard let newString = string else {return  "Value is not avaliable"}
+        
+        let formattedString = "    " + String(format: "%.8f", newString) + " " + symbol
         return formattedString
     }
     
-    public func getIconForCoin(named: String) -> UIImage? {
-        return UIImage.getIconForCoin(named: named)
+    
+    public func getIconForCoin(named: String?) -> UIImage? {
+        
+        guard let image = named else {return UIImage(systemName: "questionmark.square.dashed")?.withConfiguration(UIImage.SymbolConfiguration(paletteColors: [.appGreen]))}
+        
+        return UIImage.getIconForCoin(named: image)
+        
         }
         
         

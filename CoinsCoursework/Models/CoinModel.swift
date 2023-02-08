@@ -12,34 +12,34 @@ struct CoinModel {
     let symbol: String
     let name: String
     
-    let priceUsd: Double
-    let percentChangeUsdLast1Hour: Double
-    let percentChangeUsdLast24Hours: Double
+    let priceUsd: Double?
+    let percentChangeUsdLast1Hour: Double?
+    let percentChangeUsdLast24Hours: Double?
     
-    let countOfActiveAddresses24Hours: Int
-    let transactionVolume24Hours: Double
+    let countOfActiveAddresses24Hours: Int?
+    let transactionVolume24Hours: Double?
     
-    let allTimesHightPrice: Double
-    let allTimesHightPriceDate: Date
+    let allTimesHightPrice: Double?
+    let allTimesHightPriceDate: Date?
     
-    let percentChangeLast1Week: Double
-    let percentChangeLast1Month: Double
-    let percentChangeLast3Month: Double
-    let percentChangeLast1Year: Double
+    let percentChangeLast1Week: Double?
+    let percentChangeLast1Month: Double?
+    let percentChangeLast3Month: Double?
+    let percentChangeLast1Year: Double?
     
     init(symbol: String = "",
          name: String = "",
-         priceUsd: Double = 0.0,
-         percentChangeUsdLast1Hour: Double = 0.0,
-         percentChangeUsdLast24Hours: Double = 0.0,
-         countOfActiveAddresses24Hours: Int = 0,
-         transactionVolume24Hours: Double = 0.0,
-         allTimesHightPrice: Double = 0.0,
-         allTimesHightPriceDate: Date = Date(timeIntervalSince1970: 0),
-         percentChangeLast1Week: Double = 0.0,
-         percentChangeLast1Month: Double = 0.0,
-         percentChangeLast3Month: Double = 0.0,
-         percentChangeLast1Year: Double = 0.0) {
+         priceUsd: Double?,
+         percentChangeUsdLast1Hour: Double?,
+         percentChangeUsdLast24Hours: Double?,
+         countOfActiveAddresses24Hours: Int?,
+         transactionVolume24Hours: Double?,
+         allTimesHightPrice: Double?,
+         allTimesHightPriceDate: Date?,
+         percentChangeLast1Week: Double?,
+         percentChangeLast1Month: Double?,
+         percentChangeLast3Month: Double?,
+         percentChangeLast1Year: Double?) {
         
         self.symbol = symbol
         self.name = name

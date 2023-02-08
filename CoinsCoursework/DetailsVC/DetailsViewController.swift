@@ -13,11 +13,11 @@ class DetailsViewController: UIViewController {
     
     var formatedCoin: FormatedCoinModel? {
         didSet {
-            guard var coin = formatedCoin else {return}
-            print(coin)
+            guard let coin = formatedCoin else {return}
             iconView.image = UIImage.getIconForCoin(named: coin.name)
             nameLabel.text = coin.name
             symbolLabel.text = coin.symbol
+            priceUsdInfo.text = coin.priceUsd
             percentChangeUsdLast1Hourinfo.text = coin.percentChangeUsdLast1Hour
             percentChangeUsdLast24HoursInfo.text = coin.percentChangeUsdLast24Hours
             countOfActiveAddresses24HoursInfo.text = coin.countOfActiveAddresses24Hours
@@ -36,6 +36,8 @@ class DetailsViewController: UIViewController {
     private lazy var centralView = makeCentralView()
     private lazy var verticalStackView = makeVerticalStackView()
     
+    private lazy var  priceUsdLabel = makeHeaderLabel(with: "Price in USD:")
+    private lazy var priceUsdInfo = makeInfoLabel()
     private lazy var percentChangeUsdLast1HourLabel = makeHeaderLabel(with: "Persent change last 1 hour:")
     private lazy var percentChangeUsdLast1Hourinfo = makeInfoLabel()
     private lazy var percentChangeUsdLast24HoursLabel = makeHeaderLabel(with: "Persent change last 24 hours:")
@@ -84,6 +86,8 @@ class DetailsViewController: UIViewController {
         
         view.addSubview(centralView)
         centralView.addSubview(verticalStackView)
+        verticalStackView.addArrangedSubview(priceUsdLabel)
+        verticalStackView.addArrangedSubview(priceUsdInfo)
         verticalStackView.addArrangedSubview(percentChangeUsdLast1HourLabel)
         verticalStackView.addArrangedSubview(percentChangeUsdLast1Hourinfo)
         verticalStackView.addArrangedSubview(percentChangeUsdLast24HoursLabel)
@@ -121,7 +125,6 @@ class DetailsViewController: UIViewController {
         guard var VM = viewModel else {return}
         VM.catchFormattedCoinModel = {[weak self] coin in
             self?.updateFotmattedCoin(coin: coin)
-            print("formatted coin in listenVM")
             
         }
     }

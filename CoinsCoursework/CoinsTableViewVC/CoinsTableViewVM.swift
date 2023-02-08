@@ -55,16 +55,16 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
     public func sortBy(_ changes: PriceChanges) {
         switch changes {
         case .ascendingPrisePerDay:
-            coinsArray = coinsArray.sorted(by: { $0.percentChangeUsdLast24Hours < $1.percentChangeUsdLast24Hours })
+            coinsArray = coinsArray.sorted(by: { $0.percentChangeUsdLast24Hours  ?? 0.0 < $1.percentChangeUsdLast24Hours ?? 0.0})
             coinsArrayClosure(coinsArray)
         case .decreasePricePerDay:
-            coinsArray = coinsArray.sorted(by: { $0.percentChangeUsdLast24Hours > $1.percentChangeUsdLast24Hours })
+            coinsArray = coinsArray.sorted(by: { $0.percentChangeUsdLast24Hours ?? 0.0 > $1.percentChangeUsdLast24Hours ?? 0.0})
             coinsArrayClosure(coinsArray)
         case .ascendingPricePerHour:
-            coinsArray = coinsArray.sorted(by: { $0.percentChangeUsdLast1Hour < $1.percentChangeUsdLast1Hour })
+            coinsArray = coinsArray.sorted(by: { $0.percentChangeUsdLast1Hour ?? 0.0 < $1.percentChangeUsdLast1Hour ?? 0.0 })
             coinsArrayClosure(coinsArray)
         case .decreasePricePerHour:
-            coinsArray = coinsArray.sorted(by: { $0.percentChangeUsdLast1Hour > $1.percentChangeUsdLast1Hour })
+            coinsArray = coinsArray.sorted(by: { $0.percentChangeUsdLast1Hour ?? 0.0 > $1.percentChangeUsdLast1Hour ?? 00 })
             coinsArrayClosure(coinsArray)
         default:
             break

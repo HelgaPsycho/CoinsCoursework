@@ -15,13 +15,13 @@ class CenterView: UIView {
             
             guard let model = coinModel else {return}
             
-            iconView.image = CoinCellViewModel.shared.getIconForCoin(named: model.name) ?? UIImage(systemName: "questionmark.square.dashed")
+            iconView.image = CoinCellViewModel.shared.getIconForCoin(named: model.name) //?? UIImage(systemName: "questionmark.square.dashed")
             titleLabel.text = model.name
-            priceLabel.text = CoinCellViewModel.shared.getFormattedPrice(price: model.priceUsd)
+            priceLabel.text = CoinCellViewModel.shared.getFormattedString(string: model.priceUsd, symbol: " $")
             changeLastHourLabel.text = "Change last hour:"
-            persentsPerHour.text =  CoinCellViewModel.shared.getFormattedPercents(percent: model.percentChangeUsdLast1Hour)
+            persentsPerHour.text =  CoinCellViewModel.shared.getFormattedString(string: model.percentChangeUsdLast1Hour, symbol: " %")
             changeLastDayLabel.text = "Change last day:"
-            persaentsPerDay.text = CoinCellViewModel.shared.getFormattedPercents(percent: model.percentChangeUsdLast24Hours)
+            persaentsPerDay.text = CoinCellViewModel.shared.getFormattedString(string: model.percentChangeUsdLast24Hours, symbol: " %")
             
         }
     }
