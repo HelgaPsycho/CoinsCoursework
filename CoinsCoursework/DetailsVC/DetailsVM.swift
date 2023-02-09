@@ -32,7 +32,7 @@ final class DetailsViewModel: DetailsVMProtocolIn, DetailsVMProtocolOut{
             formattedCoinModel.priceUsd = getString(value: coin.priceUsd, symbol: "$")
             formattedCoinModel.percentChangeUsdLast1Hour = getString(value: coin.percentChangeUsdLast1Hour, symbol: "%")
             formattedCoinModel.percentChangeUsdLast24Hours = getString(value: coin.percentChangeUsdLast24Hours, symbol: "%")
-            formattedCoinModel.countOfActiveAddresses24Hours = getString(value: coin.countOfActiveAddresses24Hours, symbol: "")
+            formattedCoinModel.countOfActiveAddresses24Hours = String(describing: coin.countOfActiveAddresses24Hours ?? 0)
             formattedCoinModel.transactionVolume24Hours = getString(value: coin.transactionVolume24Hours, symbol: "")
             formattedCoinModel.allTimesHightPrice = getString(value: coin.allTimesHightPrice, symbol: "$")
             formattedCoinModel.allTimesHightPriceDate = getDateString(date: coin.allTimesHightPriceDate)
@@ -47,16 +47,18 @@ final class DetailsViewModel: DetailsVMProtocolIn, DetailsVMProtocolOut{
     
     func getString <T> (value: T?, symbol: String)-> String {
         guard let startValue = value else {
-            return "    Value is not avaliable now"
+            return "Value is not avaliable now"
         }
         
-        let  newString = "    " + String(describing: startValue) + " " + symbol
+        let  newString =  String(format: "%.16f", startValue as! CVarArg) + " " + symbol
         return newString
+        
+       // String(format: "%.8f", newString)
     }
     
     func getDateString (date: Date?) -> String {
-        guard var dateString = date else {return "    Value is not avaliable now"}
-        return "     " + dateString.dayText
+        guard var dateString = date else {return "Value is not avaliable now"}
+        return  dateString.dayText
     }
     
 }

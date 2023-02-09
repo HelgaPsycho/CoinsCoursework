@@ -16,7 +16,7 @@ final class CoinCellViewModel {
         
         guard let newString = string else {return  "Value is not avaliable"}
         
-        let formattedString = "    " + String(format: "%.8f", newString) + " " + symbol
+        let formattedString = "    " + String(format: "%.6f", newString) + " " + symbol
         return formattedString
     }
     

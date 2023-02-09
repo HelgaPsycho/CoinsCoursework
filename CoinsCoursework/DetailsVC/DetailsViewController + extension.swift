@@ -39,8 +39,8 @@ extension DetailsViewController {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.distribution = .equalCentering
-        stackView.alignment = .leading
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .fill
         return stackView
     }
     

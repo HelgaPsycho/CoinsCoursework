@@ -55,13 +55,13 @@ extension CoinsTableController {
     func makeMessageLabel() -> UILabel {
         let label = UILabel()
         label.text = """
-        Server is not available now.
+        Server is not avaliable now.
         Please try later.
         """
         label.translatesAutoresizingMaskIntoConstraints = false
         let font = UIFont.preferredFont(forTextStyle: .headline)
         label.font = font
-        label.textColor = .appBeige
+        label.textColor = .appLightBeige
         label.textAlignment = .center
         label.numberOfLines = 0
         label.isHidden = true

@@ -107,7 +107,7 @@ class DetailsViewController: UIViewController {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            topHorizontalStack.topAnchor.constraint(equalTo: mainNavigationController.navigationBar.bottomAnchor, constant: 20),
+            topHorizontalStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             topHorizontalStack.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
             topHorizontalStack.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
             topHorizontalStack.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/6),
@@ -115,7 +115,7 @@ class DetailsViewController: UIViewController {
             centralView.topAnchor.constraint(equalTo: topHorizontalStack.bottomAnchor, constant: 20),
             centralView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
             centralView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
-            centralView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40),
+            centralView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
             
             verticalStackView.topAnchor.constraint(equalTo: centralView.topAnchor, constant: 20),
             verticalStackView.leftAnchor.constraint(equalTo: centralView.leftAnchor, constant: 20),
