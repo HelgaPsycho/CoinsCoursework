@@ -105,9 +105,9 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
         guard let window = mainNavigationController.navigationBar.window else {
             return
         }
-        
+        UserDefaults.standard.set(false, forKey: "isAutorized")
         window.rootViewController = loginNavigationController
-        
+    
         window.makeKeyAndVisible()
         
         

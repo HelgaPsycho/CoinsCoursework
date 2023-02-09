@@ -34,6 +34,7 @@ final class LoginVM: LoginVMProtocolIn, LoginVMProtocolOut, NavigationOfLoginVC 
     
     public func checkUser(userModel: UserModel) {
         if (userModel.email == "1234") && (userModel.password == "1234") {
+            UserDefaults.standard.set(true, forKey: "isAutorized")
             clearTextFieldsClosure("")
             changeRootController()
         } else {

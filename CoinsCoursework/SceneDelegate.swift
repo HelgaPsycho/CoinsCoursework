@@ -31,9 +31,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.windowScene = windowScene
         window.makeKeyAndVisible()
         
-        window.rootViewController = loginNavigationController
+        if UserDefaults.standard.bool(forKey: "isAutorized") == true {
+            if let VC = mainNavigationController.viewControllers[0] as? CoinsTableController { VC.getCoinsArray()}
+            window.rootViewController = mainNavigationController
         
-        //  window.rootViewController = DetailsVCBuilder().build()
+            }
+        else   {
+            window.rootViewController = loginNavigationController
+        
+            
+        }
         
     }
     
