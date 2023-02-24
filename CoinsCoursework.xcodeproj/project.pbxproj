@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C41AC9529A8E7FC005F1198 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C41AC9429A8E7FC005F1198 /* Router.swift */; };
 		9C43C221298703A400BAD019 /* CoinCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C43C220298703A400BAD019 /* CoinCellViewModel.swift */; };
 		9C43C243298C1C6200BAD019 /* CoinsTableController + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C43C242298C1C6200BAD019 /* CoinsTableController + extension.swift */; };
 		9C43C245298C24FA00BAD019 /* LoginViewController + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C43C244298C24FA00BAD019 /* LoginViewController + extension.swift */; };
@@ -45,6 +46,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9C41AC9429A8E7FC005F1198 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		9C43C220298703A400BAD019 /* CoinCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCellViewModel.swift; sourceTree = "<group>"; };
 		9C43C242298C1C6200BAD019 /* CoinsTableController + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoinsTableController + extension.swift"; sourceTree = "<group>"; };
 		9C43C244298C24FA00BAD019 /* LoginViewController + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController + extension.swift"; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				9CA581F0297AC70A00449D20 /* SceneDelegate.swift */,
 				9CA5820A297ACAA700449D20 /* ModuleBuilder.swift */,
 				9CA58202297AC8F600449D20 /* NavigationController.swift */,
+				9C41AC9429A8E7FC005F1198 /* Router.swift */,
 				9CA58228297E70B400449D20 /* Network */,
 				9CA5820C297ACE0400449D20 /* LoginVC */,
 				9CA58211297AE0A000449D20 /* CoinsTableViewVC */,
@@ -298,6 +301,7 @@
 				9CA582322983C9F100449D20 /* Network.swift in Sources */,
 				9C43C249298C632500BAD019 /* DetailsVM.swift in Sources */,
 				9CA582672984454E00449D20 /* CenterView + extension.swift in Sources */,
+				9C41AC9529A8E7FC005F1198 /* Router.swift in Sources */,
 				9C7B3B8829905D0A00B38A02 /* Date + extension.swift in Sources */,
 				9C43C243298C1C6200BAD019 /* CoinsTableController + extension.swift in Sources */,
 				9C43C221298703A400BAD019 /* CoinCellViewModel.swift in Sources */,

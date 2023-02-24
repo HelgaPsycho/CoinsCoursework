@@ -7,9 +7,9 @@
 
 import UIKit
 
-let loginNavigationController = NavigationController(rootViewController: LoginVCBilder().build())
-
-let mainNavigationController = NavigationController(rootViewController: CoinsTableVCBuilder().build())
+//let loginNavigationController = NavigationController(rootViewController: LoginVCBilder().build())
+//
+//let mainNavigationController = NavigationController(rootViewController: CoinsTableVCBuilder().build())
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -32,14 +32,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         
         if UserDefaults.standard.bool(forKey: "isAutorized") == true {
-            if let VC = mainNavigationController.viewControllers[0] as? CoinsTableController { VC.getCoinsArray()}
-            window.rootViewController = mainNavigationController
-        
+            let navigationController = NavigationController()
+            let builder = CoinsTableVCBuilder()
+            let detailVCBuilder = DetailsVCBuilder()
+            let router = RouterMainVC(navigationController: navigationController, builder: builder, detailVCBuilder: detailVCBuilder)
+            router.initMainNavigationController()
+            window.rootViewController = router.navigationController
+               
             }
         else   {
-            window.rootViewController = loginNavigationController
+            let navigationController = NavigationController()
+            let builder = LoginVCBilder()
+            let router = RouterLogin(navigationController: navigationController, builder: builder)
+            router.initLoginNavigationController()
+            window.rootViewController = router.navigationController
         
-            
         }
         
     }

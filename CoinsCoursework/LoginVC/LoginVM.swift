@@ -30,6 +30,12 @@ protocol NavigationOfLoginVC {
 
 final class LoginVM: LoginVMProtocolIn, LoginVMProtocolOut, NavigationOfLoginVC {
     
+    private var router: RouterLoginProtocol?
+    
+    init(router: RouterLoginProtocol) {
+        self.router = router
+    }
+    
     public var messageText = "Email or password is incorrect. Please, try again"
     
     public func checkUser(userModel: UserModel) {
@@ -51,17 +57,20 @@ final class LoginVM: LoginVMProtocolIn, LoginVMProtocolOut, NavigationOfLoginVC 
     //MARK: - Navigation
     public func changeRootController () {
         
-        DispatchQueue.main.async { [self] in
-            showMessage(false)
-            guard let window = loginNavigationController.navigationBar.window else {
-                return
-            }
-            if let VC = mainNavigationController.viewControllers[0] as? CoinsTableController { VC.getCoinsArray()}
-            window.rootViewController = mainNavigationController
-            
-            window.makeKeyAndVisible()
-            
-        }
+        guard let router = router else {return}
+        router.showMainNavigationController()
+        
+//        DispatchQueue.main.async { [self] in
+//            showMessage(false)
+//            guard let window = loginNavigationController.navigationBar.window else {
+//                return
+//            }
+//            if let VC = mainNavigationController.viewControllers[0] as? CoinsTableController { VC.getCoinsArray()}
+//            window.rootViewController = mainNavigationController
+//
+//            window.makeKeyAndVisible()
+//
+//        }
         
     }
     

@@ -10,6 +10,7 @@ import UIKit
 
 protocol DetailsVMProtocolIn {
     var coinModel: CoinModel? { get set }
+    var router: RouterMainVCProtocol? {get set}
     
 }
 
@@ -20,6 +21,12 @@ protocol DetailsVMProtocolOut {
 
 
 final class DetailsViewModel: DetailsVMProtocolIn, DetailsVMProtocolOut{
+    
+    var router: RouterMainVCProtocol?
+    
+    init(router: RouterMainVCProtocol){
+        self.router = router
+    }
     
     var catchFormattedCoinModel: (FormatedCoinModel) -> () = {_ in}
     

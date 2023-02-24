@@ -9,9 +9,11 @@ import Foundation
 import UIKit
 
 protocol CoinsTableViewProtocolIn {
+    var router: RouterMainVCProtocol?{get set}
     
     func getCoinsArray()
     func sortBy(_ changes: PriceChanges)
+    
 }
 
 protocol CoinsTableViewProtocolOut {
@@ -29,13 +31,17 @@ protocol NavigationOfCoincTableVC {
 
 final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOut, NavigationOfCoincTableVC {
     
-    private let coinsStringsArray: [String] = ["busd", "btc", "eth", "tron", "luna", "polkadot", "dogecoin", "tether", "stellar", "cardano", "xrp"]
+    var router: RouterMainVCProtocol?
+    
+    private let coinsStringsArray: [String] = ["busd", "btc", "eth", "tron", "luna", "polkadot", "dogecoin", "tether", "stellar", "cardano", "xrp", "xxx"]
     
     private var coinsArray: [CoinModel] = []
     
     public var coinsArrayClosure: ([CoinModel]) -> () = { _ in}
     
-    init() {
+    init(router: RouterMainVCProtocol) {
+        self.router = router
+        getCoinsArray()
         listenNetwork()
     }
     
@@ -94,20 +100,23 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
     //MARK: - Navigation
     
     public func navigateToDetailsCV(coin: CoinModel) {
-        let detailsVC = DetailsVCBuilder().build() as! DetailsViewController
+        guard let router = router else {return}
+        let detailsVC = DetailsVCBuilder().build(router: router)
         detailsVC.viewModel?.coinModel = coin
-        mainNavigationController.pushViewController(detailsVC, animated: true)
+        router.navigationController?.pushViewController(detailsVC, animated: true)
+    
     }
     
     func navigateToLoginVC(){
         
-        mainNavigationController.isNavigationBarHidden = false
-        guard let window = mainNavigationController.navigationBar.window else {
-            return
-        }
+        router?.navigationController?.isNavigationBarHidden = false
+        guard let window = router?.navigationController?.navigationBar.window else {return}
         UserDefaults.standard.set(false, forKey: "isAutorized")
-        window.rootViewController = loginNavigationController
-    
+        let navigationController = NavigationController()
+        let builder = LoginVCBilder()
+        let loginRouter = RouterLogin(navigationController: navigationController, builder: builder)
+        loginRouter.initLoginNavigationController()
+        window.rootViewController = loginRouter.navigationController
         window.makeKeyAndVisible()
         
         

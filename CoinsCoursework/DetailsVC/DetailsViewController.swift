@@ -69,20 +69,21 @@ class DetailsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        mainNavigationController.isNavigationBarHidden = false
+        viewModel?.router?.navigationController?.isNavigationBarHidden = false
     }
     
     
     private func setupVC() {
         view.backgroundColor = .appBeige
-        mainNavigationController.navigationBar.tintColor = .appIndigo
+        viewModel?.router?.navigationController?.navigationBar.tintColor = .appIndigo
         setupHierarhy()
         setupConstraints()
         
     }
     
     private func  setupHierarhy() {
-        view.addSubview(mainNavigationController.navigationBar)
+        if let navBar = viewModel?.router?.navigationController?.navigationBar {
+            view.addSubview(navBar)}
         view.addSubview(topHorizontalStack)
         topHorizontalStack.addArrangedSubview(iconView)
         topHorizontalStack.addArrangedSubview(topVerticalStack)

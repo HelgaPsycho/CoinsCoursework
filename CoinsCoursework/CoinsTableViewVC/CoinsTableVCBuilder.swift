@@ -8,10 +8,16 @@
 import Foundation
 import UIKit
 
-final class CoinsTableVCBuilder: Builder {
-    func build() -> UIViewController {
+protocol CoinsTableVCBuilderProtocol {
+    func build(router: RouterMainVCProtocol)-> UIViewController
+}
+
+final class CoinsTableVCBuilder: CoinsTableVCBuilderProtocol {
+  
+    
+    func build(router: RouterMainVCProtocol) -> UIViewController {
         let VC = CoinsTableController()
-        let VM = CoinsTableViewVM()
+        let VM = CoinsTableViewVM(router: router)
         VC.viewModel = VM 
         
         return VC

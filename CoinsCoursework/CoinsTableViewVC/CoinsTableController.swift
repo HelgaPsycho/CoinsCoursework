@@ -55,7 +55,7 @@ class CoinsTableController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        mainNavigationController.isNavigationBarHidden = true
+        viewModel?.router?.navigationController?.isNavigationBarHidden = true
         message.isHidden = true
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -63,7 +63,7 @@ class CoinsTableController: UIViewController {
     }
     
     private func setupController() {
-        mainNavigationController.isNavigationBarHidden = true
+        viewModel?.router?.navigationController?.isNavigationBarHidden = true
         setupHierarhy()
         setupConstraints()
         configureTableView()

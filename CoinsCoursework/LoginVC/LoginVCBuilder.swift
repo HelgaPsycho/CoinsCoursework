@@ -8,11 +8,15 @@
 import Foundation
 import UIKit
 
-final class LoginVCBilder: Builder {
-    
-    func build() -> UIViewController {
+protocol LoginVCBuilderProtocol {
+    func build(router: RouterLoginProtocol)-> UIViewController
+}
+
+final class LoginVCBilder: LoginVCBuilderProtocol {
+        
+    func build(router: RouterLoginProtocol) -> UIViewController {
         let VC = LoginViewController()
-        let VM = LoginVM()
+        let VM = LoginVM(router: router)
         VC.viewModel = VM
         
         return VC
