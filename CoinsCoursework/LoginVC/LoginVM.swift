@@ -40,7 +40,7 @@ final class LoginVM: LoginVMProtocolIn, LoginVMProtocolOut, NavigationOfLoginVC 
     
     public func checkUser(userModel: UserModel) {
         if (userModel.email == "1234") && (userModel.password == "1234") {
-            UserDefaults.standard.set(true, forKey: "isAutorized")
+            //UserDefaults.standard.set(true, forKey: "isAutorized")
             clearTextFieldsClosure("")
             changeRootController()
         } else {
@@ -60,17 +60,6 @@ final class LoginVM: LoginVMProtocolIn, LoginVMProtocolOut, NavigationOfLoginVC 
         guard let router = router else {return}
         router.showMainNavigationController()
         
-//        DispatchQueue.main.async { [self] in
-//            showMessage(false)
-//            guard let window = loginNavigationController.navigationBar.window else {
-//                return
-//            }
-//            if let VC = mainNavigationController.viewControllers[0] as? CoinsTableController { VC.getCoinsArray()}
-//            window.rootViewController = mainNavigationController
-//
-//            window.makeKeyAndVisible()
-//
-//        }
         
     }
     

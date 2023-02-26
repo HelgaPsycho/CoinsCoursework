@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9C41AC9529A8E7FC005F1198 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C41AC9429A8E7FC005F1198 /* Router.swift */; };
 		9C41AC9929A920E5005F1198 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C41AC9829A920E5005F1198 /* Coordinator.swift */; };
+		9C41AC9C29AB6E0F005F1198 /* isAutorized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C41AC9B29AB6E0F005F1198 /* isAutorized.swift */; };
 		9C43C221298703A400BAD019 /* CoinCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C43C220298703A400BAD019 /* CoinCellViewModel.swift */; };
 		9C43C243298C1C6200BAD019 /* CoinsTableController + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C43C242298C1C6200BAD019 /* CoinsTableController + extension.swift */; };
 		9C43C245298C24FA00BAD019 /* LoginViewController + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C43C244298C24FA00BAD019 /* LoginViewController + extension.swift */; };
@@ -49,6 +50,7 @@
 /* Begin PBXFileReference section */
 		9C41AC9429A8E7FC005F1198 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		9C41AC9829A920E5005F1198 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		9C41AC9B29AB6E0F005F1198 /* isAutorized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isAutorized.swift; sourceTree = "<group>"; };
 		9C43C220298703A400BAD019 /* CoinCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCellViewModel.swift; sourceTree = "<group>"; };
 		9C43C242298C1C6200BAD019 /* CoinsTableController + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoinsTableController + extension.swift"; sourceTree = "<group>"; };
 		9C43C244298C24FA00BAD019 /* LoginViewController + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController + extension.swift"; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 			children = (
 				9CA58225297D377600449D20 /* UserModel.swift */,
 				9CA58229297E712900449D20 /* CoinModel.swift */,
+				9C41AC9B29AB6E0F005F1198 /* isAutorized.swift */,
 				9C7B3B852990571F00B38A02 /* FormattedCoinModel.swift */,
 				9CA5822B297E717500449D20 /* CoinData.swift */,
 			);
@@ -310,6 +313,7 @@
 				9C43C221298703A400BAD019 /* CoinCellViewModel.swift in Sources */,
 				9CA5821E297D2B6700449D20 /* CoinsTableViewVM.swift in Sources */,
 				9C43C245298C24FA00BAD019 /* LoginViewController + extension.swift in Sources */,
+				9C41AC9C29AB6E0F005F1198 /* isAutorized.swift in Sources */,
 				9CA5822E297E800A00449D20 /* CoinCell.swift in Sources */,
 				9CA5820E297ACE5B00449D20 /* LoginVM.swift in Sources */,
 				9CA58219297BF7F800449D20 /* CustomUITextField.swift in Sources */,

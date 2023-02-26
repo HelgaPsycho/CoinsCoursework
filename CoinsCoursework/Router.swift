@@ -45,6 +45,7 @@ class RouterLogin: RouterLoginProtocol {
         let builder = CoinsTableVCBuilder()
         let detailBuilder = DetailsVCBuilder()
         let router = RouterMainVC(navigationController: navigationController, builder: builder, detailVCBuilder: detailBuilder)
+        UserDefaults.standard.set(true, forKey: Autorized.keyValue)
         router.initMainNavigationController()
         window.rootViewController = router.navigationController
     }
@@ -107,7 +108,7 @@ class RouterMainVC: RouterMainVCProtocol {
         loginRouter.initLoginNavigationController()
         window.rootViewController = Coordinator.shared.loginNavigationController
         window.makeKeyAndVisible()
-        UserDefaults.standard.set(false, forKey: "isAutorized")
+        UserDefaults.standard.set(false, forKey: Autorized.keyValue)
         
     
     }
