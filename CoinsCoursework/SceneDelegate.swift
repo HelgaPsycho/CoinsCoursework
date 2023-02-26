@@ -32,7 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         
         if UserDefaults.standard.bool(forKey: "isAutorized") == true {
-            let navigationController = NavigationController()
+            let navigationController = Coordinator.shared.mainNavigationController
             let builder = CoinsTableVCBuilder()
             let detailVCBuilder = DetailsVCBuilder()
             let router = RouterMainVC(navigationController: navigationController, builder: builder, detailVCBuilder: detailVCBuilder)
@@ -41,7 +41,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                
             }
         else   {
-            let navigationController = NavigationController()
+            let navigationController = Coordinator.shared.loginNavigationController
             let builder = LoginVCBilder()
             let router = RouterLogin(navigationController: navigationController, builder: builder)
             router.initLoginNavigationController()

@@ -8,13 +8,13 @@
 import Foundation
 import UIKit
 
-protocol RouterMainProrocol {
+protocol RouterMainProtocol {
     
     var navigationController: NavigationController? {get set}
     var builder: LoginVCBuilderProtocol? {get set}
 }
 
-protocol RouterLoginProtocol: RouterMainProrocol {
+protocol RouterLoginProtocol: RouterMainProtocol {
     
     func initLoginNavigationController()
     func showMainNavigationController()
@@ -41,7 +41,7 @@ class RouterLogin: RouterLoginProtocol {
     
     func showMainNavigationController() {
         guard let window = navigationController?.navigationBar.window else {return}
-        let navigationController = NavigationController()
+        let navigationController = Coordinator.shared.mainNavigationController
         let builder = CoinsTableVCBuilder()
         let detailBuilder = DetailsVCBuilder()
         let router = RouterMainVC(navigationController: navigationController, builder: builder, detailVCBuilder: detailBuilder)
@@ -99,14 +99,17 @@ class RouterMainVC: RouterMainVCProtocol {
     }
     
     func showLoginNavigationController() {
-        let navigationController = NavigationController()
-        let builder = CoinsTableVCBuilder()
-        let router = RouterLogin(navigationController: navigationController, builder: builder as! LoginVCBuilderProtocol)
-        router.initLoginNavigationController()
-      //  UserDefaults.standard.set(false, forKey: "isAutorized")
-        guard let window = navigationController.navigationBar.window else {return}
-        window.rootViewController = router.navigationController
+        navigationController?.isNavigationBarHidden = false
+        guard let window = navigationController?.navigationBar.window else {return}
+        let loginNavigationController = Coordinator.shared.loginNavigationController
+        let builder = LoginVCBilder()
+        let loginRouter = RouterLogin(navigationController: loginNavigationController, builder: builder)
+        loginRouter.initLoginNavigationController()
+        window.rootViewController = Coordinator.shared.loginNavigationController
         window.makeKeyAndVisible()
+        UserDefaults.standard.set(false, forKey: "isAutorized")
+        
+    
     }
 
     

@@ -44,6 +44,10 @@ class CoinsTableController: UIViewController {
     private lazy var message: UILabel = makeMessageLabel()
     private var refreshControl = UIRefreshControl()
     
+    deinit{
+        print("=============Table View Controller Deinit===============")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

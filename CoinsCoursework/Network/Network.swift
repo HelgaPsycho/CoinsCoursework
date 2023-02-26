@@ -87,7 +87,6 @@ final class NetworkManager {
             decoder.dateDecodingStrategy = .formatted(dateFormatter)
             
             let decodedData = try decoder.decode(CoinData.self, from: coinData)
-            print(decodedData.data.name)
             return CoinModel(symbol: decodedData.data.symbol,
                              name: decodedData.data.name,
                              priceUsd: decodedData.data.market_data?.price_usd,

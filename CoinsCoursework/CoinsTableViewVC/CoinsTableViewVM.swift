@@ -108,20 +108,11 @@ final class CoinsTableViewVM: CoinsTableViewProtocolIn, CoinsTableViewProtocolOu
     }
     
     func navigateToLoginVC(){
-        
-        router?.navigationController?.isNavigationBarHidden = false
-        guard let window = router?.navigationController?.navigationBar.window else {return}
-        UserDefaults.standard.set(false, forKey: "isAutorized")
-        let navigationController = NavigationController()
-        let builder = LoginVCBilder()
-        let loginRouter = RouterLogin(navigationController: navigationController, builder: builder)
-        loginRouter.initLoginNavigationController()
-        window.rootViewController = loginRouter.navigationController
-        window.makeKeyAndVisible()
-        
-        
-    }
+        guard let router = router else {return}
     
+        router.showLoginNavigationController()
+            
+    }
     
 }
 
